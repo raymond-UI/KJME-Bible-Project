@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Shared definitions",
+  "$defs": {
+    "verse_id": { "type": "string", "pattern": "^[1-3A-Z]{3}\\.[0-9]{1,3}\\.[0-9]{1,3}$" },
+    "span": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "integer", "minimum": 0 },
+        "end": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "pronoun_mark": {
+      "type": "object",
+      "required": ["start", "end", "number"],
+      "properties": {
+        "start": { "type": "integer" },
+        "end": { "type": "integer" },
+        "number": { "enum": ["sg", "pl"] }
+      }
+    },
+    "category": {
+      "enum": ["pronoun_sg", "pronoun_pl", "verb_form", "archaic_word", "shifted_meaning", "syntax", "spelling", "punctuation"]
+    },
+    "change": {
+      "type": "object",
+      "required": ["id", "verse_id", "kjv", "update", "category", "reason"],
+      "properties": {
+        "id": { "type": "string" },
+        "verse_id": { "$ref": "#/$defs/verse_id" },
+        "kjv": {
+          "type": "object",
+          "required": ["start", "end", "text"],
+          "properties": { "start": { "type": "integer" }, "end": { "type": "integer" }, "text": { "type": "string" } }
+        },
+        "update": {
+          "type": "object",
+          "required": ["start", "end", "text"],
+          "properties": { "start": { "type": "integer" }, "end": { "type": "integer" }, "text": { "type": "string" } }
+        },
+        "category": { "$ref": "#/$defs/category" },
+        "reason": { "type": "string", "maxLength": 300 },
+        "glossary_id": { "type": ["string", "null"] },
+        "uncertain": { "type": "boolean", "default": false },
+        "evidence": {
+          "type": "array",
+          "description": "reference lookups this change relied on (reference/REFERENCE.md)",
+          "items": {
+            "type": "object",
+            "required": ["lookup_id", "note"],
+            "properties": { "lookup_id": { "type": "string" }, "note": { "type": "string", "maxLength": 300 } }
+          }
+        }
+      }
+    },
+    "updated_verse": {
+      "type": "object",
+      "required": ["id", "text", "pronoun_marks", "italics", "changes"],
+      "properties": {
+        "id": { "$ref": "#/$defs/verse_id" },
+        "text": { "type": "string" },
+        "pronoun_marks": { "type": "array", "items": { "$ref": "#/$defs/pronoun_mark" } },
+        "italics": { "type": "array", "items": { "$ref": "#/$defs/span" } },
+        "changes": { "type": "array", "items": { "$ref": "#/$defs/change" } }
+      }
+    }
+  }
+}

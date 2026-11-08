@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glossary-entry.schema.json",
+  "title": "Glossary entry",
+  "type": "object",
+  "required": ["id", "kjv_form", "sense", "update", "category", "status"],
+  "properties": {
+    "id": { "type": "string", "description": "e.g. g-careful-anxious" },
+    "kjv_form": { "type": "string", "description": "lemma or exact phrase; inflected forms listed in 'forms'" },
+    "forms": { "type": "array", "items": { "type": "string" } },
+    "sense": { "type": "string", "description": "the KJV meaning this entry covers, stated so an agent can recognize it" },
+    "update": { "type": "string", "description": "replacement text, or KEEP, or ESCALATE" },
+    "category": { "$ref": "common.schema.json#/$defs/category" },
+    "examples": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/verse_id" } },
+    "exceptions": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/verse_id" }, "description": "verses where this sense does not apply" },
+    "status": { "enum": ["proposed", "provisional", "ratified", "rejected"] },
+    "uses": { "type": "integer", "default": 0 },
+    "created_in": { "type": ["string", "null"], "description": "decision id, or 'seed'" },
+    "ratified_by": { "type": ["string", "null"], "description": "'auto' or a human identifier" },
+    "notes": { "type": "string" }
+  }
+}

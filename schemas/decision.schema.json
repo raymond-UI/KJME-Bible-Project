@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decision.schema.json",
+  "title": "Decision",
+  "type": "object",
+  "required": ["id", "batch_id", "decided_by", "outcome", "rationale", "confidence"],
+  "properties": {
+    "id": { "type": "string" },
+    "batch_id": { "type": "string" },
+    "decided_by": { "type": "string", "description": "'coordinator' or a human identifier" },
+    "outcome": { "enum": ["select", "merge", "escalate"] },
+    "winner": { "type": ["string", "null"], "description": "candidate id, for select" },
+    "merged_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["change_id", "source"],
+        "properties": {
+          "change_id": { "type": "string" },
+          "source": { "type": "string", "description": "candidate id, or review id when a reviewer alternative is used" }
+        }
+      }
+    },
+    "final_verses": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/updated_verse" } },
+    "glossary_proposals": { "type": "array", "items": { "$ref": "glossary-entry.schema.json" } },
+    "rationale": { "type": "string", "maxLength": 1200 },
+    "cites": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "glossary_version": { "type": "integer" },
+    "supersedes": { "type": ["string", "null"], "description": "id of the decision this one replaces, after a consistency patch or a reopened feedback item" },
+    "feedback_ids": { "type": "array", "items": { "type": "string" }, "description": "feedback that caused this re-review" },
+    "escalation": {
+      "type": ["object", "null"],
+      "properties": {
+        "trigger": { "enum": ["no_eligible", "g1_dispute", "low_confidence", "escalate_only_term", "uncertain_sense", "merge_failed_checks", "glossary_conflict", "public_feedback"] },
+        "question": { "type": "string" },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "type": "object", "properties": { "label": { "type": "string" }, "ref": { "type": "string" } } }
+        },
+        "recommendation": { "type": "string" }
+      }
+    }
+  }
+}

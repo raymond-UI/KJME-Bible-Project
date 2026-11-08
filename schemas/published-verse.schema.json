@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "published-verse.schema.json",
+  "title": "Published verse (text/json/<BOOK>.json)",
+  "type": "object",
+  "required": ["id", "reference", "kjme", "kjv", "change_ids", "decision_id", "first_release", "last_changed_release"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/verse_id" },
+    "reference": { "type": "string", "description": "human form, e.g. Philippians 4:6" },
+    "kjme": {
+      "type": "object",
+      "required": ["text", "pronoun_marks", "italics"],
+      "properties": {
+        "text": { "type": "string" },
+        "pronoun_marks": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/pronoun_mark" } },
+        "italics": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/span" } },
+        "small_caps": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/span" } }
+      }
+    },
+    "kjv": {
+      "type": "object",
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string" },
+        "italics": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/span" } }
+      }
+    },
+    "change_ids": { "type": "array", "items": { "type": "string" }, "description": "ids into margin/<BOOK>.changes.json" },
+    "decision_id": { "type": "string" },
+    "escalated": { "type": "boolean" },
+    "first_release": { "type": "string" },
+    "last_changed_release": { "type": "string" },
+    "history": {
+      "type": "array",
+      "description": "previous released texts of this verse, newest first",
+      "items": {
+        "type": "object",
+        "properties": { "release": { "type": "string" }, "text": { "type": "string" }, "decision_id": { "type": "string" }, "feedback_ids": { "type": "array", "items": { "type": "string" } } }
+      }
+    }
+  }
+}

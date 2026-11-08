@@ -1,0 +1,47 @@
+{
+  "description": "Deterministic lookup tables for the pretag and mechanical stages. Matching is case-insensitive on whole words; output preserves the source token's capitalization.",
+  "pronouns": [
+    { "kjv": "thou", "number": "sg", "update": "you" },
+    { "kjv": "thee", "number": "sg", "update": "you" },
+    { "kjv": "thy", "number": "sg", "update": "your" },
+    { "kjv": "thine", "number": "sg", "update": "your", "when": "followed by a noun or adjective" },
+    { "kjv": "thine", "number": "sg", "update": "yours", "when": "standalone (predicate or end of clause)" },
+    { "kjv": "thyself", "number": "sg", "update": "yourself", "mark": false },
+    { "kjv": "ye", "number": "pl", "update": "you" },
+    { "kjv": "you", "number": "pl", "update": "you" },
+    { "kjv": "your", "number": "pl", "update": "your" },
+    { "kjv": "yours", "number": "pl", "update": "yours" },
+    { "kjv": "yourselves", "number": "pl", "update": "yourselves", "mark": false }
+  ],
+  "pronoun_notes": [
+    "In the KJV, 'you', 'your' and 'yours' are always plural. Code does not re-judge them.",
+    "'thine' needs the 'when' test; if the following-token heuristic is unsure, set mandatory_update to null and let the agent decide."
+  ],
+  "verbs_second_singular": {
+    "art": "are", "wast": "were", "wert": "were", "hast": "have", "hadst": "had",
+    "dost": "do", "didst": "did", "wilt": "will", "shalt": "shall", "canst": "can",
+    "couldest": "could", "wouldest": "would", "shouldest": "should", "mayest": "may", "mightest": "might",
+    "knowest": "know", "knewest": "knew", "sayest": "say", "saidst": "said", "seest": "see", "sawest": "saw",
+    "comest": "come", "camest": "came", "goest": "go", "givest": "give", "gavest": "gave",
+    "hearest": "hear", "heardest": "heard", "lovest": "love", "lovedst": "loved", "makest": "make", "madest": "made",
+    "takest": "take", "tookest": "took", "believest": "believe", "doest": "do", "speakest": "speak", "spakest": "spoke"
+  },
+  "verbs_third_singular": {
+    "hath": "has", "doth": "does", "doeth": "does", "saith": "says",
+    "cometh": "comes", "goeth": "goes", "giveth": "gives", "maketh": "makes", "taketh": "takes",
+    "loveth": "loves", "believeth": "believes", "speaketh": "speaks", "knoweth": "knows", "seeth": "sees",
+    "heareth": "hears", "sayeth": "says", "worketh": "works", "abideth": "abides", "liveth": "lives",
+    "dwelleth": "dwells", "keepeth": "keeps", "receiveth": "receives", "sendeth": "sends", "seeketh": "seeks",
+    "walketh": "walks", "judgeth": "judges", "endureth": "endures", "passeth": "passes", "remaineth": "remains"
+  },
+  "suffix_rules": [
+    { "suffix": "eth", "applies": "third person singular verb", "action": "flag", "note": "Untabled -eth forms are flagged with mandatory_update null; spelling rules (doubling, -ies) are left to the agent." },
+    { "suffix": "est", "applies": "second person singular verb, only when 'thou' or 'thee' is in the same clause", "action": "flag" },
+    { "suffix": "edst", "applies": "second person singular past", "action": "flag" }
+  ],
+  "suffix_stoplist": [
+    "beneath", "teeth", "Seth", "Elizabeth", "Nazareth", "Japheth", "Heth", "Gath", "Bethel", "Elisabeth",
+    "best", "least", "greatest", "highest", "lowest", "oldest", "nearest", "chiefest", "rest", "west", "east",
+    "feast", "beast", "breast", "priest", "honest", "harvest", "forest", "earnest", "interest", "behest", "manifest", "request", "conquest"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reviewer output (agent-facing)",
+  "type": "object",
+  "required": ["candidates", "ranking", "summary"],
+  "properties": {
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "gates"],
+        "properties": {
+          "label": { "type": "string" },
+          "gates": {
+            "type": "object",
+            "required": ["G1", "G2", "G3", "G4", "G5"],
+            "properties": {
+              "G1": { "enum": ["pass", "fail"] }, "G2": { "enum": ["pass", "fail"] }, "G3": { "enum": ["pass", "fail"] },
+              "G4": { "enum": ["pass", "fail"] }, "G5": { "enum": ["pass", "fail"] }
+            }
+          },
+          "gate_notes": { "type": "array", "items": { "type": "string" } },
+          "scores": {
+            "type": ["object", "null"],
+            "properties": {
+              "S1": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+              "S2": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+              "S3": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+              "S4": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 }
+            }
+          },
+          "change_comments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["change_id", "verdict", "reason"],
+              "properties": {
+                "change_id": { "type": "string" },
+                "verdict": { "enum": ["agree", "disagree", "alternative"] },
+                "alternative_text": { "type": ["string", "null"] },
+                "reason": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ranking": { "type": "array", "items": { "type": "string" } },
+    "round2_changes": { "type": "array" },
+    "summary": { "type": "string" }
+  }
+}

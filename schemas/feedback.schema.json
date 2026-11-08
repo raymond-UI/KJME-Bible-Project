@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "feedback.schema.json",
+  "title": "Public feedback",
+  "type": "object",
+  "required": ["id", "release", "verse_id", "type", "argument", "received_at", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "release": { "type": "string", "description": "e.g. 0.1" },
+    "verse_id": { "$ref": "common.schema.json#/$defs/verse_id" },
+    "change_id": { "type": ["string", "null"], "description": "null when flagging a missing change" },
+    "type": { "enum": ["meaning", "missed_archaism", "unneeded_change", "consistency", "pronoun", "other"] },
+    "argument": { "type": "string", "maxLength": 2000 },
+    "proposed_text": { "type": ["string", "null"] },
+    "contributor": {
+      "type": ["object", "null"],
+      "properties": {
+        "display_name": { "type": "string" },
+        "credit_opt_in": { "type": "boolean" }
+      }
+    },
+    "received_at": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["new", "merged", "dismissed", "answered", "reopened", "accepted", "rejected"] },
+    "triage": {
+      "type": ["object", "null"],
+      "properties": {
+        "outcome": { "enum": ["merge", "dismiss", "answer", "reopen"] },
+        "merge_into": { "type": ["string", "null"] },
+        "decision_ref": { "type": ["string", "null"] },
+        "reason": { "type": "string" },
+        "public_reply": { "type": "string", "maxLength": 400 }
+      }
+    },
+    "resolution": {
+      "type": ["object", "null"],
+      "description": "set after re-review",
+      "properties": {
+        "decision_id": { "type": "string" },
+        "released_in": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

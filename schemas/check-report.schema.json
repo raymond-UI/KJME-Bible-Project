@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "check-report.schema.json",
+  "title": "Check report",
+  "type": "object",
+  "required": ["candidate_id", "passed", "results", "metrics"],
+  "properties": {
+    "candidate_id": { "type": "string" },
+    "passed": { "type": "boolean", "description": "true if no hard check failed" },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "severity", "passed"],
+        "properties": {
+          "check": { "type": "string", "description": "C1..C10" },
+          "severity": { "enum": ["hard", "warning"] },
+          "passed": { "type": "boolean" },
+          "verse_id": { "type": ["string", "null"] },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "change_count": { "type": "integer" },
+        "optional_change_count": { "type": "integer", "description": "changes not required by pretag or glossary" },
+        "word_delta": { "type": "integer" },
+        "chars_changed_ratio": { "type": "number" }
+      }
+    }
+  }
+}

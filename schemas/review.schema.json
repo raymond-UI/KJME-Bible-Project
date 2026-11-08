@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "review.schema.json",
+  "title": "Review",
+  "type": "object",
+  "required": ["id", "batch_id", "reviewer", "round", "candidates", "ranking", "summary"],
+  "properties": {
+    "id": { "type": "string" },
+    "batch_id": { "type": "string" },
+    "reviewer": { "enum": ["reviewer-scorer", "reviewer-meaning-auditor"] },
+    "round": { "enum": [1, 2] },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "gates"],
+        "properties": {
+          "label": { "type": "string" },
+          "gates": {
+            "type": "object",
+            "required": ["G1", "G2", "G3", "G4", "G5"],
+            "properties": {
+              "G1": { "enum": ["pass", "fail"] },
+              "G2": { "enum": ["pass", "fail"] },
+              "G3": { "enum": ["pass", "fail"] },
+              "G4": { "enum": ["pass", "fail"] },
+              "G5": { "enum": ["pass", "fail"] }
+            }
+          },
+          "gate_notes": { "type": "array", "items": { "type": "string" } },
+          "scores": {
+            "type": ["object", "null"],
+            "properties": {
+              "S1": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+              "S2": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+              "S3": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+              "S4": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 }
+            }
+          },
+          "weighted": { "type": ["number", "null"] },
+          "change_comments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["change_id", "verdict", "reason"],
+              "properties": {
+                "change_id": { "type": "string" },
+                "verdict": { "enum": ["agree", "disagree", "alternative"] },
+                "alternative_text": { "type": ["string", "null"] },
+                "reason": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ranking": { "type": "array", "items": { "type": "string" } },
+    "round2_changes": {
+      "type": "array",
+      "description": "round 2 only: what changed from round 1 and why",
+      "items": { "type": "object", "properties": { "item": { "type": "string" }, "from": { "type": "string" }, "to": { "type": "string" }, "reason": { "type": "string" } } }
+    },
+    "summary": { "type": "string", "maxLength": 600 }
+  }
+}

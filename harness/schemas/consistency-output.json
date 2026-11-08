@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Consistency editor output (agent-facing)",
+  "type": "object",
+  "required": ["verdict", "reason"],
+  "properties": {
+    "verdict": { "enum": ["patch", "no_change"] },
+    "reason": { "type": "string" },
+    "patches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["verse_id", "text", "changes"],
+        "properties": { "verse_id": { "type": "string" }, "text": { "type": "string" }, "changes": { "type": "array" } }
+      }
+    },
+    "glossary_proposals": { "type": "array" }
+  }
+}

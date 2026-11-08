@@ -1,0 +1,14 @@
+# Secrets
+.env
+harness/.env
+
+# Installed packages and build output
+node_modules/
+__pycache__/
+
+# Downloaded data: fetched by scripts, never committed or reposted
+harness/data/
+reference/data/
+
+# Run outputs (accepted text, records, viewer). Publish releases deliberately, not by accident.
+harness/runs/

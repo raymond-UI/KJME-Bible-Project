@@ -1,0 +1,31 @@
+{
+  "description": "locked: agents may never change these. escalate_only: agents may propose a change but it always goes to a human. Matching is on whole words, case-insensitive, including listed forms.",
+  "locked": [
+    { "term": "LORD", "note": "small caps; keep flag" },
+    { "term": "GOD", "note": "small caps; keep flag" },
+    { "term": "Lord" },
+    { "term": "God" },
+    { "term": "Christ" },
+    { "term": "gospel" },
+    { "term": "grace" },
+    { "term": "faith" },
+    { "term": "righteousness", "forms": ["righteous"] },
+    { "term": "justify", "forms": ["justified", "justifieth", "justification"] },
+    { "term": "sanctify", "forms": ["sanctified", "sanctifieth", "sanctification"] },
+    { "term": "propitiation" },
+    { "term": "atonement" },
+    { "term": "redemption", "forms": ["redeem", "redeemed", "redeemer"] },
+    { "term": "salvation" },
+    { "term": "covenant" },
+    { "term": "testament" },
+    { "term": "repent", "forms": ["repentance", "repented"] }
+  ],
+  "escalate_only": [
+    { "term": "charity", "why": "KJV sense is love (agape); modern sense differs, but the word is theologically loaded" },
+    { "term": "Holy Ghost", "why": "'ghost' meant spirit; shifted meaning on a divine name" },
+    { "term": "damnation", "why": "sometimes means judgment or condemnation (e.g. 1 Cor 11:29)" },
+    { "term": "hell", "why": "renders different underlying terms; any change is interpretive" },
+    { "term": "conversation", "verses": ["PHP.3.20"], "why": "KJV English sense is debated in this verse" },
+    { "term": "robbery", "verses": ["PHP.2.6"], "why": "meaning of the phrase is contested" }
+  ]
+}
