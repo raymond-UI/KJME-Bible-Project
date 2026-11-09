@@ -1,0 +1,3661 @@
+{
+  "PHP.1.1": {
+    "id": "PHP.1.1",
+    "text": "Paul and Timotheus, the servants of Jesus Christ, to all the saints in Christ Jesus which are at Philippi, with the bishops and deacons:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b01",
+    "decision_id": "D-mw7ts77g-l",
+    "status": "accepted"
+  },
+  "PHP.1.2": {
+    "id": "PHP.1.2",
+    "text": "Grace be to you, and peace, from God our Father, and from the Lord Jesus Christ.",
+    "pronoun_marks": [
+      {
+        "start": 12,
+        "end": 15,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 6,
+        "end": 8
+      },
+      {
+        "start": 53,
+        "end": 57
+      }
+    ],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.1.2",
+        "kjv": {
+          "start": 9,
+          "end": 13,
+          "text": "unto"
+        },
+        "update": {
+          "start": 9,
+          "end": 11,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "Glossary entry g-unto-to directs this sense of 'unto' to be updated to 'to' (R3).",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.1.b01",
+    "decision_id": "D-mw7ts77g-l",
+    "status": "accepted"
+  },
+  "PHP.1.3": {
+    "id": "PHP.1.3",
+    "text": "I thank my God upon every remembrance of you,",
+    "pronoun_marks": [
+      {
+        "start": 41,
+        "end": 44,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b01",
+    "decision_id": "D-mw7ts77g-l",
+    "status": "accepted"
+  },
+  "PHP.1.4": {
+    "id": "PHP.1.4",
+    "text": "Always in every prayer of mine for you all making request with joy,",
+    "pronoun_marks": [
+      {
+        "start": 35,
+        "end": 38,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b01",
+    "decision_id": "D-mw7ts77g-l",
+    "status": "accepted"
+  },
+  "PHP.1.5": {
+    "id": "PHP.1.5",
+    "text": "For your fellowship in the gospel from the first day until now;",
+    "pronoun_marks": [
+      {
+        "start": 4,
+        "end": 8,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b01",
+    "decision_id": "D-mw7ts77g-l",
+    "status": "accepted"
+  },
+  "PHP.1.6": {
+    "id": "PHP.1.6",
+    "text": "Being confident of this very thing, that he which has begun a good work in you will perform it until the day of Jesus Christ:",
+    "pronoun_marks": [
+      {
+        "start": 75,
+        "end": 78,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 92,
+        "end": 94
+      }
+    ],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.1.6",
+        "kjv": {
+          "start": 50,
+          "end": 54,
+          "text": "hath"
+        },
+        "update": {
+          "start": 50,
+          "end": 53,
+          "text": "has"
+        },
+        "category": "verb_form",
+        "reason": "Mechanical update (R2)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.1.b01",
+    "decision_id": "D-mw7ts77g-l",
+    "status": "accepted"
+  },
+  "PHP.1.7": {
+    "id": "PHP.1.7",
+    "text": "Even as it is fitting for me to think this of you all, because I have you in my heart; inasmuch as both in my bonds, and in the defence and confirmation of the gospel, you all are partakers of my grace.",
+    "pronoun_marks": [
+      {
+        "start": 46,
+        "end": 49,
+        "number": "pl"
+      },
+      {
+        "start": 70,
+        "end": 73,
+        "number": "pl"
+      },
+      {
+        "start": 168,
+        "end": 171,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c3",
+        "verse_id": "PHP.1.7",
+        "kjv": {
+          "start": 14,
+          "end": 18,
+          "text": "meet"
+        },
+        "update": {
+          "start": 14,
+          "end": 21,
+          "text": "fitting"
+        },
+        "category": "shifted_meaning",
+        "reason": "'Meet' in this adjectival sense means 'suitable/fitting', which a modern reader would not understand; 'fitting' carries the same sense (R4).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "L-mw7tq3by-5",
+            "note": "Parallel KJV uses of 'it is meet' (JOB.34.31, 2TH.1.3) confirm the sense 'fitting, proper', not 'to encounter'."
+          }
+        ],
+        "auto": false
+      },
+      {
+        "id": "c4",
+        "verse_id": "PHP.1.7",
+        "kjv": {
+          "start": 165,
+          "end": 167,
+          "text": "ye"
+        },
+        "update": {
+          "start": 168,
+          "end": 171,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.1.b01",
+    "decision_id": "D-mw7ts77g-l",
+    "status": "accepted"
+  },
+  "PHP.1.8": {
+    "id": "PHP.1.8",
+    "text": "For God is my witness, how greatly I long after you all in the affection of Jesus Christ.",
+    "pronoun_marks": [
+      {
+        "start": 48,
+        "end": 51,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.1.8",
+        "kjv": {
+          "start": 14,
+          "end": 20,
+          "text": "record"
+        },
+        "update": {
+          "start": 14,
+          "end": 21,
+          "text": "witness"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: KJV \"record\" here means testimony borne by a witness, which a modern reader would take for a written account, so it must change.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.1.8",
+            "note": "μάρτυς (G3144) is glossed \"witness\", settling the KJV sense of \"record\"."
+          },
+          {
+            "lookup_id": "L-mw7tscqr-u",
+            "note": "JOB.16.19 sets \"my witness\" and \"my record\" in parallel, confirming record = witness."
+          }
+        ],
+        "auto": false
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.1.8",
+        "kjv": {
+          "start": 62,
+          "end": 68,
+          "text": "bowels"
+        },
+        "update": {
+          "start": 63,
+          "end": 72,
+          "text": "affection"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4 and glossary g-bowels-affection: the KJV sense is the seat of tender feeling, not entrails.",
+        "glossary_id": "g-bowels-affection",
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.1.8",
+            "note": "σπλάγχνοις (G4698) is glossed \"affection/entrails\"; the context of longing fixes the affective sense."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.1.b02",
+    "decision_id": "D-mw7tutcu-1l",
+    "status": "accepted"
+  },
+  "PHP.1.9": {
+    "id": "PHP.1.9",
+    "text": "And this I pray, that your love may abound yet more and more in knowledge and in all judgment;",
+    "pronoun_marks": [
+      {
+        "start": 22,
+        "end": 26,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 78,
+        "end": 80
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.1.b02",
+    "decision_id": "D-mw7tutcu-1l",
+    "status": "accepted"
+  },
+  "PHP.1.10": {
+    "id": "PHP.1.10",
+    "text": "That you may approve things that are excellent; that you may be sincere and without offence till the day of Christ;",
+    "pronoun_marks": [
+      {
+        "start": 5,
+        "end": 8,
+        "number": "pl"
+      },
+      {
+        "start": 53,
+        "end": 56,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c3",
+        "verse_id": "PHP.1.10",
+        "kjv": {
+          "start": 5,
+          "end": 7,
+          "text": "ye"
+        },
+        "update": {
+          "start": 5,
+          "end": 8,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c4",
+        "verse_id": "PHP.1.10",
+        "kjv": {
+          "start": 52,
+          "end": 54,
+          "text": "ye"
+        },
+        "update": {
+          "start": 53,
+          "end": 56,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.1.b02",
+    "decision_id": "D-mw7tutcu-1l",
+    "status": "accepted"
+  },
+  "PHP.1.11": {
+    "id": "PHP.1.11",
+    "text": "Being filled with the fruits of righteousness, which are by Jesus Christ, to the glory and praise of God.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c5",
+        "verse_id": "PHP.1.11",
+        "kjv": {
+          "start": 74,
+          "end": 78,
+          "text": "unto"
+        },
+        "update": {
+          "start": 74,
+          "end": 76,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3 and glossary g-unto-to: \"unto\" in this directional sense updates to \"to\".",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.1.b02",
+    "decision_id": "D-mw7tutcu-1l",
+    "status": "accepted"
+  },
+  "PHP.1.12": {
+    "id": "PHP.1.12",
+    "text": "But I would you should understand, brothers, that the things which happened to me have fallen out rather to the furtherance of the gospel;",
+    "pronoun_marks": [
+      {
+        "start": 12,
+        "end": 15,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 61,
+        "end": 75
+      }
+    ],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.1.12",
+        "kjv": {
+          "start": 12,
+          "end": 14,
+          "text": "ye"
+        },
+        "update": {
+          "start": 12,
+          "end": 15,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.1.b03.minimalist"
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.1.12",
+        "kjv": {
+          "start": 34,
+          "end": 42,
+          "text": "brethren"
+        },
+        "update": {
+          "start": 35,
+          "end": 43,
+          "text": "brothers"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-brethren-brothers gives 'brothers' for fellow believers.",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.1.b03.minimalist"
+      },
+      {
+        "id": "c3",
+        "verse_id": "PHP.1.12",
+        "kjv": {
+          "start": 75,
+          "end": 79,
+          "text": "unto"
+        },
+        "update": {
+          "start": 76,
+          "end": 78,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-unto-to gives 'to' for direction or indirect object.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.1.b03.minimalist"
+      },
+      {
+        "id": "c4",
+        "verse_id": "PHP.1.12",
+        "kjv": {
+          "start": 106,
+          "end": 110,
+          "text": "unto"
+        },
+        "update": {
+          "start": 105,
+          "end": 107,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-unto-to gives 'to' for direction or indirect object.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.1.b03.minimalist"
+      }
+    ],
+    "batch_id": "PHP.1.b03",
+    "decision_id": "D-mw7txjal-26",
+    "status": "accepted"
+  },
+  "PHP.1.13": {
+    "id": "PHP.1.13",
+    "text": "So that my bonds in Christ are manifest in all the palace, and in all other places;",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 76,
+        "end": 83
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.1.b03",
+    "decision_id": "D-mw7txjal-26",
+    "status": "accepted"
+  },
+  "PHP.1.14": {
+    "id": "PHP.1.14",
+    "text": "And many of the brothers in the Lord, growing confident by my bonds, are much more bold to speak the word without fear.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c5",
+        "verse_id": "PHP.1.14",
+        "kjv": {
+          "start": 16,
+          "end": 24,
+          "text": "brethren"
+        },
+        "update": {
+          "start": 16,
+          "end": 24,
+          "text": "brothers"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-brethren-brothers gives 'brothers' for fellow believers.",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.1.b03.minimalist"
+      },
+      {
+        "id": "c6",
+        "verse_id": "PHP.1.14",
+        "kjv": {
+          "start": 38,
+          "end": 44,
+          "text": "waxing"
+        },
+        "update": {
+          "start": 38,
+          "end": 45,
+          "text": "growing"
+        },
+        "category": "archaic_word",
+        "reason": "R3: 'waxing' in the sense of increasing is no longer in common use; 'growing' is the same meaning, one word for one word.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.1.b03.clarity"
+      }
+    ],
+    "batch_id": "PHP.1.b03",
+    "decision_id": "D-mw7txjal-26",
+    "status": "accepted"
+  },
+  "PHP.1.15": {
+    "id": "PHP.1.15",
+    "text": "Some indeed preach Christ even of envy and strife; and some also of good will:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b03",
+    "decision_id": "D-mw7txjal-26",
+    "status": "accepted"
+  },
+  "PHP.1.16": {
+    "id": "PHP.1.16",
+    "text": "The one preach Christ of contention, not sincerely, supposing to add affliction to my bonds:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b03",
+    "decision_id": "D-mw7txjal-26",
+    "status": "accepted"
+  },
+  "PHP.1.17": {
+    "id": "PHP.1.17",
+    "text": "But the other of love, knowing that I am set for the defence of the gospel.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b03",
+    "decision_id": "D-mw7txjal-26",
+    "status": "accepted"
+  },
+  "PHP.1.18": {
+    "id": "PHP.1.18",
+    "text": "What then? notwithstanding, every way, whether in pretence, or in truth, Christ is preached; and I therein do rejoice, yea, and will rejoice.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b04",
+    "decision_id": "D-mw7u0e7v-2t",
+    "status": "accepted"
+  },
+  "PHP.1.19": {
+    "id": "PHP.1.19",
+    "text": "For I know that this shall turn to my salvation through your prayer, and the supply of the Spirit of Jesus Christ,",
+    "pronoun_marks": [
+      {
+        "start": 56,
+        "end": 60,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b04",
+    "decision_id": "D-mw7u0e7v-2t",
+    "status": "accepted"
+  },
+  "PHP.1.20": {
+    "id": "PHP.1.20",
+    "text": "According to my earnest expectation and my hope, that in nothing I shall be ashamed, but that with all boldness, as always, so now also Christ shall be magnified in my body, whether it be by life, or by death.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 40,
+        "end": 42
+      },
+      {
+        "start": 89,
+        "end": 93
+      },
+      {
+        "start": 124,
+        "end": 126
+      },
+      {
+        "start": 182,
+        "end": 187
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.1.b04",
+    "decision_id": "D-mw7u0e7v-2t",
+    "status": "accepted"
+  },
+  "PHP.1.21": {
+    "id": "PHP.1.21",
+    "text": "For to me to live is Christ, and to die is gain.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 18,
+        "end": 20
+      },
+      {
+        "start": 40,
+        "end": 42
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.1.b04",
+    "decision_id": "D-mw7u0e7v-2t",
+    "status": "accepted"
+  },
+  "PHP.1.22": {
+    "id": "PHP.1.22",
+    "text": "But if I live in the flesh, this is the fruit of my labour: yet what I shall choose I know not.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 33,
+        "end": 35
+      }
+    ],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.1.22",
+        "kjv": {
+          "start": 86,
+          "end": 89,
+          "text": "wot"
+        },
+        "update": {
+          "start": 86,
+          "end": 90,
+          "text": "know"
+        },
+        "category": "archaic_word",
+        "reason": "R3: 'wot' is no longer in common use; the glossary entry g-wot-know gives 'know'.",
+        "glossary_id": "g-wot-know",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.1.b04",
+    "decision_id": "D-mw7u0e7v-2t",
+    "status": "accepted"
+  },
+  "PHP.1.23": {
+    "id": "PHP.1.23",
+    "text": "For I am in a strait between two, having a desire to depart, and to be with Christ; which is far better:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.1.23",
+        "kjv": {
+          "start": 21,
+          "end": 28,
+          "text": "betwixt"
+        },
+        "update": {
+          "start": 21,
+          "end": 28,
+          "text": "between"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-betwixt-between gives 'between' for this archaic preposition.",
+        "glossary_id": "g-betwixt-between",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.1.b05",
+    "decision_id": "D-mw7u2mmx-3i",
+    "status": "accepted"
+  },
+  "PHP.1.24": {
+    "id": "PHP.1.24",
+    "text": "Nevertheless to abide in the flesh is more needful for you.",
+    "pronoun_marks": [
+      {
+        "start": 55,
+        "end": 58,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 35,
+        "end": 37
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.1.b05",
+    "decision_id": "D-mw7u2mmx-3i",
+    "status": "accepted"
+  },
+  "PHP.1.25": {
+    "id": "PHP.1.25",
+    "text": "And having this confidence, I know that I shall abide and continue with you all for your furtherance and joy of faith;",
+    "pronoun_marks": [
+      {
+        "start": 72,
+        "end": 75,
+        "number": "pl"
+      },
+      {
+        "start": 84,
+        "end": 88,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b05",
+    "decision_id": "D-mw7u2mmx-3i",
+    "status": "accepted"
+  },
+  "PHP.1.26": {
+    "id": "PHP.1.26",
+    "text": "That your rejoicing may be more abundant in Jesus Christ for me by my coming to you again.",
+    "pronoun_marks": [
+      {
+        "start": 5,
+        "end": 9,
+        "number": "pl"
+      },
+      {
+        "start": 80,
+        "end": 83,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b05",
+    "decision_id": "D-mw7u2mmx-3i",
+    "status": "accepted"
+  },
+  "PHP.1.27": {
+    "id": "PHP.1.27",
+    "text": "Only let your conduct be as it becomes the gospel of Christ: that whether I come and see you, or else be absent, I may hear of your affairs, that you stand fast in one spirit, with one mind striving together for the faith of the gospel;",
+    "pronoun_marks": [
+      {
+        "start": 9,
+        "end": 13,
+        "number": "pl"
+      },
+      {
+        "start": 89,
+        "end": 92,
+        "number": "pl"
+      },
+      {
+        "start": 127,
+        "end": 131,
+        "number": "pl"
+      },
+      {
+        "start": 146,
+        "end": 149,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.1.27",
+        "kjv": {
+          "start": 14,
+          "end": 26,
+          "text": "conversation"
+        },
+        "update": {
+          "start": 14,
+          "end": 21,
+          "text": "conduct"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: glossary entry g-conversation-conduct fixes this sense as 'manner of life, conduct'.",
+        "glossary_id": "g-conversation-conduct",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c3",
+        "verse_id": "PHP.1.27",
+        "kjv": {
+          "start": 36,
+          "end": 44,
+          "text": "becometh"
+        },
+        "update": {
+          "start": 31,
+          "end": 38,
+          "text": "becomes"
+        },
+        "category": "verb_form",
+        "reason": "R2: third person singular archaic ending -eth becomes -es.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c4",
+        "verse_id": "PHP.1.27",
+        "kjv": {
+          "start": 152,
+          "end": 154,
+          "text": "ye"
+        },
+        "update": {
+          "start": 146,
+          "end": 149,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.1.b05",
+    "decision_id": "D-mw7u2mmx-3i",
+    "status": "accepted"
+  },
+  "PHP.1.28": {
+    "id": "PHP.1.28",
+    "text": "And in nothing terrified by your adversaries: which is to them an evident token of perdition, but to you of salvation, and that of God.",
+    "pronoun_marks": [
+      {
+        "start": 28,
+        "end": 32,
+        "number": "pl"
+      },
+      {
+        "start": 101,
+        "end": 104,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.1.b05",
+    "decision_id": "D-mw7u2mmx-3i",
+    "status": "accepted"
+  },
+  "PHP.1.29": {
+    "id": "PHP.1.29",
+    "text": "For to you it is given in the behalf of Christ, not only to believe on him, but also to suffer for his sake;",
+    "pronoun_marks": [
+      {
+        "start": 7,
+        "end": 10,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.1.29",
+        "kjv": {
+          "start": 4,
+          "end": 8,
+          "text": "unto"
+        },
+        "update": {
+          "start": 4,
+          "end": 6,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-unto-to gives 'to' for 'unto' in the sense of indirect object.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.1.b06",
+    "decision_id": "D-mw7u4t0t-42",
+    "status": "accepted"
+  },
+  "PHP.1.30": {
+    "id": "PHP.1.30",
+    "text": "Having the same conflict which you saw in me, and now hear to be in me.",
+    "pronoun_marks": [
+      {
+        "start": 31,
+        "end": 34,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 59,
+        "end": 64
+      }
+    ],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.1.30",
+        "kjv": {
+          "start": 31,
+          "end": 33,
+          "text": "ye"
+        },
+        "update": {
+          "start": 31,
+          "end": 34,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.1.b06",
+    "decision_id": "D-mw7u4t0t-42",
+    "status": "accepted"
+  },
+  "PHP.3.1": {
+    "id": "PHP.3.1",
+    "text": "Finally, my brothers, rejoice in the Lord. To write the same things to you, to me indeed is not grievous, but for you it is safe.",
+    "pronoun_marks": [
+      {
+        "start": 71,
+        "end": 74,
+        "number": "pl"
+      },
+      {
+        "start": 114,
+        "end": 117,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 89,
+        "end": 91
+      },
+      {
+        "start": 118,
+        "end": 123
+      }
+    ],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.3.1",
+        "kjv": {
+          "start": 12,
+          "end": 20,
+          "text": "brethren"
+        },
+        "update": {
+          "start": 12,
+          "end": 20,
+          "text": "brothers"
+        },
+        "category": "archaic_word",
+        "reason": "Glossary entry g-brethren-brothers marks brethren as archaic in this sense, so it becomes brothers per R3.",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.3.b01.cadence"
+      }
+    ],
+    "batch_id": "PHP.3.b01",
+    "decision_id": "D-mw7udul8-19",
+    "status": "accepted"
+  },
+  "PHP.3.2": {
+    "id": "PHP.3.2",
+    "text": "Beware of dogs, beware of evil workers, beware of the mutilation.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.3.2",
+        "kjv": {
+          "start": 50,
+          "end": 63,
+          "text": "the concision"
+        },
+        "update": {
+          "start": 50,
+          "end": 64,
+          "text": "the mutilation"
+        },
+        "category": "shifted_meaning",
+        "reason": "The KJV sense of 'concision' is cutting short or mutilation, while modern English uses it for brevity, so the word must change to keep the meaning (R4).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "L-mw2uauvk-k",
+            "note": "'concision' occurs nowhere else in the KJV, so its sense must be settled from this verse alone."
+          }
+        ],
+        "auto": false,
+        "source": "PHP.3.b01.clarity"
+      }
+    ],
+    "batch_id": "PHP.3.b01",
+    "decision_id": "D-mw7udul8-19",
+    "status": "accepted"
+  },
+  "PHP.3.3": {
+    "id": "PHP.3.3",
+    "text": "For we are the circumcision, which worship God in the spirit, and rejoice in Christ Jesus, and have no confidence in the flesh.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.3.b01",
+    "decision_id": "D-mw7udul8-19",
+    "status": "accepted"
+  },
+  "PHP.3.4": {
+    "id": "PHP.3.4",
+    "text": "Though I might also have confidence in the flesh. If any other man thinks that he has whereof he might trust in the flesh, I more:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c3",
+        "verse_id": "PHP.3.4",
+        "kjv": {
+          "start": 67,
+          "end": 75,
+          "text": "thinketh"
+        },
+        "update": {
+          "start": 67,
+          "end": 73,
+          "text": "thinks"
+        },
+        "category": "verb_form",
+        "reason": "Thinketh is a third-person singular -eth verb form, modernized to thinks per R2.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.3.b01.cadence"
+      },
+      {
+        "id": "c4",
+        "verse_id": "PHP.3.4",
+        "kjv": {
+          "start": 84,
+          "end": 88,
+          "text": "hath"
+        },
+        "update": {
+          "start": 82,
+          "end": 85,
+          "text": "has"
+        },
+        "category": "verb_form",
+        "reason": "Mechanical update (R2)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.3.b01.cadence"
+      }
+    ],
+    "batch_id": "PHP.3.b01",
+    "decision_id": "D-mw7udul8-19",
+    "status": "accepted"
+  },
+  "PHP.3.5": {
+    "id": "PHP.3.5",
+    "text": "Circumcised the eighth day, of the stock of Israel, of the tribe of Benjamin, an Hebrew of the Hebrews; as touching the law, a Pharisee;",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 52,
+        "end": 54
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.3.b01",
+    "decision_id": "D-mw7udul8-19",
+    "status": "accepted"
+  },
+  "PHP.3.6": {
+    "id": "PHP.3.6",
+    "text": "Concerning zeal, persecuting the church; touching the righteousness which is in the law, blameless.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.3.b01",
+    "decision_id": "D-mw7udul8-19",
+    "status": "accepted"
+  },
+  "PHP.2.1": {
+    "id": "PHP.2.1",
+    "text": "If there be therefore any consolation in Christ, if any comfort of love, if any fellowship of the Spirit, if any bowels and mercies,",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 3,
+        "end": 11
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.2.2": {
+    "id": "PHP.2.2",
+    "text": "Fulfil you my joy, that you be likeminded, having the same love, being of one accord, of one mind.",
+    "pronoun_marks": [
+      {
+        "start": 7,
+        "end": 10,
+        "number": "pl"
+      },
+      {
+        "start": 24,
+        "end": 27,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 65,
+        "end": 70
+      }
+    ],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.2.2",
+        "kjv": {
+          "start": 7,
+          "end": 9,
+          "text": "ye"
+        },
+        "update": {
+          "start": 7,
+          "end": 10,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.2.2",
+        "kjv": {
+          "start": 23,
+          "end": 25,
+          "text": "ye"
+        },
+        "update": {
+          "start": 24,
+          "end": 27,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.2.3": {
+    "id": "PHP.2.3",
+    "text": "Let nothing be done through strife or vainglory; but in lowliness of mind let each esteem other better than themselves.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 0,
+        "end": 3
+      },
+      {
+        "start": 12,
+        "end": 19
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.2.4": {
+    "id": "PHP.2.4",
+    "text": "Look not every man on his own things, but every man also on the things of others.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.2.5": {
+    "id": "PHP.2.5",
+    "text": "Let this mind be in you, which was also in Christ Jesus:",
+    "pronoun_marks": [
+      {
+        "start": 20,
+        "end": 23,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.2.6": {
+    "id": "PHP.2.6",
+    "text": "Who, being in the form of God, thought it not robbery to be equal with God:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.2.7": {
+    "id": "PHP.2.7",
+    "text": "But made himself of no reputation, and took upon him the form of a servant, and was made in the likeness of men:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.2.8": {
+    "id": "PHP.2.8",
+    "text": "And being found in fashion as a man, he humbled himself, and became obedient unto death, even the death of the cross.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b01",
+    "decision_id": "D-mw81mrfb-1",
+    "status": "accepted"
+  },
+  "PHP.3.7": {
+    "id": "PHP.3.7",
+    "text": "But what things were gain to me, those I counted loss for Christ.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.3.b02",
+    "decision_id": "D-mw7ugc4i-2n",
+    "status": "accepted"
+  },
+  "PHP.3.8": {
+    "id": "PHP.3.8",
+    "text": "Yea doubtless, and I count all things but loss for the excellency of the knowledge of Christ Jesus my Lord: for whom I have suffered the loss of all things, and do count them but dung, that I may win Christ,",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 38,
+        "end": 41
+      },
+      {
+        "start": 175,
+        "end": 178
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.3.b02",
+    "decision_id": "D-mw7ugc4i-2n",
+    "status": "accepted"
+  },
+  "PHP.3.9": {
+    "id": "PHP.3.9",
+    "text": "And be found in him, not having mine own righteousness, which is of the law, but that which is through the faith of Christ, the righteousness which is of God by faith:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.3.b02",
+    "decision_id": "D-mw7ugc4i-2n",
+    "status": "accepted"
+  },
+  "PHP.3.10": {
+    "id": "PHP.3.10",
+    "text": "That I may know him, and the power of his resurrection, and the fellowship of his sufferings, being made conformable to his death;",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.3.10",
+        "kjv": {
+          "start": 117,
+          "end": 121,
+          "text": "unto"
+        },
+        "update": {
+          "start": 117,
+          "end": 119,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "Glossary g-unto-to (ratified) maps 'unto' to 'to' for direction/indirect object, per R3.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.3.b02",
+    "decision_id": "D-mw7ugc4i-2n",
+    "status": "accepted"
+  },
+  "PHP.3.11": {
+    "id": "PHP.3.11",
+    "text": "If by any means I might attain to the resurrection of the dead.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.3.11",
+        "kjv": {
+          "start": 31,
+          "end": 35,
+          "text": "unto"
+        },
+        "update": {
+          "start": 31,
+          "end": 33,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "Glossary g-unto-to (ratified) maps 'unto' to 'to' for direction/indirect object, per R3.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.3.b02",
+    "decision_id": "D-mw7ugc4i-2n",
+    "status": "accepted"
+  },
+  "PHP.2.9": {
+    "id": "PHP.2.9",
+    "text": "Therefore God also has highly exalted him, and given him a name which is above every name:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.2.9",
+        "kjv": {
+          "start": 0,
+          "end": 9,
+          "text": "Wherefore"
+        },
+        "update": {
+          "start": 0,
+          "end": 9,
+          "text": "Therefore"
+        },
+        "category": "archaic_word",
+        "reason": "Glossary entry g-wherefore-therefore applies: wherefore here is the connective 'for this reason' (R3).",
+        "glossary_id": "g-wherefore-therefore",
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.2.9",
+            "note": "Greek διὸ (dio) is glossed as 'for', confirming the connective sense rather than the interrogative 'why'."
+          }
+        ],
+        "auto": false
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.2.9",
+        "kjv": {
+          "start": 19,
+          "end": 23,
+          "text": "hath"
+        },
+        "update": {
+          "start": 19,
+          "end": 22,
+          "text": "has"
+        },
+        "category": "verb_form",
+        "reason": "Mechanical update (R2)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b02",
+    "decision_id": "D-mw7uh47p-36",
+    "status": "accepted"
+  },
+  "PHP.2.10": {
+    "id": "PHP.2.10",
+    "text": "That at the name of Jesus every knee should bow, of things in heaven, and things in earth, and things under the earth;",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 52,
+        "end": 58
+      },
+      {
+        "start": 74,
+        "end": 80
+      },
+      {
+        "start": 95,
+        "end": 101
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.2.b02",
+    "decision_id": "D-mw7uh47p-36",
+    "status": "accepted"
+  },
+  "PHP.2.11": {
+    "id": "PHP.2.11",
+    "text": "And that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 4,
+        "end": 8
+      },
+      {
+        "start": 55,
+        "end": 57
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.2.b02",
+    "decision_id": "D-mw7uh47p-36",
+    "status": "accepted"
+  },
+  "PHP.2.12": {
+    "id": "PHP.2.12",
+    "text": "Therefore, my beloved, as you have always obeyed, not as in my presence only, but now much more in my absence, work out your own salvation with fear and trembling.",
+    "pronoun_marks": [
+      {
+        "start": 26,
+        "end": 29,
+        "number": "pl"
+      },
+      {
+        "start": 120,
+        "end": 124,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.2.12",
+        "kjv": {
+          "start": 0,
+          "end": 9,
+          "text": "Wherefore"
+        },
+        "update": {
+          "start": 0,
+          "end": 9,
+          "text": "Therefore"
+        },
+        "category": "archaic_word",
+        "reason": "Glossary entry g-wherefore-thereverse applies; 'wherefore' here is a connective meaning 'for this reason' (R3).",
+        "glossary_id": "g-wherefore-thereverse",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.2.12",
+        "kjv": {
+          "start": 26,
+          "end": 28,
+          "text": "ye"
+        },
+        "update": {
+          "start": 26,
+          "end": 29,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b03",
+    "decision_id": "D-mw81msxb-1",
+    "status": "accepted"
+  },
+  "PHP.2.13": {
+    "id": "PHP.2.13",
+    "text": "For it is God which works in you both to will and to do of his good pleasure.",
+    "pronoun_marks": [
+      {
+        "start": 29,
+        "end": 32,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 59,
+        "end": 62
+      }
+    ],
+    "changes": [
+      {
+        "id": "c3",
+        "verse_id": "PHP.2.13",
+        "kjv": {
+          "start": 20,
+          "end": 27,
+          "text": "worketh"
+        },
+        "update": {
+          "start": 20,
+          "end": 25,
+          "text": "works"
+        },
+        "category": "verb_form",
+        "reason": "Mechanical update (R2)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b03",
+    "decision_id": "D-mw81msxb-1",
+    "status": "accepted"
+  },
+  "PHP.2.14": {
+    "id": "PHP.2.14",
+    "text": "Do all things without murmurings and disputings:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b03",
+    "decision_id": "D-mw81msxb-1",
+    "status": "accepted"
+  },
+  "PHP.2.15": {
+    "id": "PHP.2.15",
+    "text": "That you may be blameless and harmless, the sons of God, without rebuke, in the midst of a crooked and perverse nation, among whom you shine as lights in the world;",
+    "pronoun_marks": [
+      {
+        "start": 5,
+        "end": 8,
+        "number": "pl"
+      },
+      {
+        "start": 131,
+        "end": 134,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.2.15",
+        "kjv": {
+          "start": 5,
+          "end": 7,
+          "text": "ye"
+        },
+        "update": {
+          "start": 5,
+          "end": 8,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c5",
+        "verse_id": "PHP.2.15",
+        "kjv": {
+          "start": 130,
+          "end": 132,
+          "text": "ye"
+        },
+        "update": {
+          "start": 131,
+          "end": 134,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b03",
+    "decision_id": "D-mw81msxb-1",
+    "status": "accepted"
+  },
+  "PHP.2.16": {
+    "id": "PHP.2.16",
+    "text": "Holding forth the word of life; that I may rejoice in the day of Christ, that I have not run in vain, neither laboured in vain.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b03",
+    "decision_id": "D-mw81msxb-1",
+    "status": "accepted"
+  },
+  "PHP.2.17": {
+    "id": "PHP.2.17",
+    "text": "Yea, and if I be offered upon the sacrifice and service of your faith, I joy, and rejoice with you all.",
+    "pronoun_marks": [
+      {
+        "start": 59,
+        "end": 63,
+        "number": "pl"
+      },
+      {
+        "start": 95,
+        "end": 98,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b04",
+    "decision_id": "D-mw7umgwj-55",
+    "status": "accepted"
+  },
+  "PHP.2.18": {
+    "id": "PHP.2.18",
+    "text": "For the same cause also do you joy, and rejoice with me.",
+    "pronoun_marks": [
+      {
+        "start": 27,
+        "end": 30,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.2.18",
+        "kjv": {
+          "start": 27,
+          "end": 29,
+          "text": "ye"
+        },
+        "update": {
+          "start": 27,
+          "end": 30,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b04",
+    "decision_id": "D-mw7umgwj-55",
+    "status": "accepted"
+  },
+  "PHP.3.12": {
+    "id": "PHP.3.12",
+    "text": "Not as though I had already attained, either were already perfect: but I follow after, if that I may grasp that for which also I am grasped by Christ Jesus.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.3.12",
+        "kjv": {
+          "start": 101,
+          "end": 110,
+          "text": "apprehend"
+        },
+        "update": {
+          "start": 101,
+          "end": 106,
+          "text": "grasp"
+        },
+        "category": "archaic_word",
+        "reason": "R3: \"apprehend\" is no longer understood in its KJV sense of laying hold of, and \"grasp\" is the closest one-word equivalent.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.3.12",
+            "note": "καταλαμβάνω (#12, #16) is glossed \"to grasp\", confirming the sense is lay hold of, not understand or arrest."
+          },
+          {
+            "lookup_id": "L-mw7ugose-2y",
+            "note": "The only other KJV use of \"apprehend\" is 2CO.11.32 in the legal sense \"arrest\", so the modern reader has no help from elsewhere in the KJV."
+          }
+        ],
+        "auto": false
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.3.12",
+        "kjv": {
+          "start": 136,
+          "end": 147,
+          "text": "apprehended"
+        },
+        "update": {
+          "start": 132,
+          "end": 139,
+          "text": "grasped"
+        },
+        "category": "archaic_word",
+        "reason": "R3: same word as \"apprehend\", kept consistent in the passive (P7).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.3.12",
+            "note": "κατελήμφθην is the passive of the same verb καταλαμβάνω, \"to grasp\"."
+          }
+        ],
+        "auto": false
+      },
+      {
+        "id": "c3",
+        "verse_id": "PHP.3.12",
+        "kjv": {
+          "start": 148,
+          "end": 150,
+          "text": "of"
+        },
+        "update": {
+          "start": 140,
+          "end": 142,
+          "text": "by"
+        },
+        "category": "syntax",
+        "reason": "R5: the agent \"of\" is archaic and cannot stand with the modern passive, so \"by\" is required by the change.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.3.12",
+            "note": "ὑπὸ (#17) is glossed \"by/under\", marking Christ Jesus as the agent."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.3.b03",
+    "decision_id": "D-mw7unf27-5s",
+    "status": "accepted"
+  },
+  "PHP.3.13": {
+    "id": "PHP.3.13",
+    "text": "Brothers, I count not myself to have grasped: but this one thing I do, forgetting those things which are behind, and reaching forth to those things which are before,",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 50,
+        "end": 54
+      },
+      {
+        "start": 65,
+        "end": 70
+      }
+    ],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.3.13",
+        "kjv": {
+          "start": 0,
+          "end": 8,
+          "text": "Brethren"
+        },
+        "update": {
+          "start": 0,
+          "end": 8,
+          "text": "Brothers"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-brethren-brothers gives \"brothers\" for this sense.",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c5",
+        "verse_id": "PHP.3.13",
+        "kjv": {
+          "start": 37,
+          "end": 48,
+          "text": "apprehended"
+        },
+        "update": {
+          "start": 37,
+          "end": 44,
+          "text": "grasped"
+        },
+        "category": "archaic_word",
+        "reason": "R3: same word as in verse 12, updated the same way (P7).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.3.13",
+            "note": "κατειληφέναι (#6) is the same verb καταλαμβάνω, \"to grasp\"."
+          }
+        ],
+        "auto": false
+      },
+      {
+        "id": "c6",
+        "verse_id": "PHP.3.13",
+        "kjv": {
+          "start": 136,
+          "end": 140,
+          "text": "unto"
+        },
+        "update": {
+          "start": 132,
+          "end": 134,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-unto-to gives \"to\" for direction.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.3.b03",
+    "decision_id": "D-mw7unf27-5s",
+    "status": "accepted"
+  },
+  "PHP.3.14": {
+    "id": "PHP.3.14",
+    "text": "I press toward the mark for the prize of the high calling of God in Christ Jesus.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.3.b03",
+    "decision_id": "D-mw7unf27-5s",
+    "status": "accepted"
+  },
+  "PHP.3.15": {
+    "id": "PHP.3.15",
+    "text": "Let us therefore, as many as be perfect, be thus minded: and if in any thing you be otherwise minded, God shall reveal even this to you.",
+    "pronoun_marks": [
+      {
+        "start": 77,
+        "end": 80,
+        "number": "pl"
+      },
+      {
+        "start": 132,
+        "end": 135,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c8",
+        "verse_id": "PHP.3.15",
+        "kjv": {
+          "start": 77,
+          "end": 79,
+          "text": "ye"
+        },
+        "update": {
+          "start": 77,
+          "end": 80,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c7",
+        "verse_id": "PHP.3.15",
+        "kjv": {
+          "start": 128,
+          "end": 132,
+          "text": "unto"
+        },
+        "update": {
+          "start": 129,
+          "end": 131,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-unto-to gives \"to\" for the indirect object.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.3.b03",
+    "decision_id": "D-mw7unf27-5s",
+    "status": "accepted"
+  },
+  "PHP.3.16": {
+    "id": "PHP.3.16",
+    "text": "Nevertheless, whereto we have already attained, let us walk by the same rule, let us mind the same thing.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.3.b03",
+    "decision_id": "D-mw7unf27-5s",
+    "status": "accepted"
+  },
+  "PHP.2.19": {
+    "id": "PHP.2.19",
+    "text": "But I trust in the Lord Jesus to send Timotheus shortly to you, that I also may be of good comfort, when I know your state.",
+    "pronoun_marks": [
+      {
+        "start": 59,
+        "end": 62,
+        "number": "pl"
+      },
+      {
+        "start": 112,
+        "end": 116,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.2.19",
+        "kjv": {
+          "start": 56,
+          "end": 60,
+          "text": "unto"
+        },
+        "update": {
+          "start": 56,
+          "end": 58,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: 'unto' is no longer in common use; the ratified glossary entry g-unto-to gives 'to' for this sense.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.2.b05",
+    "decision_id": "D-mw81mug1-1",
+    "status": "accepted"
+  },
+  "PHP.2.20": {
+    "id": "PHP.2.20",
+    "text": "For I have no man likeminded, who will genuinely care for your state.",
+    "pronoun_marks": [
+      {
+        "start": 58,
+        "end": 62,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.2.20",
+        "kjv": {
+          "start": 39,
+          "end": 48,
+          "text": "naturally"
+        },
+        "update": {
+          "start": 39,
+          "end": 48,
+          "text": "genuinely"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: in this idiom the KJV sense is 'sincerely, in a genuine way', which modern 'naturally' (by nature, of course) no longer carries.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.2.20",
+            "note": "Greek γνησίως = 'genuinely', confirming the KJV sense is sincerity, not naturalness."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.2.b05",
+    "decision_id": "D-mw81mug1-1",
+    "status": "accepted"
+  },
+  "PHP.2.21": {
+    "id": "PHP.2.21",
+    "text": "For all seek their own, not the things which are Jesus Christ’s.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b05",
+    "decision_id": "D-mw81mug1-1",
+    "status": "accepted"
+  },
+  "PHP.2.22": {
+    "id": "PHP.2.22",
+    "text": "But you know the proof of him, that, as a son with the father, he has served with me in the gospel.",
+    "pronoun_marks": [
+      {
+        "start": 4,
+        "end": 7,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c3",
+        "verse_id": "PHP.2.22",
+        "kjv": {
+          "start": 4,
+          "end": 6,
+          "text": "ye"
+        },
+        "update": {
+          "start": 4,
+          "end": 7,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c4",
+        "verse_id": "PHP.2.22",
+        "kjv": {
+          "start": 65,
+          "end": 69,
+          "text": "hath"
+        },
+        "update": {
+          "start": 66,
+          "end": 69,
+          "text": "has"
+        },
+        "category": "verb_form",
+        "reason": "Mechanical update (R2)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b05",
+    "decision_id": "D-mw81mug1-1",
+    "status": "accepted"
+  },
+  "PHP.2.23": {
+    "id": "PHP.2.23",
+    "text": "Him therefore I hope to send immediately, so soon as I shall see how it will go with me.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c5",
+        "verse_id": "PHP.2.23",
+        "kjv": {
+          "start": 29,
+          "end": 38,
+          "text": "presently"
+        },
+        "update": {
+          "start": 29,
+          "end": 40,
+          "text": "immediately"
+        },
+        "category": "archaic_word",
+        "reason": "R3: 'presently' in the KJV sense means 'at once, without delay', which a modern reader will not understand from this word.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.2.23",
+            "note": "Greek ἐξαυτῆς = 'immediately', confirming the sense of the KJV adverb."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.2.b05",
+    "decision_id": "D-mw81mug1-1",
+    "status": "accepted"
+  },
+  "PHP.2.24": {
+    "id": "PHP.2.24",
+    "text": "But I trust in the Lord that I also myself shall come shortly.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.2.b05",
+    "decision_id": "D-mw81mug1-1",
+    "status": "accepted"
+  },
+  "PHP.2.25": {
+    "id": "PHP.2.25",
+    "text": "Yet I supposed it necessary to send to you Epaphroditus, my brother, and companion in labour, and fellow soldier, but your messenger, and he that ministered to my needs.",
+    "pronoun_marks": [
+      {
+        "start": 39,
+        "end": 42,
+        "number": "pl"
+      },
+      {
+        "start": 118,
+        "end": 122,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.2.25",
+        "kjv": {
+          "start": 163,
+          "end": 168,
+          "text": "wants"
+        },
+        "update": {
+          "start": 163,
+          "end": 168,
+          "text": "needs"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: KJV 'wants' means needs (χρεία), while modern 'wants' means desires, which would change the meaning.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.2.25",
+            "note": "χρείας (G5532) glossed 'need', confirming 'wants' = needs."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.2.b06",
+    "decision_id": "D-mw81mvvx-1",
+    "status": "accepted"
+  },
+  "PHP.2.26": {
+    "id": "PHP.2.26",
+    "text": "For he longed after you all, and was full of heaviness, because that you had heard that he had been sick.",
+    "pronoun_marks": [
+      {
+        "start": 20,
+        "end": 23,
+        "number": "pl"
+      },
+      {
+        "start": 69,
+        "end": 72,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.2.26",
+        "kjv": {
+          "start": 69,
+          "end": 71,
+          "text": "ye"
+        },
+        "update": {
+          "start": 69,
+          "end": 72,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b06",
+    "decision_id": "D-mw81mvvx-1",
+    "status": "accepted"
+  },
+  "PHP.2.27": {
+    "id": "PHP.2.27",
+    "text": "For indeed he was sick nigh to death: but God had mercy on him; and not on him only, but on me also, lest I should have sorrow upon sorrow.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c3",
+        "verse_id": "PHP.2.27",
+        "kjv": {
+          "start": 28,
+          "end": 32,
+          "text": "unto"
+        },
+        "update": {
+          "start": 28,
+          "end": 30,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: follow the ratified glossary entry for 'unto' in the sense of direction.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.2.b06",
+    "decision_id": "D-mw81mvvx-1",
+    "status": "accepted"
+  },
+  "PHP.2.28": {
+    "id": "PHP.2.28",
+    "text": "I sent him therefore the more eagerly, that, when you see him again, you may rejoice, and that I may be the less sorrowful.",
+    "pronoun_marks": [
+      {
+        "start": 50,
+        "end": 53,
+        "number": "pl"
+      },
+      {
+        "start": 69,
+        "end": 72,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.2.28",
+        "kjv": {
+          "start": 30,
+          "end": 39,
+          "text": "carefully"
+        },
+        "update": {
+          "start": 30,
+          "end": 37,
+          "text": "eagerly"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: KJV 'carefully' here means with eagerness/zeal, not with caution as modern readers would take it.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.2.28",
+            "note": "σπουδαιοτέρως (G4708) glossed 'more eagerly', settling the KJV sense."
+          }
+        ],
+        "auto": false
+      },
+      {
+        "id": "c5",
+        "verse_id": "PHP.2.28",
+        "kjv": {
+          "start": 52,
+          "end": 54,
+          "text": "ye"
+        },
+        "update": {
+          "start": 50,
+          "end": 53,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c6",
+        "verse_id": "PHP.2.28",
+        "kjv": {
+          "start": 70,
+          "end": 72,
+          "text": "ye"
+        },
+        "update": {
+          "start": 69,
+          "end": 72,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.2.b06",
+    "decision_id": "D-mw81mvvx-1",
+    "status": "accepted"
+  },
+  "PHP.2.29": {
+    "id": "PHP.2.29",
+    "text": "Receive him therefore in the Lord with all gladness; and hold such in honor:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c7",
+        "verse_id": "PHP.2.29",
+        "kjv": {
+          "start": 70,
+          "end": 80,
+          "text": "reputation"
+        },
+        "update": {
+          "start": 70,
+          "end": 75,
+          "text": "honor"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: KJV 'in reputation' means in honor/esteem, whereas modern 'reputation' means the regard others hold.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.2.29",
+            "note": "ἐντίμους (G1784) glossed 'valued/honored', settling the KJV sense."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.2.b06",
+    "decision_id": "D-mw81mvvx-1",
+    "status": "accepted"
+  },
+  "PHP.2.30": {
+    "id": "PHP.2.30",
+    "text": "Because for the work of Christ he was nigh to death, not sparing his life, to supply your lack of service toward me.",
+    "pronoun_marks": [
+      {
+        "start": 85,
+        "end": 89,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c8",
+        "verse_id": "PHP.2.30",
+        "kjv": {
+          "start": 43,
+          "end": 47,
+          "text": "unto"
+        },
+        "update": {
+          "start": 43,
+          "end": 45,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: follow the ratified glossary entry for 'unto' in the sense of direction.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c9",
+        "verse_id": "PHP.2.30",
+        "kjv": {
+          "start": 59,
+          "end": 68,
+          "text": "regarding"
+        },
+        "update": {
+          "start": 57,
+          "end": 64,
+          "text": "sparing"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: KJV 'not regarding his life' means not sparing/risking his life, not 'concerning' as modern readers would take it.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "pre:PHP.2.30",
+            "note": "παραβολευσάμενος (G3851) glossed 'to risk', settling the KJV sense of 'not regarding'."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.2.b06",
+    "decision_id": "D-mw81mvvx-1",
+    "status": "accepted"
+  },
+  "PHP.3.17": {
+    "id": "PHP.3.17",
+    "text": "Brothers, be followers together of me, and mark them which walk so as you have us for an example.",
+    "pronoun_marks": [
+      {
+        "start": 70,
+        "end": 73,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.3.17",
+        "kjv": {
+          "start": 0,
+          "end": 8,
+          "text": "Brethren"
+        },
+        "update": {
+          "start": 0,
+          "end": 8,
+          "text": "Brothers"
+        },
+        "category": "archaic_word",
+        "reason": "Follow ratified glossary g-brethren-brothers: archaic word becomes 'brothers' (R3).",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c3",
+        "verse_id": "PHP.3.17",
+        "kjv": {
+          "start": 70,
+          "end": 72,
+          "text": "ye"
+        },
+        "update": {
+          "start": 70,
+          "end": 73,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.3.17",
+        "kjv": {
+          "start": 88,
+          "end": 96,
+          "text": "ensample"
+        },
+        "update": {
+          "start": 89,
+          "end": 96,
+          "text": "example"
+        },
+        "category": "archaic_word",
+        "reason": "Replace archaic 'ensample' with 'example', the closest modern equivalent (R3).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.3.b04",
+    "decision_id": "D-mw81mxcv-1",
+    "status": "accepted"
+  },
+  "PHP.3.18": {
+    "id": "PHP.3.18",
+    "text": "(For many walk, of whom I have told you often, and now tell you even weeping, that they are the enemies of the cross of Christ:",
+    "pronoun_marks": [
+      {
+        "start": 36,
+        "end": 39,
+        "number": "pl"
+      },
+      {
+        "start": 60,
+        "end": 63,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 78,
+        "end": 91
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.3.b04",
+    "decision_id": "D-mw81mxcv-1",
+    "status": "accepted"
+  },
+  "PHP.3.19": {
+    "id": "PHP.3.19",
+    "text": "Whose end is destruction, whose God is their belly, and whose glory is in their shame, who mind earthly things.)",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 10,
+        "end": 12
+      },
+      {
+        "start": 36,
+        "end": 44
+      },
+      {
+        "start": 56,
+        "end": 61
+      },
+      {
+        "start": 68,
+        "end": 70
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.3.b04",
+    "decision_id": "D-mw81mxcv-1",
+    "status": "accepted"
+  },
+  "PHP.3.20": {
+    "id": "PHP.3.20",
+    "text": "For our conversation is in heaven; from whence also we look for the Saviour, the Lord Jesus Christ:",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.3.b04",
+    "decision_id": "D-mw81mxcv-1",
+    "status": "accepted"
+  },
+  "PHP.3.21": {
+    "id": "PHP.3.21",
+    "text": "Who shall change our humble body, that it may be fashioned like unto his glorious body, according to the working by which he is able even to subdue all things to himself.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.3.21",
+        "kjv": {
+          "start": 21,
+          "end": 25,
+          "text": "vile"
+        },
+        "update": {
+          "start": 21,
+          "end": 27,
+          "text": "humble"
+        },
+        "category": "shifted_meaning",
+        "reason": "Shifted meaning: modern 'vile' means morally base, but the KJV sense is lowly, so keeping it would change the meaning (R4).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c5",
+        "verse_id": "PHP.3.21",
+        "kjv": {
+          "start": 111,
+          "end": 118,
+          "text": "whereby"
+        },
+        "update": {
+          "start": 113,
+          "end": 121,
+          "text": "by which"
+        },
+        "category": "archaic_word",
+        "reason": "Replace archaic 'whereby' with 'by which' to keep the meaning clear (R3).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c6",
+        "verse_id": "PHP.3.21",
+        "kjv": {
+          "start": 156,
+          "end": 168,
+          "text": "unto himself"
+        },
+        "update": {
+          "start": 159,
+          "end": 169,
+          "text": "to himself"
+        },
+        "category": "archaic_word",
+        "reason": "Apply ratified glossary g-unto-to: 'unto' becomes 'to' for direction or indirect object (R3).",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.3.b04",
+    "decision_id": "D-mw81mxcv-1",
+    "status": "accepted"
+  },
+  "PHP.4.1": {
+    "id": "PHP.4.1",
+    "text": "Therefore, my brothers dearly beloved and longed for, my joy and crown, so stand fast in the Lord, my dearly beloved.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 99,
+        "end": 101
+      }
+    ],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.4.1",
+        "kjv": {
+          "start": 14,
+          "end": 22,
+          "text": "brethren"
+        },
+        "update": {
+          "start": 14,
+          "end": 22,
+          "text": "brothers"
+        },
+        "category": "archaic_word",
+        "reason": "Ratified glossary entry g-brethren-brothers requires 'brethren' to become 'brothers' (R3).",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b01.clarity"
+      }
+    ],
+    "batch_id": "PHP.4.b01",
+    "decision_id": "D-mw7uwgnb-94",
+    "status": "accepted"
+  },
+  "PHP.4.2": {
+    "id": "PHP.4.2",
+    "text": "I beseech Euodias, and beseech Syntyche, that they be of the same mind in the Lord.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.4.b01",
+    "decision_id": "D-mw7uwgnb-94",
+    "status": "accepted"
+  },
+  "PHP.4.3": {
+    "id": "PHP.4.3",
+    "text": "And I entreat you also, true yokefellow, help those women which laboured with me in the gospel, with Clement also, and with other my fellowlabourers, whose names are in the book of life.",
+    "pronoun_marks": [
+      {
+        "start": 14,
+        "end": 17,
+        "number": "sg"
+      }
+    ],
+    "italics": [
+      {
+        "start": 119,
+        "end": 123
+      },
+      {
+        "start": 162,
+        "end": 165
+      }
+    ],
+    "changes": [
+      {
+        "id": "c2",
+        "verse_id": "PHP.4.3",
+        "kjv": {
+          "start": 6,
+          "end": 13,
+          "text": "intreat"
+        },
+        "update": {
+          "start": 6,
+          "end": 13,
+          "text": "entreat"
+        },
+        "category": "spelling",
+        "reason": "Old spelling of the same word; R10 requires modernizing it.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b01.clarity"
+      },
+      {
+        "id": "c3",
+        "verse_id": "PHP.4.3",
+        "kjv": {
+          "start": 14,
+          "end": 18,
+          "text": "thee"
+        },
+        "update": {
+          "start": 14,
+          "end": 17,
+          "text": "you"
+        },
+        "category": "pronoun_sg",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b01.clarity"
+      }
+    ],
+    "batch_id": "PHP.4.b01",
+    "decision_id": "D-mw7uwgnb-94",
+    "status": "accepted"
+  },
+  "PHP.4.4": {
+    "id": "PHP.4.4",
+    "text": "Rejoice in the Lord always: and again I say, Rejoice.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 28,
+        "end": 31
+      }
+    ],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.4.4",
+        "kjv": {
+          "start": 20,
+          "end": 25,
+          "text": "alway"
+        },
+        "update": {
+          "start": 20,
+          "end": 26,
+          "text": "always"
+        },
+        "category": "archaic_word",
+        "reason": "'alway' is no longer current usage for 'always' (R3).",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b01.clarity"
+      }
+    ],
+    "batch_id": "PHP.4.b01",
+    "decision_id": "D-mw7uwgnb-94",
+    "status": "accepted"
+  },
+  "PHP.4.5": {
+    "id": "PHP.4.5",
+    "text": "Let your moderation be known to all men. The Lord is at hand.",
+    "pronoun_marks": [
+      {
+        "start": 4,
+        "end": 8,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 50,
+        "end": 52
+      }
+    ],
+    "changes": [
+      {
+        "id": "c5",
+        "verse_id": "PHP.4.5",
+        "kjv": {
+          "start": 29,
+          "end": 33,
+          "text": "unto"
+        },
+        "update": {
+          "start": 29,
+          "end": 31,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "Ratified glossary entry g-unto-to requires 'unto' to become 'to' (R3).",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b01.clarity"
+      }
+    ],
+    "batch_id": "PHP.4.b01",
+    "decision_id": "D-mw7uwgnb-94",
+    "status": "accepted"
+  },
+  "PHP.4.6": {
+    "id": "PHP.4.6",
+    "text": "Be anxious for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known to God.",
+    "pronoun_marks": [
+      {
+        "start": 92,
+        "end": 96,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.4.6",
+        "kjv": {
+          "start": 3,
+          "end": 10,
+          "text": "careful"
+        },
+        "update": {
+          "start": 3,
+          "end": 10,
+          "text": "anxious"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: KJV 'careful' means full of care/anxiety, not modern 'cautious', so it must change.",
+        "glossary_id": "g-careful-anxious",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.4.6",
+        "kjv": {
+          "start": 120,
+          "end": 124,
+          "text": "unto"
+        },
+        "update": {
+          "start": 120,
+          "end": 122,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-unto-to gives 'to' for direction or indirect object.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.4.b02",
+    "decision_id": "D-mw7uz93z-9w",
+    "status": "accepted"
+  },
+  "PHP.4.7": {
+    "id": "PHP.4.7",
+    "text": "And the peace of God, which passes all understanding, shall keep your hearts and minds through Christ Jesus.",
+    "pronoun_marks": [
+      {
+        "start": 65,
+        "end": 69,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c3",
+        "verse_id": "PHP.4.7",
+        "kjv": {
+          "start": 28,
+          "end": 35,
+          "text": "passeth"
+        },
+        "update": {
+          "start": 28,
+          "end": 34,
+          "text": "passes"
+        },
+        "category": "verb_form",
+        "reason": "Mechanical update (R2)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.4.b02",
+    "decision_id": "D-mw7uz93z-9w",
+    "status": "accepted"
+  },
+  "PHP.4.8": {
+    "id": "PHP.4.8",
+    "text": "Finally, brothers, whatsoever things are true, whatsoever things are honourable, whatsoever things are just, whatsoever things are pure, whatsoever things are lovely, whatsoever things are of good report; if there be any virtue, and if there be any praise, think on these things.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 65,
+        "end": 68
+      },
+      {
+        "start": 99,
+        "end": 102
+      },
+      {
+        "start": 127,
+        "end": 130
+      },
+      {
+        "start": 155,
+        "end": 158
+      },
+      {
+        "start": 185,
+        "end": 188
+      },
+      {
+        "start": 208,
+        "end": 216
+      },
+      {
+        "start": 236,
+        "end": 244
+      }
+    ],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.4.8",
+        "kjv": {
+          "start": 9,
+          "end": 17,
+          "text": "brethren"
+        },
+        "update": {
+          "start": 9,
+          "end": 17,
+          "text": "brothers"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary entry g-brethren-brothers gives 'brothers' for fellow believers.",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      },
+      {
+        "id": "c5",
+        "verse_id": "PHP.4.8",
+        "kjv": {
+          "start": 69,
+          "end": 75,
+          "text": "honest"
+        },
+        "update": {
+          "start": 69,
+          "end": 79,
+          "text": "honourable"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: KJV 'honest' means honourable or worthy of respect, not modern 'truthful', which would only repeat 'true'.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "L-mw7uwuu0-9d",
+            "note": "KJV uses 'honest' for honourable/reputable: 'men of honest report' (ACT.6.3), 'things honest in the sight of all men' (ROM.12.17)."
+          }
+        ],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.4.b02",
+    "decision_id": "D-mw7uz93z-9w",
+    "status": "accepted"
+  },
+  "PHP.4.9": {
+    "id": "PHP.4.9",
+    "text": "Those things, which you have both learned, and received, and heard, and seen in me, do: and the God of peace shall be with you.",
+    "pronoun_marks": [
+      {
+        "start": 20,
+        "end": 23,
+        "number": "pl"
+      },
+      {
+        "start": 123,
+        "end": 126,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c6",
+        "verse_id": "PHP.4.9",
+        "kjv": {
+          "start": 20,
+          "end": 22,
+          "text": "ye"
+        },
+        "update": {
+          "start": 20,
+          "end": 23,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.4.b02",
+    "decision_id": "D-mw7uz93z-9w",
+    "status": "accepted"
+  },
+  "PHP.4.10": {
+    "id": "PHP.4.10",
+    "text": "But I rejoiced in the Lord greatly, that now at the last your care of me has flourished again; wherein you were also careful, but you lacked opportunity.",
+    "pronoun_marks": [
+      {
+        "start": 57,
+        "end": 61,
+        "number": "pl"
+      },
+      {
+        "start": 103,
+        "end": 106,
+        "number": "pl"
+      },
+      {
+        "start": 130,
+        "end": 133,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.4.10",
+        "kjv": {
+          "start": 73,
+          "end": 77,
+          "text": "hath"
+        },
+        "update": {
+          "start": 73,
+          "end": 76,
+          "text": "has"
+        },
+        "category": "verb_form",
+        "reason": "Mechanical update (R2)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.4.10",
+        "kjv": {
+          "start": 104,
+          "end": 106,
+          "text": "ye"
+        },
+        "update": {
+          "start": 103,
+          "end": 106,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c3",
+        "verse_id": "PHP.4.10",
+        "kjv": {
+          "start": 130,
+          "end": 132,
+          "text": "ye"
+        },
+        "update": {
+          "start": 130,
+          "end": 133,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.4.b03",
+    "decision_id": "D-mw81myup-1",
+    "status": "accepted"
+  },
+  "PHP.4.11": {
+    "id": "PHP.4.11",
+    "text": "Not that I speak in respect of want: for I have learned, in whatsoever state I am, therewith to be content.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 83,
+        "end": 92
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.4.b03",
+    "decision_id": "D-mw81myup-1",
+    "status": "accepted"
+  },
+  "PHP.4.12": {
+    "id": "PHP.4.12",
+    "text": "I know both how to be abased, and I know how to abound: every where and in all things I am instructed both to be full and to be hungry, both to abound and to suffer need.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.4.b03",
+    "decision_id": "D-mw81myup-1",
+    "status": "accepted"
+  },
+  "PHP.4.13": {
+    "id": "PHP.4.13",
+    "text": "I can do all things through Christ which strengtheneth me.",
+    "pronoun_marks": [],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.4.b03",
+    "decision_id": "D-mw81myup-1",
+    "status": "accepted"
+  },
+  "PHP.4.14": {
+    "id": "PHP.4.14",
+    "text": "Notwithstanding you have well done, that you did communicate with my affliction.",
+    "pronoun_marks": [
+      {
+        "start": 16,
+        "end": 19,
+        "number": "pl"
+      },
+      {
+        "start": 41,
+        "end": 44,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.4.14",
+        "kjv": {
+          "start": 16,
+          "end": 18,
+          "text": "ye"
+        },
+        "update": {
+          "start": 16,
+          "end": 19,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c5",
+        "verse_id": "PHP.4.14",
+        "kjv": {
+          "start": 40,
+          "end": 42,
+          "text": "ye"
+        },
+        "update": {
+          "start": 41,
+          "end": 44,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.4.b03",
+    "decision_id": "D-mw81myup-1",
+    "status": "accepted"
+  },
+  "PHP.4.15": {
+    "id": "PHP.4.15",
+    "text": "Now you Philippians know also, that in the beginning of the gospel, when I departed from Macedonia, no church communicated with me as concerning giving and receiving, but you only.",
+    "pronoun_marks": [
+      {
+        "start": 4,
+        "end": 7,
+        "number": "pl"
+      },
+      {
+        "start": 171,
+        "end": 174,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c6",
+        "verse_id": "PHP.4.15",
+        "kjv": {
+          "start": 4,
+          "end": 6,
+          "text": "ye"
+        },
+        "update": {
+          "start": 4,
+          "end": 7,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      },
+      {
+        "id": "c7",
+        "verse_id": "PHP.4.15",
+        "kjv": {
+          "start": 170,
+          "end": 172,
+          "text": "ye"
+        },
+        "update": {
+          "start": 171,
+          "end": 174,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": true
+      }
+    ],
+    "batch_id": "PHP.4.b03",
+    "decision_id": "D-mw81myup-1",
+    "status": "accepted"
+  },
+  "PHP.4.16": {
+    "id": "PHP.4.16",
+    "text": "For even in Thessalonica you sent once and again to my need.",
+    "pronoun_marks": [
+      {
+        "start": 25,
+        "end": 28,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.4.16",
+        "kjv": {
+          "start": 25,
+          "end": 27,
+          "text": "ye"
+        },
+        "update": {
+          "start": 25,
+          "end": 28,
+          "text": "you"
+        },
+        "category": "pronoun_pl",
+        "reason": "Mechanical update (R1)",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b04.minimalist"
+      },
+      {
+        "id": "c2",
+        "verse_id": "PHP.4.16",
+        "kjv": {
+          "start": 48,
+          "end": 52,
+          "text": "unto"
+        },
+        "update": {
+          "start": 49,
+          "end": 51,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary g-unto-to updates 'unto' to 'to' in this sense.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b04.minimalist"
+      },
+      {
+        "id": "c3",
+        "verse_id": "PHP.4.16",
+        "kjv": {
+          "start": 56,
+          "end": 65,
+          "text": "necessity"
+        },
+        "update": {
+          "start": 55,
+          "end": 59,
+          "text": "need"
+        },
+        "category": "shifted_meaning",
+        "reason": "R4: in the KJV this means 'need' (Greek chreia), but a modern reader takes 'necessity' as compulsion, so the word must change to keep the meaning.",
+        "glossary_id": null,
+        "uncertain": false,
+        "evidence": [
+          {
+            "lookup_id": "L-mw7v4jic-b7",
+            "note": "Correction per rev-2-mw7v50j2-ba: most KJV uses of 'necessity' mean compulsion or requirement (e.g. 1CO.9.16, 2CO.9.7, HEB.7.12). The 'need' sense appears here and in ROM.12.13, and the KJV renders the same Greek chreia as 'need' in PHP.4.19. That is why this occurrence must be updated. The earlier citation L-mw7v3cl7-ay does not support the original note."
+          }
+        ],
+        "auto": false,
+        "source": "PHP.4.b04.clarity"
+      }
+    ],
+    "batch_id": "PHP.4.b04",
+    "decision_id": "D-mw7v5j46-bc",
+    "status": "accepted"
+  },
+  "PHP.4.17": {
+    "id": "PHP.4.17",
+    "text": "Not because I desire a gift: but I desire fruit that may abound to your account.",
+    "pronoun_marks": [
+      {
+        "start": 67,
+        "end": 71,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.4.b04",
+    "decision_id": "D-mw7v5j46-bc",
+    "status": "accepted"
+  },
+  "PHP.4.18": {
+    "id": "PHP.4.18",
+    "text": "But I have all, and abound: I am full, having received of Epaphroditus the things which were sent from you, an odour of a sweet smell, a sacrifice acceptable, wellpleasing to God.",
+    "pronoun_marks": [
+      {
+        "start": 103,
+        "end": 106,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 82,
+        "end": 97
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.4.b04",
+    "decision_id": "D-mw7v5j46-bc",
+    "status": "accepted"
+  },
+  "PHP.4.19": {
+    "id": "PHP.4.19",
+    "text": "But my God shall supply all your need according to his riches in glory by Christ Jesus.",
+    "pronoun_marks": [
+      {
+        "start": 28,
+        "end": 32,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.4.b04",
+    "decision_id": "D-mw7v5j46-bc",
+    "status": "accepted"
+  },
+  "PHP.4.20": {
+    "id": "PHP.4.20",
+    "text": "Now to God and our Father be glory for ever and ever. Amen.",
+    "pronoun_marks": [],
+    "italics": [
+      {
+        "start": 26,
+        "end": 28
+      }
+    ],
+    "changes": [
+      {
+        "id": "c4",
+        "verse_id": "PHP.4.20",
+        "kjv": {
+          "start": 4,
+          "end": 8,
+          "text": "unto"
+        },
+        "update": {
+          "start": 4,
+          "end": 6,
+          "text": "to"
+        },
+        "category": "archaic_word",
+        "reason": "R3: glossary g-unto-to updates 'unto' to 'to' in this sense.",
+        "glossary_id": "g-unto-to",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false,
+        "source": "PHP.4.b04.minimalist"
+      }
+    ],
+    "batch_id": "PHP.4.b04",
+    "decision_id": "D-mw7v5j46-bc",
+    "status": "accepted"
+  },
+  "PHP.4.21": {
+    "id": "PHP.4.21",
+    "text": "Salute every saint in Christ Jesus. The brothers which are with me greet you.",
+    "pronoun_marks": [
+      {
+        "start": 73,
+        "end": 76,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [
+      {
+        "id": "c1",
+        "verse_id": "PHP.4.21",
+        "kjv": {
+          "start": 40,
+          "end": 48,
+          "text": "brethren"
+        },
+        "update": {
+          "start": 40,
+          "end": 48,
+          "text": "brothers"
+        },
+        "category": "archaic_word",
+        "reason": "Glossary g-brethren-brothers ratifies brothers for brethren (R3).",
+        "glossary_id": "g-brethren-brothers",
+        "uncertain": false,
+        "evidence": [],
+        "auto": false
+      }
+    ],
+    "batch_id": "PHP.4.b05",
+    "decision_id": "D-mw7v71dy-bt",
+    "status": "accepted"
+  },
+  "PHP.4.22": {
+    "id": "PHP.4.22",
+    "text": "All the saints salute you, chiefly they that are of Caesar’s household.",
+    "pronoun_marks": [
+      {
+        "start": 22,
+        "end": 25,
+        "number": "pl"
+      }
+    ],
+    "italics": [],
+    "changes": [],
+    "batch_id": "PHP.4.b05",
+    "decision_id": "D-mw7v71dy-bt",
+    "status": "accepted"
+  },
+  "PHP.4.23": {
+    "id": "PHP.4.23",
+    "text": "The grace of our Lord Jesus Christ be with you all. Amen.",
+    "pronoun_marks": [
+      {
+        "start": 43,
+        "end": 46,
+        "number": "pl"
+      }
+    ],
+    "italics": [
+      {
+        "start": 35,
+        "end": 37
+      }
+    ],
+    "changes": [],
+    "batch_id": "PHP.4.b05",
+    "decision_id": "D-mw7v71dy-bt",
+    "status": "accepted"
+  }
+}

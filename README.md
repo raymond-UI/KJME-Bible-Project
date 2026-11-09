@@ -8,7 +8,7 @@ The principles are adapted from the published goals of the KJV Update Project ("
 
 Every role, rule, schema, check and stage lives in this folder. Any runtime that can call a model, store records and run steps in order can run it.
 
-> **Status:** pre-release. Pilot book: Philippians.
+> **Status:** pre-release. Pilot book: Philippians. The full record of the first run is in [`pilot/philippians-001`](pilot/philippians-001).
 
 ---
 

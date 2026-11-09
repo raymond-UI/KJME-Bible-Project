@@ -1,0 +1,1178 @@
+{
+  "glossary_version": 34,
+  "saved_at": "2026-11-08T16:25:23.551Z",
+  "entries": [
+    {
+      "id": "g-behold-keep",
+      "kjv_form": "behold",
+      "sense": "interjection calling attention",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "notes": "understood; changing it breaks cadence",
+      "uses": 0
+    },
+    {
+      "id": "g-shall-keep",
+      "kjv_form": "shall",
+      "sense": "future or obligation",
+      "update": "KEEP",
+      "category": "verb_form",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-fearnot-keep",
+      "kjv_form": "fear not",
+      "sense": "imperative",
+      "update": "KEEP",
+      "category": "syntax",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-unto-to",
+      "kjv_form": "unto",
+      "sense": "direction or indirect object",
+      "update": "to",
+      "category": "archaic_word",
+      "status": "ratified",
+      "created_in": "seed",
+      "uses": 12,
+      "ratified_by": "auto"
+    },
+    {
+      "id": "g-brethren-brothers",
+      "kjv_form": "brethren",
+      "sense": "brothers, kin or fellow believers",
+      "update": "brothers",
+      "category": "archaic_word",
+      "status": "ratified",
+      "created_in": "seed",
+      "notes": "do not expand to 'brothers and sisters' (R9)",
+      "uses": 7,
+      "ratified_by": "auto"
+    },
+    {
+      "id": "g-shew-show",
+      "kjv_form": "shew",
+      "forms": [
+        "shewed",
+        "sheweth",
+        "shewing"
+      ],
+      "sense": "show",
+      "update": "show",
+      "category": "spelling",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-verily-truly",
+      "kjv_form": "verily",
+      "sense": "truly, assuredly",
+      "update": "truly",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-thrice",
+      "kjv_form": "thrice",
+      "sense": "three times",
+      "update": "three times",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-cock-rooster",
+      "kjv_form": "cock",
+      "sense": "male domestic fowl",
+      "update": "rooster",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-converted-turn",
+      "kjv_form": "converted",
+      "forms": [
+        "convert",
+        "converteth"
+      ],
+      "sense": "turned around, turned back",
+      "update": "turned back",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "notes": "inflect to fit: 'art converted' becomes 'have turned back'",
+      "uses": 0
+    },
+    {
+      "id": "g-careful-anxious",
+      "kjv_form": "careful",
+      "sense": "anxious, full of care",
+      "update": "anxious",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.4.6"
+      ],
+      "status": "provisional",
+      "created_in": "seed",
+      "uses": 1
+    },
+    {
+      "id": "g-communicate-share",
+      "kjv_form": "communicate",
+      "forms": [
+        "communicated"
+      ],
+      "sense": "share, take part with",
+      "update": "share",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.4.14",
+        "PHP.4.15"
+      ],
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-bowels-affection",
+      "kjv_form": "bowels",
+      "sense": "seat of tender feeling",
+      "update": "affection",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.8",
+        "PHP.2.1"
+      ],
+      "status": "provisional",
+      "created_in": "seed",
+      "notes": "literal sense (entrails) is KEEP",
+      "uses": 1
+    },
+    {
+      "id": "g-conversation-conduct",
+      "kjv_form": "conversation",
+      "sense": "manner of life, conduct",
+      "update": "conduct",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.27"
+      ],
+      "exceptions": [
+        "PHP.3.20"
+      ],
+      "status": "provisional",
+      "created_in": "seed",
+      "uses": 1
+    },
+    {
+      "id": "g-prevent-precede",
+      "kjv_form": "prevent",
+      "forms": [
+        "prevented"
+      ],
+      "sense": "go before, come before",
+      "update": "precede",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-let-hinder",
+      "kjv_form": "let",
+      "forms": [
+        "letteth"
+      ],
+      "sense": "hinder, restrain",
+      "update": "restrain",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "notes": "only this sense; 'let' meaning allow is KEEP",
+      "uses": 0
+    },
+    {
+      "id": "g-suffer-allow",
+      "kjv_form": "suffer",
+      "forms": [
+        "suffered"
+      ],
+      "sense": "permit, allow",
+      "update": "allow",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "notes": "'suffer' meaning endure pain is KEEP",
+      "uses": 0
+    },
+    {
+      "id": "g-quick-living",
+      "kjv_form": "quick",
+      "sense": "alive, living",
+      "update": "living",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-meat-food",
+      "kjv_form": "meat",
+      "sense": "food in general",
+      "update": "food",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-corn-grain",
+      "kjv_form": "corn",
+      "sense": "grain",
+      "update": "grain",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-byandby-immediately",
+      "kjv_form": "by and by",
+      "sense": "immediately",
+      "update": "immediately",
+      "category": "shifted_meaning",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-betwixt-between",
+      "kjv_form": "betwixt",
+      "sense": "between",
+      "update": "between",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.23"
+      ],
+      "status": "provisional",
+      "created_in": "seed",
+      "uses": 1
+    },
+    {
+      "id": "g-peradventure-perhaps",
+      "kjv_form": "peradventure",
+      "sense": "perhaps",
+      "update": "perhaps",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-whither-where",
+      "kjv_form": "whither",
+      "sense": "to what place",
+      "update": "where",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-ere-before",
+      "kjv_form": "ere",
+      "sense": "before",
+      "update": "before",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-wot-know",
+      "kjv_form": "wot",
+      "forms": [
+        "wotteth",
+        "wist"
+      ],
+      "sense": "know, knew",
+      "update": "know",
+      "category": "archaic_word",
+      "status": "provisional",
+      "created_in": "seed",
+      "notes": "'wist' becomes 'knew'",
+      "uses": 1
+    },
+    {
+      "id": "g-wherefore-therefore",
+      "kjv_form": "wherefore",
+      "sense": "for this reason (connective)",
+      "update": "therefore",
+      "category": "archaic_word",
+      "status": "provisional",
+      "created_in": "seed",
+      "uses": 1
+    },
+    {
+      "id": "g-wherefore-why",
+      "kjv_form": "wherefore",
+      "sense": "for what reason (question)",
+      "update": "why",
+      "category": "archaic_word",
+      "status": "proposed",
+      "created_in": "seed",
+      "uses": 0
+    },
+    {
+      "id": "g-meet-fitting",
+      "kjv_form": "meet",
+      "sense": "adjective in the phrase 'it is meet' or 'as it is meet', meaning suitable or proper. This is not the verb 'to meet'.",
+      "update": "fitting",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.7"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ts77g-l"
+    },
+    {
+      "id": "g-bonds-keep",
+      "kjv_form": "bonds",
+      "sense": "chains or imprisonment of a prisoner, as in 'my bonds'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.7"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ts77g-l"
+    },
+    {
+      "id": "g-fellowship-keep",
+      "kjv_form": "fellowship",
+      "sense": "sharing or partnership in a common work, as in 'fellowship in the gospel'",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.5"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ts77g-l"
+    },
+    {
+      "id": "g-defence-keep",
+      "kjv_form": "defence",
+      "sense": "a spoken or written answer that defends something (current British spelling of the same word)",
+      "update": "KEEP",
+      "category": "spelling",
+      "examples": [
+        "PHP.1.7"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ts77g-l"
+    },
+    {
+      "id": "g-which-keep",
+      "kjv_form": "which",
+      "sense": "relative pronoun referring to persons, as in 'saints ... which are at Philippi' and 'he which hath begun'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.1",
+        "PHP.1.30"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ts77g-l",
+      "notes": "also: relative pronoun referring to a thing, as in 'the same conflict which ye saw in me'"
+    },
+    {
+      "id": "g-record-witness",
+      "kjv_form": "record",
+      "sense": "a person who bears witness or testifies, as in 'God is my record' (parallel to 'my witness' in JOB.16.19); not a written account",
+      "update": "witness",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7tutcu-1l"
+    },
+    {
+      "id": "g-approve-keep",
+      "kjv_form": "approve",
+      "sense": "to esteem, value or sanction something, as in 'approve things that are excellent' and 'their posterity approve their sayings' (PSA.49.13), 'whomsoever ye shall approve by your letters' (1CO.16.3)",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.10"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7tutcu-1l"
+    },
+    {
+      "id": "g-long-after-keep",
+      "kjv_form": "long after",
+      "sense": "to yearn for (a person)",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7tutcu-1l"
+    },
+    {
+      "id": "g-judgment-keep",
+      "kjv_form": "judgment",
+      "sense": "discernment or insight, as in 'in knowledge and in all judgment'",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.9"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7tutcu-1l"
+    },
+    {
+      "id": "g-waxing-growing",
+      "kjv_form": "waxing",
+      "sense": "growing, becoming more (of a quality or state), as in 'waxing confident'",
+      "update": "growing",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.14"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7txjal-26"
+    },
+    {
+      "id": "g-fallen-out-keep",
+      "kjv_form": "fallen out",
+      "sense": "turned out, came about (not 'quarreled'), as in 'have fallen out rather unto the furtherance'",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.12"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7txjal-26"
+    },
+    {
+      "id": "g-palace-keep",
+      "kjv_form": "palace",
+      "sense": "the KJV's rendering of the praetorium, the governor's residence or guard",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.13"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7txjal-26"
+    },
+    {
+      "id": "g-i-would-ye-should-understand-keep",
+      "kjv_form": "I would ye should understand",
+      "sense": "wish construction: 'I would' = I wish, followed by a 'should' complement",
+      "update": "KEEP",
+      "category": "syntax",
+      "examples": [
+        "PHP.1.12"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7txjal-26"
+    },
+    {
+      "id": "g-notwithstanding-keep",
+      "kjv_form": "notwithstanding",
+      "sense": "sentence adverb at the head of a clause meaning 'nevertheless, however' (not the preposition 'despite')",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.18"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u0e7v-2t"
+    },
+    {
+      "id": "g-earnest-keep",
+      "kjv_form": "earnest",
+      "sense": "adjective meaning ardent, intense, as in 'earnest expectation'",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.20"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u0e7v-2t"
+    },
+    {
+      "id": "g-turn-to-keep",
+      "kjv_form": "turn to",
+      "sense": "turn out to, result in (of events), as in 'this shall turn to my salvation'",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.19"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u0e7v-2t"
+    },
+    {
+      "id": "g-pretence-keep",
+      "kjv_form": "pretence",
+      "sense": "British spelling of 'pretense' (a false show or pretext)",
+      "update": "KEEP",
+      "category": "spelling",
+      "examples": [
+        "PHP.1.18"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u0e7v-2t"
+    },
+    {
+      "id": "g-labour-keep",
+      "kjv_form": "labour",
+      "sense": "British spelling of 'labor' (work, toil)",
+      "update": "KEEP",
+      "category": "spelling",
+      "examples": [
+        "PHP.1.22"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u0e7v-2t"
+    },
+    {
+      "id": "g-i-know-not-keep",
+      "kjv_form": "I know not",
+      "sense": "verb plus 'not' with 'know' that a reader still understands, including when it comes from updating 'wot not'",
+      "update": "KEEP",
+      "category": "syntax",
+      "examples": [
+        "PHP.1.22"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u0e7v-2t"
+    },
+    {
+      "id": "g-becometh-becomes",
+      "kjv_form": "becometh",
+      "sense": "befits, is fitting for (e.g. 'as it becometh the gospel'). This is not the sense 'comes to be' (PRO.10.4, MAT.13.22). In both senses only the ending changes, but sense-tagging keeps later reviews consistent.",
+      "update": "becomes",
+      "category": "verb_form",
+      "examples": [
+        "PHP.1.27"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u2mmx-3i"
+    },
+    {
+      "id": "g-let-keep",
+      "kjv_form": "let",
+      "sense": "allow, or a jussive 'let ... be' (permit/exhort), as in 'let your conversation be'. Not the sense 'hinder' covered by g-let-hinder.",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.27"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u2mmx-3i"
+    },
+    {
+      "id": "g-strait-keep",
+      "kjv_form": "strait",
+      "sense": "noun: a difficult position or dilemma, as in 'in a strait betwixt two'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.23"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u2mmx-3i"
+    },
+    {
+      "id": "g-needful-keep",
+      "kjv_form": "needful",
+      "sense": "necessary",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.24"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u2mmx-3i"
+    },
+    {
+      "id": "g-furtherance-keep",
+      "kjv_form": "furtherance",
+      "sense": "advancement, progress",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.25"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u2mmx-3i"
+    },
+    {
+      "id": "g-perdition-keep",
+      "kjv_form": "perdition",
+      "sense": "destruction, ruin (set against salvation)",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.28"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u2mmx-3i"
+    },
+    {
+      "id": "g-suffer-keep",
+      "kjv_form": "suffer",
+      "sense": "endure hardship or pain, as in 'to suffer for his sake'; not the 'permit, allow' sense of g-suffer-allow",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.1.29",
+        "PHP.3.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u4t0t-42",
+      "notes": "also: undergo or experience something, such as loss, as in 'suffered the loss of all things'. This is not the 'permit, allow' sense in g-suffer-allow."
+    },
+    {
+      "id": "g-hear-to-be-keep",
+      "kjv_form": "hear ... to be",
+      "sense": "object followed by an infinitive after a verb of perceiving or reporting, as in 'which ye ... now hear to be in me', still current English ('which I believe to be true')",
+      "update": "KEEP",
+      "category": "syntax",
+      "examples": [
+        "PHP.1.30"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u4t0t-42"
+    },
+    {
+      "id": "g-believe-on-keep",
+      "kjv_form": "believe on",
+      "sense": "trust in a person, as in 'to believe on him'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.29"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u4t0t-42"
+    },
+    {
+      "id": "g-in-the-behalf-of-keep",
+      "kjv_form": "in the behalf of",
+      "sense": "for the sake of, on behalf of, as in 'given in the behalf of Christ'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.1.29"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7u4t0t-42"
+    },
+    {
+      "id": "g-concision-mutilation",
+      "kjv_form": "concision",
+      "sense": "a cutting up or mutilation, used as a scornful name for those who insist on circumcision, set against 'the circumcision'",
+      "update": "mutilation",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.3.2"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7udul8-19"
+    },
+    {
+      "id": "g-grievous-keep",
+      "kjv_form": "grievous",
+      "sense": "troublesome, irksome, a burden to do, as in 'to me indeed is not grievous'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.1"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7udul8-19"
+    },
+    {
+      "id": "g-whereof-keep",
+      "kjv_form": "whereof",
+      "sense": "of which, grounds for something, as in 'he hath whereof he might trust'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.4"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7udul8-19"
+    },
+    {
+      "id": "g-as-touching-keep",
+      "kjv_form": "as touching",
+      "sense": "concerning, with respect to",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.5"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7udul8-19"
+    },
+    {
+      "id": "g-excellency-keep",
+      "kjv_form": "excellency",
+      "sense": "surpassing worth or preeminence of something, as in 'the excellency of the knowledge of Christ'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ugc4i-2n"
+    },
+    {
+      "id": "g-conformable-keep",
+      "kjv_form": "conformable",
+      "sense": "made to share the same form or shape as something, as in 'being made conformable unto his death'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.10"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ugc4i-2n"
+    },
+    {
+      "id": "g-yea-keep",
+      "kjv_form": "Yea",
+      "sense": "emphatic word that carries an argument forward ('indeed, more than that'), not an answer to a question, as in 'Yea doubtless, and I count'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ugc4i-2n"
+    },
+    {
+      "id": "g-mine-own-keep",
+      "kjv_form": "mine own",
+      "sense": "first-person possessive before a noun beginning with a vowel, meaning 'my own'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.9"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7ugc4i-2n"
+    },
+    {
+      "id": "g-confess-keep",
+      "kjv_form": "confess",
+      "sense": "to declare or acknowledge openly (not admitting a fault), as in 'every tongue should confess that Jesus Christ is Lord'",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.2.11"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uh47p-36"
+    },
+    {
+      "id": "g-joy-keep",
+      "kjv_form": "joy",
+      "sense": "verb meaning 'to rejoice, be glad', especially when paired with 'rejoice' in the same clause, as in 'I joy, and rejoice with you all'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.2.17"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7umgwj-55"
+    },
+    {
+      "id": "g-if-i-be-keep",
+      "kjv_form": "if I be",
+      "sense": "present subjunctive 'be' in an open conditional clause ('if I be offered'), still understood and keeping the KJV mood",
+      "update": "KEEP",
+      "category": "syntax",
+      "examples": [
+        "PHP.2.17"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7umgwj-55"
+    },
+    {
+      "id": "g-apprehend-grasp",
+      "kjv_form": "apprehend",
+      "sense": "lay hold of, seize, take hold (active, passive and perfect forms: apprehend, apprehended), as in Paul's 'apprehend that for which also I am apprehended of Christ Jesus'. This is not the mental sense 'understand' and not the legal sense 'arrest'.",
+      "update": "grasp",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.3.12"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7unf27-5s"
+    },
+    {
+      "id": "g-of-by",
+      "kjv_form": "of",
+      "sense": "marks the agent after a passive verb ('apprehended of Christ Jesus'), where the verb has been modernized",
+      "update": "by",
+      "category": "syntax",
+      "examples": [
+        "PHP.3.12"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7unf27-5s"
+    },
+    {
+      "id": "g-whereto-keep",
+      "kjv_form": "whereto",
+      "sense": "to the point to which (a stage or extent reached), as in 'whereto we have already attained'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.3.16"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7unf27-5s"
+    },
+    {
+      "id": "g-perfect-keep",
+      "kjv_form": "perfect",
+      "sense": "complete, mature (of persons), as in 'either were already perfect' and 'as many as be perfect'. The wordplay between verses 12 and 15 depends on keeping one word.",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.3.15"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7unf27-5s"
+    },
+    {
+      "id": "g-if-that-keep",
+      "kjv_form": "if that",
+      "sense": "conjunction 'if' with a redundant 'that', as in 'if that I may apprehend'",
+      "update": "KEEP",
+      "category": "syntax",
+      "examples": [
+        "PHP.3.12"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7unf27-5s"
+    },
+    {
+      "id": "g-intreat-entreat",
+      "kjv_form": "intreat",
+      "sense": "to plead with, ask earnestly (old spelling of 'entreat')",
+      "update": "entreat",
+      "category": "spelling",
+      "examples": [
+        "PHP.4.3"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uwgnb-94"
+    },
+    {
+      "id": "g-alway-always",
+      "kjv_form": "alway",
+      "sense": "adverb meaning 'always, at all times'",
+      "update": "always",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.4"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uwgnb-94"
+    },
+    {
+      "id": "g-moderation-keep",
+      "kjv_form": "moderation",
+      "sense": "noun describing a disposition shown toward others, as in 'let your moderation be known unto all men'. Contested: no 1611 English evidence shows a shift in meaning. Needs human ratification.",
+      "update": "KEEP",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.4.5"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uwgnb-94"
+    },
+    {
+      "id": "g-beseech-keep",
+      "kjv_form": "beseech",
+      "sense": "to beg or plead earnestly, as in 'I beseech Euodias'",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.2"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uwgnb-94"
+    },
+    {
+      "id": "g-laboured-keep",
+      "kjv_form": "laboured",
+      "sense": "worked or toiled; a British spelling still in use, not an old spelling",
+      "update": "KEEP",
+      "category": "spelling",
+      "examples": [
+        "PHP.4.3"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uwgnb-94"
+    },
+    {
+      "id": "g-fellowlabourers-keep",
+      "kjv_form": "fellowlabourers",
+      "sense": "co-workers, people who labour together; KJV compound spelling",
+      "update": "KEEP",
+      "category": "spelling",
+      "examples": [
+        "PHP.4.3"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uwgnb-94"
+    },
+    {
+      "id": "g-yokefellow-keep",
+      "kjv_form": "yokefellow",
+      "sense": "companion or partner in a shared task, used as a form of address",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.3"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uwgnb-94"
+    },
+    {
+      "id": "g-honest-honourable",
+      "kjv_form": "honest",
+      "sense": "honourable, creditable, of good report (not 'truthful'), as in 'whatsoever things are honest', 'men of honest report' (ACT.6.3), 'things honest in the sight of all men' (ROM.12.17)",
+      "update": "honourable",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.4.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uz93z-9w"
+    },
+    {
+      "id": "g-whatsoever-keep",
+      "kjv_form": "whatsoever",
+      "sense": "whatever, any that (relative/indefinite pronoun or determiner), still understood",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uz93z-9w"
+    },
+    {
+      "id": "g-of-good-report-keep",
+      "kjv_form": "of good report",
+      "sense": "well spoken of, commendable; still understood",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uz93z-9w"
+    },
+    {
+      "id": "g-think-on-keep",
+      "kjv_form": "think on",
+      "sense": "consider, dwell upon; still understood",
+      "update": "KEEP",
+      "category": "syntax",
+      "examples": [
+        "PHP.4.8"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uz93z-9w"
+    },
+    {
+      "id": "g-passeth-passes",
+      "kjv_form": "passeth",
+      "sense": "surpasses, goes beyond (as in 'passeth all understanding'); mechanical form 'passes' keeps the sense",
+      "update": "passes",
+      "category": "verb_form",
+      "examples": [
+        "PHP.4.7"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7uz93z-9w"
+    },
+    {
+      "id": "g-necessity-need",
+      "kjv_form": "necessity",
+      "sense": "want or lack of what is needed (Greek chreia), as in 'sent ... unto my necessity' and 'the necessity of saints'; NOT the compulsion or requirement sense ('necessity is laid upon me'), which is left for a separate entry",
+      "update": "need",
+      "category": "shifted_meaning",
+      "examples": [
+        "PHP.4.16"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7v5j46-bc"
+    },
+    {
+      "id": "g-of-keep",
+      "kjv_form": "of",
+      "sense": "marks the source after 'received' or a similar active verb of receiving ('received of Epaphroditus'); not the agent after a passive verb covered by g-of-by",
+      "update": "KEEP",
+      "category": "syntax",
+      "examples": [
+        "PHP.4.18",
+        "PHP.4.22"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7v5j46-bc",
+      "notes": "also: marks belonging, membership or possession ('they that are of Caesar's household', 'the grace of our Lord'). It is not the agent after a passive verb (g-of-by) and not the source after a verb of receiving (g-of-keep)."
+    },
+    {
+      "id": "g-wellpleasing-keep",
+      "kjv_form": "wellpleasing",
+      "sense": "pleasing, acceptable (closed compound)",
+      "update": "KEEP",
+      "category": "spelling",
+      "examples": [
+        "PHP.4.18"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7v5j46-bc"
+    },
+    {
+      "id": "g-once-and-again-keep",
+      "kjv_form": "once and again",
+      "sense": "more than once, repeatedly",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.16"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7v5j46-bc"
+    },
+    {
+      "id": "g-an-odour-of-a-sweet-smell-keep",
+      "kjv_form": "an odour of a sweet smell",
+      "sense": "fragrant offering (sacrificial image)",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.18"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7v5j46-bc"
+    },
+    {
+      "id": "g-salute-keep",
+      "kjv_form": "salute",
+      "sense": "verb meaning to greet or send greetings to a person ('Salute every saint', 'All the saints salute you')",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.21"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7v71dy-bt"
+    },
+    {
+      "id": "g-chiefly-keep",
+      "kjv_form": "chiefly",
+      "sense": "adverb meaning especially or above all ('chiefly they that are of Caesar's household')",
+      "update": "KEEP",
+      "category": "archaic_word",
+      "examples": [
+        "PHP.4.22"
+      ],
+      "status": "provisional",
+      "uses": 0,
+      "created_in": "D-mw7v71dy-bt"
+    }
+  ]
+}

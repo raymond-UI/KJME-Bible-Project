@@ -1,0 +1,57 @@
+{
+  "_about": "Plain-language summaries of this run's open decisions, written by Claude from the run record for the editor. They explain; they do not decide.",
+  "PHP.2.b01": {
+    "question": "Should \"robbery\" stay in 2:6, and should \"unto death\" stay in 2:8?",
+    "context": "In 2:6 the KJV says Christ \"thought it not robbery to be equal with God\". Two translators replaced \"robbery\" with \"something to grasp\" or \"something grasped\", which is how modern versions read the Greek; this edition's rules forbid taking new wording from the Greek, so the auditor rejected both. In 2:8, \"obedient unto death\" means obedient to the point of dying; the auditor rejected \"obedient to death\" because it can be misread as obeying death itself. The reviewers objected to every option here, including keeping the KJV words, which also leaves \"bowels\" unchanged in 2:1.",
+    "why": "Keeping the KJV wording is the safest choice available. It changes nothing the rules protect, but 2:1 keeps \"bowels\" for now.",
+    "focus": [
+      "PHP.2.6",
+      "PHP.2.8"
+    ],
+    "rerun": "The best text would combine \"affection\" in 2:1 with \"robbery\" and \"unto death\" kept. No translator produced that combination; ask Claude to re-run this passage to get it."
+  },
+  "PHP.2.b03": {
+    "question": "Keep \"harmless\" in 2:15 and \"holding forth\" in 2:16?",
+    "context": "In 1611 \"harmless\" meant innocent; today it usually means \"not dangerous\". \"Holding forth\" meant holding out or offering, not talking at length. The auditor thought \"harmless\" may now mislead, but no translator proposed a replacement, so every option keeps both. The options differ only in spelling: \"laboured\" (as in the KJV) or \"labored\".",
+    "why": "Keeps the KJV spelling \"laboured\". A better word for \"harmless\" needs a re-run of this passage.",
+    "rerun": "To try a replacement for \"harmless\" (for example \"innocent\"), ask Claude to re-run this passage with that word.",
+    "focus": [
+      "PHP.2.15",
+      "PHP.2.16"
+    ]
+  },
+  "PHP.2.b05": {
+    "question": "In 2:20, keep \"naturally care\" or change it to \"genuinely care\"?",
+    "context": "In 1611 \"naturally\" here meant sincerely, from real feeling. Today \"naturally\" reads as \"of course\", which changes what Paul says about Timothy.",
+    "why": "\"Genuinely\" keeps the 1611 meaning in one word.",
+    "focus": [
+      "PHP.2.20"
+    ]
+  },
+  "PHP.2.b06": {
+    "question": "In 2:30, keep \"not regarding his life\" or change it to \"not sparing his life\"?",
+    "context": "Epaphroditus nearly died serving Paul, \"not regarding his life\": he gave no thought to his own safety. The reviewers disagree about whether \"regarding\" is still understood that way; the scorer says modern readers take it as \"concerning\". The coordinator also tried \"not heeding\", but no translator or reviewer had proposed that word, so the system refused it and sent the passage to you.",
+    "why": "Only the minimalist's version passed both reviewers. It also makes other changes in 2:25–30, listed with the option.",
+    "focus": [
+      "PHP.2.30"
+    ]
+  },
+  "PHP.3.b04": {
+    "question": "In 3:20, what should \"our conversation is in heaven\" say?",
+    "context": "In 1611 \"conversation\" meant way of life or conduct; today it means talking, so the KJV word now misleads. One translator wrote \"citizenship\", which is how modern versions read the Greek, so it breaks this edition's rule against new translation. \"Conduct\" would follow the 1611 English, as in 1:27, but no translator offered it here. This verse was marked in advance as disputed.",
+    "why": "Keeping \"conversation\" holds the line for now. Choosing \"conduct\" needs a re-run of this passage.",
+    "rerun": "To use \"conduct\" (as in 1:27), ask Claude to re-run this passage with that word.",
+    "focus": [
+      "PHP.3.20"
+    ]
+  },
+  "PHP.4.b03": {
+    "question": "In 4:10, keep \"you were also careful\"?",
+    "context": "Here \"careful\" means caring about Paul, not worried. Three translators applied the glossary's \"careful → anxious\", which fits 4:6 but changes the meaning here, so the auditor rejected them. The scorer also objected to keeping \"careful\", because today it reads as \"cautious\". So the reviewers objected to every option.",
+    "why": "Keeping \"careful\" is the safer interim choice. The glossary entry should be split so 4:6 and 4:10 are handled separately.",
+    "rerun": "A word like \"concerned\" would fit, but no translator offered it. Ask Claude to re-run this passage with that word.",
+    "focus": [
+      "PHP.4.10"
+    ]
+  }
+}
