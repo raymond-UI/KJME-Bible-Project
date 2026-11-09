@@ -2,6 +2,7 @@
   "name": "kjme-harness",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "Pilot harness for the King James Margin Edition system",
   "packageManager": "bun@1.4.4",

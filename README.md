@@ -138,3 +138,7 @@ A decision is reproducible if its inputs and agent hashes are known.
 ## Copyright note
 
 The KJV is public domain in most countries. In the United Kingdom it is under Crown copyright, administered by Cambridge University Press. Resolve this before the first public release from a UK entity (see `PUBLISHING.md`, Licensing). This note is not legal advice.
+
+## License
+
+The system (this folder's rules, agents, schemas, checks, tools and harness) is [MIT](LICENSE). KJME text, margin, glossary and the run record are [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The base KJV wording is not covered by either. See [`LICENSE.md`](LICENSE.md).

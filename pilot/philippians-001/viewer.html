@@ -352,7 +352,7 @@ const DATA = {"decisions":[{"batch":"PHP.2.b01","status":"resolved","resolved_by
     return `KJME decisions for run ${R.id}:\n${lines.join("\n")}`;
   }
   function commandsText() {
-    return D.filter((d) => choices[d.batch]).map((d) => `npx tsx src/cli.ts resolve --run ${R.id} --batch ${d.batch} --select ${choices[d.batch]}`).join("\n");
+    return D.filter((d) => choices[d.batch]).map((d) => `bun src/cli.ts resolve --run ${R.id} --batch ${d.batch} --select ${choices[d.batch]}`).join("\n");
   }
 
   function sendBox(done, cls) {

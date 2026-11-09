@@ -2,7 +2,7 @@
 
 The first full KJME run. All four chapters of Philippians, 104 verses, through the whole pipeline: translators, code checks, anonymized review, debate, coordinator, escalation and the consistency pass.
 
-This is a working record, not a release. The text has not been through public review, and the license for KJME text is not chosen yet.
+This is a working record, not a release. The text has not been through public review, The text, glossary and record are CC BY 4.0 (see [`LICENSE.md`](../../LICENSE.md)).
 
 ## Numbers
 

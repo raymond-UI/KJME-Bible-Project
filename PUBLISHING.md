@@ -128,7 +128,7 @@ Use this text on every published surface:
 
 ## Licensing
 
-Decide these before the first public release. Recorded here as defaults to confirm:
+Confirmed. See `LICENSE.md` at the repository root.
 
 | Part | Default | Note |
 |---|---|---|
