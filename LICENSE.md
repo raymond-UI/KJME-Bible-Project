@@ -12,6 +12,7 @@ Attribution for CC BY 4.0 material: "King James Margin Edition (KJME), Raymond A
 
 ## What these licenses do not cover
 
-- **The base KJV text.** The 1769 King James Version is public domain in most countries. In the United Kingdom it is under Crown copyright, administered by Cambridge University Press. The CC BY 4.0 license covers only Raymond Asogwa's changes, margin notes, glossary and record, not the underlying KJV wording. Anyone reusing KJME text in the UK should check that position for themselves. This is not legal advice.
+- **The base KJV wording.** No rights are granted in the wording of the King James Version itself, wherever it appears in KJME text, margin notes or the record. The KJV is public domain outside the United Kingdom. In the UK, rights in it are vested in the Crown and administered by Cambridge University Press, the Crown's patentee. The CC BY 4.0 license covers only Raymond Asogwa's own contributions: the changes, margin notes, glossary and record. Anyone reproducing KJME text in the UK, in print, online or in an app, may need permission from Cambridge University Press. This is not legal advice.
+- **Not for sale.** KJME is published free of charge. No edition is sold.
 - **STEPBible data.** Greek and Hebrew data from STEPBible Data, Tyndale House (STEPBible.github.io/STEPBible-Data), is CC BY 4.0 under its own terms. It is not redistributed here. `harness` fetches it at setup.
 - **Model output terms.** Text produced by third-party models is published under the licenses above to the extent Raymond Asogwa holds rights in it.

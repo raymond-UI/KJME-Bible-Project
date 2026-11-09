@@ -43,7 +43,7 @@
       "base_url": "https://opencode.ai/inference/go",
       "api_key_env": "OPENCODE_GO_API_KEY",
       "headers": {
-        "user-agent": "kjme-harness/0.1 (Mzed Studio)"
+        "user-agent": "kjme-harness/0.1"
       },
       "session_header": "x-opencode-session",
       "prompt_caching": {
@@ -164,7 +164,7 @@
     "edition": "King James Margin Edition",
     "abbreviation": "KJME",
     "version": "0.1",
-    "publisher": "Mzed Studio",
+    "publisher": "Raymond Asogwa",
     "editors": [
       "Raymond Asogwa"
     ],

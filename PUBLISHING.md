@@ -130,16 +130,16 @@ Use this text on every published surface:
 
 Confirmed. See `LICENSE.md` at the repository root.
 
-| Part | Default | Note |
+| Part | License | Note |
 |---|---|---|
 | KJME text, margin, glossary | CC BY 4.0 | Free to reuse with attribution, including in apps and churches. |
 | Record (candidates, reviews, decisions) | CC BY 4.0 | |
 | System (this folder) | MIT | |
-| Base KJV text | Public domain outside the UK | In the UK, Crown copyright administered by Cambridge University Press. Get advice or permission before releasing from a UK entity. |
+| Base KJV text | Public domain outside the UK | In the UK, Crown copyright administered by Cambridge University Press. No rights granted in it. KJME is published by Raymond Asogwa from outside the UK and is not sold. A UK publisher, app or print edition would need Cambridge's permission. |
 
 ## Citation
 
-`CITATION.cff` names the edition, the release, the date, Mzed Studio as publisher and the editors.
+`CITATION.cff` names the edition, the release, the date, Raymond Asogwa as publisher and the editors.
 
 Short citation: `KJME 0.1, Philippians 4:6`.
 

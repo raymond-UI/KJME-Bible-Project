@@ -59,7 +59,7 @@
     "edition": "King James Margin Edition",
     "abbreviation": "KJME",
     "version": "0.1",
-    "publisher": "Mzed Studio",
+    "publisher": "Raymond Asogwa",
     "editors": ["<name>"],
     "plain_style": "marker",
     "formats": ["usfm", "json", "plain"],

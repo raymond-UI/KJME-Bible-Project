@@ -4,7 +4,7 @@ The **King James Margin Edition (KJME)** is an edition of the 1769 King James Ve
 
 This folder is the system that produces it: a committee of AI agents, deterministic checks and human review, run through a granular pipeline. The system is defined in documents, not code, and it is published alongside the text. Anyone can see exactly how every word was decided.
 
-The principles are adapted from the published goals of the KJV Update Project ("Imagine the KJV 2026", The Holy Scriptures Bible Society). KJME is an independent project by Mzed Studio. It is not affiliated with or endorsed by that project or society.
+The principles are adapted from the published goals of the KJV Update Project ("Imagine the KJV 2026", The Holy Scriptures Bible Society). KJME is an independent project by Raymond Asogwa. It is not affiliated with or endorsed by that project or society.
 
 Every role, rule, schema, check and stage lives in this folder. Any runtime that can call a model, store records and run steps in order can run it.
 
