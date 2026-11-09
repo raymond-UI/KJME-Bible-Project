@@ -1,5 +1,5 @@
-#!/usr/bin/env node
-// KJME pilot harness CLI. Run: npx tsx src/cli.ts <command> [options]
+#!/usr/bin/env bun
+// KJME pilot harness CLI. Run: bun src/cli.ts <command> [options]
 import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -41,7 +41,7 @@ function context(opts: Record<string, string | boolean>) {
   const runId = String(opts.run ?? config.run_id ?? "pilot");
   const store = new Store(join(HARNESS, "runs", runId), runId);
   const srcPath = join(HARNESS, "data", "source", "eng-kjv.osis.xml");
-  if (!existsSync(srcPath)) throw new Error("Source text missing. Run: npx tsx src/cli.ts setup");
+  if (!existsSync(srcPath)) throw new Error("Source text missing. Run: bun src/cli.ts setup");
   const source = loadOsis(srcPath);
   const glossary = Glossary.open(store.path("glossary.json"), join(SYSTEM, config.glossary?.seed ?? "data/glossary.seed.json"), config.glossary?.ratify_after_uses ?? 3);
   const refDir = resolve(SYSTEM, config.reference?.path ?? "reference/data");
@@ -192,9 +192,9 @@ async function main() {
   }
 }
 
-// Node's fetch ignores HTTPS_PROXY unless NODE_USE_ENV_PROXY=1 is set at startup. If a proxy is configured
-// and the flag is missing, re-run this process with it, so the harness works behind corporate or sandbox proxies.
-const proxied = process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy;
+// Bun's fetch honours HTTPS_PROXY natively. Node's ignores it unless NODE_USE_ENV_PROXY=1 is set at startup, so
+// under Node with a proxy configured, re-run this process with the flag (corporate or sandbox proxies).
+const proxied = !process.versions.bun && (process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy);
 if (proxied && !process.env.NODE_USE_ENV_PROXY) {
   const { spawnSync } = await import("node:child_process");
   const r = spawnSync(process.execPath, [...process.execArgv, ...process.argv.slice(1)], {

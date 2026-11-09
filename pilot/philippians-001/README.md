@@ -31,7 +31,7 @@ Full breakdown in [report.md](report.md).
 
 ## What is left out
 
-- **Lexicon and original-text lookup results.** They are STEPBible data, and its license asks that copies are not reposted. The lookup queries stay in `record/lookups.jsonl`. Run `npx tsx src/cli.ts setup` in `harness/` and repeat a lookup to see its result.
+- **Lexicon and original-text lookup results.** They are STEPBible data, and its license asks that copies are not reposted. The lookup queries stay in `record/lookups.jsonl`. Run `bun src/cli.ts setup` in `harness/` and repeat a lookup to see its result.
 - **Prompts and raw model responses.** Each agent call is recorded by hash (`prompt_hash`, `input_hash`), along with its parsed output, so a run can be checked against a replay.
 
 ## Open items from this run

@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "import", "node"],
+  "categories": { "correctness": "error" },
+  "env": { "node": true, "es2022": true },
+  "ignorePatterns": ["node_modules", "data", "runs"],
+  "rules": {
+    "unicorn/no-new-array": "off",
+    "unicorn/no-useless-fallback-in-spread": "off"
+  }
+}

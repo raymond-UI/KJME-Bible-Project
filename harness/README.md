@@ -10,25 +10,27 @@ The modules (pretag, checks, gateways, pipeline) are plain TypeScript with no fr
 
 ## Requirements
 
-- Node 20 or newer, `git`, `bash`, and `python3` (for the preflight script)
+- [Bun](https://bun.sh) 1.2 or newer, `git`, `bash`, and `python3` (for the preflight script)
 - Network access to openrouter.ai, api.anthropic.com and github.com
 
 ## Setup
 
 ```bash
 cd harness
-npm install
+bun install
 cp .env.example .env              # add OPENROUTER_API_KEY and ANTHROPIC_API_KEY
-npx tsx src/cli.ts setup          # fetches the KJV source (~10 MB) and the reference library (~115 MB)
-npx tsx src/cli.ts preflight --credit 200
+bun src/cli.ts setup              # fetches the KJV source (~10 MB) and the reference library (~115 MB)
+bun src/cli.ts preflight --credit 200
 ```
+
+Before committing, run `bun run check` (TypeScript typecheck plus [oxlint](https://oxc.rs)).
 
 `preflight` checks every model against OpenRouter's live catalog, the diversity rules, and the estimated cost.
 
 ## Try it without keys
 
 ```bash
-npx tsx src/cli.ts run --mock --run mock1
+bun src/cli.ts run --mock --run mock1
 ```
 
 The mock model is scripted, not smart. It exercises every path end to end in about two seconds:
@@ -41,9 +43,9 @@ The mock model is scripted, not smart. It exercises every path end to end in abo
 ## Run the pilot
 
 ```bash
-npx tsx src/cli.ts run                    # all of Philippians, per pilot.config.json
-npx tsx src/cli.ts run --chapters 1       # one chapter first is a good idea
-npx tsx src/cli.ts status                 # batch states, spend, open escalations
+bun src/cli.ts run                        # all of Philippians, per pilot.config.json
+bun src/cli.ts run --chapters 1           # one chapter first is a good idea
+bun src/cli.ts status                     # batch states, spend, open escalations
 ```
 
 - **Runs resume.** Re-run the same command and it skips accepted and escalated batches, and retries failed ones.
@@ -55,10 +57,10 @@ Two commands compare models without touching a run's accepted text:
 
 ```bash
 # Translator bake-off: every variant in bakeoff.config.json on the same passages, judged in one anonymized review
-npx tsx src/cli.ts bakeoff
+bun src/cli.ts bakeoff
 
 # Auditor check: replay the reference auditor's reviews through another model and count missed meaning failures
-npx tsx src/cli.ts auditcheck --model claude-haiku-5-5 --gateway opencode-anthropic --label haiku-5-5
+bun src/cli.ts auditcheck --model claude-haiku-5-5 --gateway opencode-anthropic --label haiku-5-5
 ```
 
 Results go to `runs/<run id>/bakeoff.md` and `runs/auditcheck-001/auditcheck-<label>.md`.
@@ -79,8 +81,8 @@ Choose per agent with `"gateway"` in the config. OpenCode Go is designed for cod
 Escalated batches keep the coordinator's recommendation as `pending_human` text, so the rest of the chapter has context. Resolve each one yourself:
 
 ```bash
-npx tsx src/cli.ts resolve --batch PHP.2.b03 --select PHP.2.b03.cadence --note "Keeps the 1611 sense."
-npx tsx src/cli.ts resolve --batch PHP.2.b03 --select recommended
+bun src/cli.ts resolve --batch PHP.2.b03 --select PHP.2.b03.cadence --note "Keeps the 1611 sense."
+bun src/cli.ts resolve --batch PHP.2.b03 --select recommended
 ```
 
 The resolution is recorded as a human decision that supersedes the coordinator's.
