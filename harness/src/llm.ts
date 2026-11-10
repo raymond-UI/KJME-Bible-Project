@@ -1,4 +1,7 @@
-// Model gateways: OpenRouter (OpenAI-compatible) and Anthropic (Messages API), plus a mock for dry runs.
+// Model gateways: OpenRouter (OpenAI-compatible), Anthropic (Messages API), Claude Code (headless CLI), plus a mock for dry runs.
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 // Each call runs a tool loop for the `lookup` tool and returns the final text, usage and cost.
 
 export interface ToolDef { name: string; description: string; parameters: Record<string, unknown> }
@@ -174,5 +177,103 @@ export class MockGateway implements Gateway {
     const text = this.respond(req);
     const input = Math.round((req.system.length + req.user.length) / 4), output = Math.round(text.length / 4);
     return { text, model: req.model, provider: "mock", usage: { input, output, cache_read: 0, cache_write: 0 }, cost_usd: 0, tool_calls: 0, turns: 1 };
+  }
+}
+
+/**
+ * Claude Code gateway: each call pipes the prompt into a headless `claude -p` session on the local login.
+ * Claude Code's own system prompt, tools, settings, memory and MCP servers are all switched off; the agent
+ * sees only the harness system prompt, the input, and the `lookup` tool (through claude-code-tools.ts).
+ * Temperature cannot be set this way. max_tokens is passed as CLAUDE_CODE_MAX_OUTPUT_TOKENS.
+ * Cost is Claude Code's reported list-price estimate.
+ */
+export class ClaudeCodeGateway implements Gateway {
+  name = "claude-code";
+  private bridge: { url: string; handlers: Map<string, { onTool: ToolHandler; left: number; used: number }> } | null = null;
+  private workdir: string | null = null;
+  constructor(private cfg: any) {}
+
+  private ensureBridge() {
+    if (this.bridge) return this.bridge;
+    const handlers = new Map<string, { onTool: ToolHandler; left: number; used: number }>();
+    const server = Bun.serve({
+      hostname: "127.0.0.1", port: 0,
+      async fetch(req) {
+        const h = handlers.get(req.headers.get("x-kjme-token") ?? "");
+        if (!h) return new Response("unknown call", { status: 403 });
+        const { name, args } = await req.json() as { name: string; args: any };
+        if (h.left <= 0) return Response.json({ error: "Lookup limit for this batch reached. Answer with what you have." });
+        h.left--; h.used++;
+        return Response.json(await h.onTool(name, args));
+      },
+    });
+    server.unref();
+    this.bridge = { url: `http://127.0.0.1:${server.port}/tool`, handlers };
+    return this.bridge;
+  }
+
+  /** An empty directory to run in, so no project CLAUDE.md or memory is picked up. */
+  private cwd(): string {
+    if (!this.workdir) this.workdir = mkdtempSync(join(tmpdir(), "kjme-cc-"));
+    return this.workdir;
+  }
+
+  async call(req: CallRequest): Promise<CallResult> {
+    const bin = this.cfg.bin ?? process.env.CLAUDE_BIN ?? "claude";
+    const dir = this.cwd();
+    const token = crypto.randomUUID();
+    const sysFile = join(dir, `${token}.system.md`);
+    writeFileSync(sysFile, req.system);
+    const args = ["-p", "--model", req.model, "--system-prompt-file", sysFile, "--output-format", "json",
+      "--tools", "", "--setting-sources", "", "--strict-mcp-config", "--disable-slash-commands", "--no-session-persistence"];
+    const effort = (req.reasoning as any)?.effort;
+    if (effort) args.push("--effort", String(effort));
+    let handler: { onTool: ToolHandler; left: number; used: number } | undefined;
+    if (req.tools?.length && req.onTool) {
+      const b = this.ensureBridge();
+      handler = { onTool: req.onTool, left: req.maxToolCalls ?? 8, used: 0 };
+      b.handlers.set(token, handler);
+      const t = req.tools[0];
+      const mcp = { mcpServers: { kjme: { type: "stdio", command: process.execPath, args: [join(import.meta.dir, "claude-code-tools.ts")],
+        env: { KJME_TOOL_URL: b.url, KJME_TOOL_TOKEN: token, KJME_TOOL_DEF: JSON.stringify(t) } } } };
+      args.push("--mcp-config", JSON.stringify(mcp), "--allowedTools", `mcp__kjme__${t.name}`);
+    }
+    // A clean environment: no parent Claude Code session, and no API key, so the call uses the local login.
+    const env: Record<string, string> = {};
+    for (const [k, v] of Object.entries(process.env)) if (v !== undefined && !/^(CLAUDECODE|CLAUDE_CODE_|CLAUDE_PID|CLAUDE_AGENT_SDK|CLAUDE_EFFORT)/.test(k)) env[k] = v;
+    if (!this.cfg.use_api_key) delete env.ANTHROPIC_API_KEY;
+    env.CLAUDE_CODE_MAX_OUTPUT_TOKENS = String(req.maxTokens);
+    try {
+      const proc = Bun.spawn([bin, ...args], { cwd: dir, env, stdin: new Blob([req.user]), stdout: "pipe", stderr: "pipe" });
+      const timer = setTimeout(() => proc.kill(), (this.cfg.timeout_s ?? 900) * 1000);
+      const [stdout, stderr, code] = await Promise.all([new Response(proc.stdout).text(), new Response(proc.stderr).text(), proc.exited]);
+      clearTimeout(timer);
+      let r: any;
+      try { r = JSON.parse(stdout); } catch { throw new Error(`claude exited ${code}: ${(stderr || stdout).slice(0, 500)}`); }
+      const usage = { input: 0, output: 0, cache_read: 0, cache_write: 0 };
+      for (const m of Object.values<any>(r.modelUsage ?? {})) {
+        usage.input += m.inputTokens ?? 0; usage.output += m.outputTokens ?? 0;
+        usage.cache_read += m.cacheReadInputTokens ?? 0; usage.cache_write += m.cacheCreationInputTokens ?? 0;
+      }
+      const out: CallResult = {
+        text: String(r.result ?? ""), model: Object.keys(r.modelUsage ?? {})[0] ?? req.model, provider: "claude-code",
+        usage, cost_usd: Number(r.total_cost_usd ?? 0), tool_calls: handler?.used ?? 0, turns: Number(r.num_turns ?? 1),
+      };
+      if (r.is_error) {
+        const e: any = new Error(`claude: ${r.subtype ?? "error"} ${r.api_error_status ?? ""} ${String(r.result ?? "").slice(0, 400)}`);
+        if (r.api_error_status) e.message = `HTTP ${r.api_error_status}: ${e.message}`;
+        e.result = out;
+        throw e;
+      }
+      if (r.stop_reason === "max_tokens") {
+        const e = new TruncatedError(`output truncated at max_tokens=${req.maxTokens}`);
+        (e as any).result = out;
+        throw e;
+      }
+      return out;
+    } finally {
+      if (handler) this.bridge?.handlers.delete(token);
+      rmSync(sysFile, { force: true });
+    }
   }
 }

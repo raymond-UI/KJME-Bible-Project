@@ -10,7 +10,7 @@ import { Glossary } from "./glossary.js";
 import { Reference } from "./reference.js";
 import { Store } from "./store.js";
 import { Agents, BudgetExceeded } from "./agents.js";
-import { AnthropicGateway, MockGateway, OpenRouterGateway } from "./llm.js";
+import { AnthropicGateway, ClaudeCodeGateway, MockGateway, OpenRouterGateway } from "./llm.js";
 import { mockRespond } from "./mock.js";
 import { runBook, acceptedMap, applyAccepted, type PipelineCtx } from "./pipeline.js";
 import { consistencyPass } from "./consistency.js";
@@ -54,6 +54,8 @@ function context(opts: Record<string, string | boolean>) {
     // OpenCode Go: one key, two wire formats depending on the model.
     "opencode-anthropic": new AnthropicGateway({ ...(config.inference?.opencode ?? {}), base_url: `${config.inference?.opencode?.base_url ?? "https://opencode.ai/inference/go"}/anthropic/v1`, api_key_env: config.inference?.opencode?.api_key_env ?? "OPENCODE_GO_API_KEY", bearer: true }, "opencode-anthropic"),
     "opencode-openai": new OpenRouterGateway({ ...(config.inference?.opencode ?? {}), base_url: `${config.inference?.opencode?.base_url ?? "https://opencode.ai/inference/go"}/openai/v1`, api_key_env: config.inference?.opencode?.api_key_env ?? "OPENCODE_GO_API_KEY", openrouter_extras: false }, "opencode-openai"),
+    // Claude Code: pipes each call into a headless `claude -p` on the local login.
+    "claude-code": new ClaudeCodeGateway(config.inference?.["claude-code"] ?? {}),
     mock: new MockGateway(mockRespond),
   };
   const agents = new Agents({ systemRoot: SYSTEM, harnessRoot: HARNESS, config, gateways, store, reference, mock });
