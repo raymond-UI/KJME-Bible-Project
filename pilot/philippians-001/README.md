@@ -20,8 +20,9 @@ Full breakdown in [report.md](report.md).
 | File | What it is |
 |---|---|
 | `accepted.json` | The accepted KJME text per verse, with its changes, italics and pronoun marks |
-| `viewer.html` | The Margin Viewer for this run. Open it in a browser, no server needed |
-| `viewer-verification.json` | Proof the viewer was checked against both texts before it was written |
+| `viewer.html` | The Margin Viewer for this run, built as one file with the data inside. Open it in a browser, no server needed |
+| `viewer-data.json` | The data the viewer shows, as JSON |
+| `viewer-verification.json` | Proof the viewer data was checked against both texts before it was written |
 | `report.md` | Cost, agreement, winners, escalations |
 | `glossary.json` | Glossary state at the end of the run |
 | `escalation-notes.json` | The human rulings on each escalation |

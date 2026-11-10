@@ -1,4 +1,4 @@
-// Pilot report: the metrics PIPELINE.md asks for, plus a self-contained viewer of the text and its margin.
+// Pilot report: the metrics PIPELINE.md asks for, plus the viewer data for the web app in ../viewer.
 import { existsSync, writeFileSync } from "node:fs";
 import { readJson } from "./util.js";
 import { reference as ref } from "./books.js";

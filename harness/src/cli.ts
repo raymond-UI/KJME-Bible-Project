@@ -15,6 +15,7 @@ import { mockRespond } from "./mock.js";
 import { runBook, acceptedMap, applyAccepted, type PipelineCtx } from "./pipeline.js";
 import { consistencyPass } from "./consistency.js";
 import { writeReport } from "./report.js";
+import { exportViewer } from "./viewer.js";
 import { bakeoff, loadPilotAccepted, type Variant } from "./bakeoff.js";
 import { auditCheck } from "./auditcheck.js";
 import { copyFileSync, mkdirSync } from "node:fs";
@@ -100,7 +101,7 @@ async function main() {
         console.log(`Consistency pass: ${n} drift groups judged.`);
       }
       writeReport(store, source);
-      console.log(`Spend: $${store.state.spend_usd.toFixed(3)}. Report: ${store.path("report.md")}  Viewer: ${store.path("viewer.html")}`);
+      console.log(`Spend: $${store.state.spend_usd.toFixed(3)}. Report: ${store.path("report.md")}  Viewer data: ${store.path("viewer-data.json")}`);
       return;
     }
     case "status": {
@@ -134,7 +135,20 @@ async function main() {
     case "report": {
       const { store, source } = context(opts);
       writeReport(store, source);
-      console.log(`Report: ${store.path("report.md")}  Viewer: ${store.path("viewer.html")}`);
+      console.log(`Report: ${store.path("report.md")}  Viewer data: ${store.path("viewer-data.json")}`);
+      return;
+    }
+    case "export-viewer": {
+      // A run directory (default runs/<run id>), or any saved record such as ../pilot/philippians-001.
+      const srcPath = join(HARNESS, "data", "source", "eng-kjv.osis.xml");
+      if (!existsSync(srcPath)) throw new Error("Source text missing. Run: bun src/cli.ts setup");
+      const config = readJson(resolve(String(opts.config ?? join(HARNESS, "pilot.config.json"))));
+      const runId = String(opts.run ?? config.run_id ?? "pilot");
+      const dir = opts.dir ? resolve(String(opts.dir)) : join(HARNESS, "runs", runId);
+      if (!existsSync(join(dir, "accepted.json"))) throw new Error(`no accepted.json in ${dir}`);
+      const out = resolve(String(opts.out ?? join(SYSTEM, "viewer", "public", "data")));
+      const r = exportViewer(new Store(dir, runId), loadOsis(srcPath), out);
+      console.log(`Viewer data: ${r.file}${r.issues ? ` (${r.issues} display issues; see viewer-verification.json)` : ""}`);
       return;
     }
     case "consistency": {
@@ -186,7 +200,9 @@ async function main() {
   status                      batch states, spend, open escalations
   resolve --batch <id> --select <candidate id|recommended> [--by <name>] [--note <text>]
   consistency                 re-run the consistency pass
-  report                      rebuild report.md and viewer.html
+  report                      rebuild report.md and viewer-data.json
+  export-viewer [--run <id> | --dir <path>] [--out <dir>]
+                              copy a run's viewer data into the web app (../viewer/public/data)
 
   Common: --config <path> (default pilot.config.json), --run <id>`);
   }

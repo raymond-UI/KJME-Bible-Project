@@ -87,12 +87,24 @@ bun src/cli.ts resolve --batch PHP.2.b03 --select recommended
 
 The resolution is recorded as a human decision that supersedes the coordinator's.
 
+## Review a run in the viewer
+
+The Margin Viewer is a separate web app in [`../viewer`](../viewer). Export a run into it, one file per book:
+
+```bash
+bun src/cli.ts export-viewer --run pilot-php-001          # a run under runs/
+bun src/cli.ts export-viewer --dir ../pilot/philippians-001  # or any run folder
+```
+
+This writes `../viewer/public/data/<BOOK>.json` and adds the book to `index.json`. Exporting the same book again replaces it. Use `--out <dir>` to write somewhere else.
+
 ## Outputs (`runs/<run id>/`)
 
 | File | What |
 |---|---|
 | `report.md` | Pilot metrics: cost per verse and per agent, reviewer agreement before and after debate, escalations by trigger, win share, glossary growth per chapter. |
-| `viewer.html` | Every verse: the KJV, the accepted text with changes highlighted and plural "you" marked, and the margin of changes with reasons. |
+| `viewer-data.json` | What the Margin Viewer shows: every verse in three forms (KJV, accepted, tracked), its changes with reasons, candidates, reviews, decisions and the glossary. Read by [`../viewer`](../viewer). |
+| `viewer-verification.json` | Proof every verse in the viewer data was rebuilt and matched against the KJV and the accepted text. |
 | `accepted.json` | Accepted text per verse, with offsets, pronoun marks, italics and changes. |
 | `glossary.json` | The glossary as it evolved during the run. |
 | `record/*.jsonl` | Batches, candidates, check reports, reviews, decisions, escalations, lookups, consistency results, and every agent call (model served, provider, prompt hash, tokens, cost). |

@@ -29,6 +29,9 @@ Every role, rule, schema, check and stage lives in this folder. Any runtime that
 | `data/locked-terms.json` | Terms agents may not change, and terms only a human may change. |
 | `reference/` | The offline reference library agents may consult (KJV's Greek, Hebrew, lexicons, 1611 English), its fetch script and the `lookup` tool spec. |
 | `config.example.json` | Run configuration: scope, batching, OpenRouter models per role, thresholds, budget, release metadata. |
+| `harness/` | The pilot runtime: runs the pipeline, writes the record, exports runs to the viewer. |
+| `viewer/` | The Margin Viewer: a web app for reading a run's text and reviewing every change and decision. |
+| `pilot/` | Full records of published runs. |
 | `tools/preflight.py` | Checks the configured models against OpenRouter's live catalog and estimates run cost. |
 | `examples/luke-22-31-34.md` | One batch walked through every stage. |
 

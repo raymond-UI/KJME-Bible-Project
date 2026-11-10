@@ -1,15 +1,12 @@
 // Viewer data builder. Computes every displayed run of text here, in code, and verifies it against the
-// source before the page is written. The page itself only renders these runs; it never computes a diff.
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+// source before the data is written. The web app in ../viewer only renders these runs; it never computes a diff.
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { align, hunks, tokenize } from "./text.js";
 import { readJson } from "./util.js";
 import { reference as ref, USFM_NAME } from "./books.js";
 import type { Store } from "./store.js";
 import type { SourceVerse } from "./source.js";
-
-const HERE = dirname(fileURLToPath(import.meta.url));
 
 interface Layer { start: number; end: number; cls: string; ch?: string }
 interface Marker { at: number; m: "pl" | "sg"; before?: string; cls?: string; k?: string }
@@ -222,7 +219,8 @@ export function buildViewerData(store: Store, source: Map<string, SourceVerse>) 
   const lookups: Record<string, any> = {};
   for (const l of lookupsAll) if (usedLookups.has(l.lookup_id)) {
     const r: any = l.result;
-    const summary = r?.words ? r.words.map((w: any) => `${w.surface} ${w.strongs} "${w.lemma_gloss}"`).join(" · ")
+    const summary = r?.omitted ? r.omitted
+      : r?.words ? r.words.map((w: any) => `${w.surface} ${w.strongs} "${w.lemma_gloss}"`).join(" · ")
       : r?.results ? r.results.map((x: any) => `${x.verse_id}: ${x.kjv}`).slice(0, 4).join("\n")
       : r?.definition ? `${r.lemma} (${r.strongs}): ${r.definition}` : JSON.stringify(r).slice(0, 400);
     lookups[l.lookup_id] = { agent: l.agent, query: l.query, summary: String(summary).slice(0, 900) };
@@ -333,17 +331,32 @@ export function buildViewerData(store: Store, source: Map<string, SourceVerse>) 
   };
 }
 
-export function writeViewer(store: Store, source: Map<string, SourceVerse>): { path: string; issues: number } {
+/** Write the run's viewer data (viewer-data.json) and its verification next to the record. */
+export function writeViewer(store: Store, source: Map<string, SourceVerse>): { path: string; issues: number; data: ReturnType<typeof buildViewerData> } {
   const data = buildViewerData(store, source);
-  const template = readFileSync(join(HERE, "..", "viewer", "template.html"), "utf8");
-  const json = JSON.stringify(data).replace(/</g, "\\u003c");
-  const body = template.replace("/*__KJME_DATA__*/null", json);
-  // Standalone file for opening locally; the bare body is what gets published as a page.
-  const standalone = `<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n` +
-    `<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>\n</head>\n<body>\n${body}\n</body>\n</html>\n`;
-  const path = store.path("viewer.html");
-  writeFileSync(path, standalone);
-  writeFileSync(store.path("viewer.page.html"), body);
+  const path = store.path("viewer-data.json");
+  writeFileSync(path, JSON.stringify(data) + "\n");
   writeFileSync(store.path("viewer-verification.json"), JSON.stringify(data.run.verification, null, 2));
-  return { path, issues: data.run.verification.issues.length };
+  return { path, issues: data.run.verification.issues.length, data };
+}
+
+interface ManifestBook { code: string; book: string; run: string; file: string; verses: number; edits: number; generated: string }
+
+/** Copy a run's viewer data into the web app's data folder, one file per book, and update its manifest. */
+export function exportViewer(store: Store, source: Map<string, SourceVerse>, outDir: string): { file: string; issues: number } {
+  const { data, issues } = writeViewer(store, source);
+  const code = data.verses[0]?.id.split(".")[0];
+  if (!code) throw new Error("run has no accepted verses to export");
+  mkdirSync(outDir, { recursive: true });
+  const file = `${code}.json`;
+  writeFileSync(join(outDir, file), JSON.stringify(data) + "\n");
+  const manifestPath = join(outDir, "index.json");
+  const manifest: { books: ManifestBook[] } = existsSync(manifestPath) ? readJson(manifestPath) : { books: [] };
+  const entry: ManifestBook = {
+    code, book: data.book, run: data.run.id, file, verses: data.verses.length,
+    edits: data.verses.reduce((n: number, v: any) => n + v.changes.filter((c: any) => !c.auto).length, 0), generated: data.run.generated,
+  };
+  manifest.books = [...manifest.books.filter((b) => b.code !== code), entry];
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+  return { file: join(outDir, file), issues };
 }

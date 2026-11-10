@@ -1,0 +1,33 @@
+{
+  "name": "kjme-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "KJME Margin Viewer: review a run's text, changes and decisions",
+  "packageManager": "bun@1.4.4",
+  "scripts": {
+    "dev": "bun --hot serve.ts",
+    "build": "bun scripts/build.ts",
+    "standalone": "bun scripts/build.ts --standalone",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "check": "bun run typecheck && bun run lint",
+    "test": "bun test"
+  },
+  "engines": {
+    "bun": ">=1.2"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@happy-dom/global-registrator": "^21.0.4",
+    "@types/bun": "^1.4.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "oxlint": "^1.92.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://fallow.dev/schema.json",
+  "entry": [
+    "viewer/src/main.tsx",
+    "viewer/serve.ts"
+  ],
+  "dynamicallyLoaded": [
+    "harness/src/claude-code-tools.ts"
+  ],
+  "usedClassMembers": [
+    "call"
+  ]
+}
