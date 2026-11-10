@@ -2,7 +2,7 @@
 // and run the deterministic checks (checks/CHECKS.md). Agents give text + changes; code computes the rest.
 import { align, hunks, locate, spanOf, tokenize, words, type Token } from "./text.js";
 import type { PretaggedVerse, PronounMark, Tables } from "./pretag.js";
-import type { Glossary } from "./glossary.js";
+import type { Glossary, GlossaryEntry } from "./glossary.js";
 import type { Span } from "./source.js";
 
 export interface RawChange {
@@ -41,6 +41,34 @@ function levenshtein(a: string, b: string): number {
     }
   }
   return prev[b.length];
+}
+
+type GlossaryTag = { i: number; text: string; g: GlossaryEntry };
+
+/** Active glossary tags grouped by the KJV words they cover: several entries on one word are its senses. */
+function glossaryGroups(pretag: PretaggedVerse["pretag"], glossary: Glossary): GlossaryTag[][] {
+  const groups = new Map<string, GlossaryTag[]>();
+  for (const p of pretag) {
+    const g = p.tag === "glossary" ? glossary.get(p.glossary_id!) : undefined;
+    if (!g || !(g.status === "ratified" || g.status === "provisional")) continue;
+    const k = `${p.i}:${p.text.toLowerCase()}`;
+    groups.set(k, [...(groups.get(k) ?? []), { i: p.i, text: p.text, g }]);
+  }
+  return [...groups.values()];
+}
+
+/** C6 for one word: a hard failure if an entry pins this verse and is not followed; a warning if no sense is followed. */
+export function glossaryVerdict(group: GlossaryTag[], verseId: string, text: string, kept: (i: number) => boolean): { hard: boolean; detail: string } | null {
+  const lower = text.toLowerCase();
+  const followed = (t: GlossaryTag) => t.g.update === "KEEP" ? kept(t.i) : lower.includes(t.g.update.toLowerCase());
+  const pinned = group.filter((t) => (t.g.examples ?? []).includes(verseId));
+  if (pinned.length && !pinned.some(followed)) {
+    const g = pinned[0]!.g;
+    return { hard: true, detail: `glossary ${g.id} pins "${g.kjv_form}" -> "${g.update}" in this verse` };
+  }
+  if (group.some(followed)) return null;
+  const senses = group.map((t) => `${t.g.id} ("${t.g.update}")`).join(" or ");
+  return { hard: false, detail: `"${group[0]!.text}" not rendered per ${senses}; reviewers judge the sense` };
 }
 
 export function materialize(
@@ -160,17 +188,10 @@ export function materialize(
       for (const r of touched) if (!r.c.uncertain) fail("C5", v.id, `change to escalate-only term "${p.text}" must set uncertain: true (R7)`);
     }
 
-    // C6: glossary compliance
-    for (const p of v.pretag.filter((p) => p.tag === "glossary")) {
-      const g = glossary.get(p.glossary_id!);
-      if (!g || !(g.status === "ratified" || g.status === "provisional")) continue;
-      const pinned = (g.examples ?? []).includes(v.id);
-      const ok = g.update === "KEEP"
-        ? al.aToB[p.i] >= 0
-        : text.toLowerCase().includes(g.update.toLowerCase()) || al.aToB[p.i] < 0;
-      const followed = g.update === "KEEP" ? al.aToB[p.i] >= 0 : text.toLowerCase().includes(g.update.toLowerCase());
-      if (pinned && !followed) fail("C6", v.id, `glossary ${g.id} pins "${g.kjv_form}" -> "${g.update}" in this verse`);
-      else if (!ok || !followed) warn("C6", v.id, `"${p.text}" not rendered per ${g.status} entry ${g.id} ("${g.update}"); reviewers judge the sense`);
+    // C6: glossary compliance. Entries for the same KJV word are its senses: the rendering needs to follow one of them.
+    for (const group of glossaryGroups(v.pretag, glossary)) {
+      const r = glossaryVerdict(group, v.id, text, (i) => al.aToB[i] >= 0);
+      if (r) (r.hard ? fail : warn)("C6", v.id, r.detail);
     }
 
     // C8: italics carried through alignment or inherited by the replacing change

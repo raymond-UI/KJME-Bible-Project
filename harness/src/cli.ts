@@ -6,19 +6,22 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { loadEnv, readJson, newId, now } from "./util.js";
 import { loadOsis, bookChapters } from "./source.js";
-import { Glossary } from "./glossary.js";
+import { Glossary, glossaryFile } from "./glossary.js";
 import { Reference } from "./reference.js";
 import { Store } from "./store.js";
-import { Agents, BudgetExceeded } from "./agents.js";
+import { Agents, BudgetExceeded, StopRun } from "./agents.js";
 import { AnthropicGateway, ClaudeCodeGateway, MockGateway, OpenRouterGateway } from "./llm.js";
 import { mockRespond } from "./mock.js";
-import { runBook, acceptedMap, applyAccepted, type PipelineCtx } from "./pipeline.js";
+import { runBook, acceptedMap, applyAccepted, holdOpenEscalations, type PipelineCtx } from "./pipeline.js";
 import { consistencyPass } from "./consistency.js";
 import { writeReport } from "./report.js";
 import { exportViewer } from "./viewer.js";
 import { bakeoff, loadPilotAccepted, type Variant } from "./bakeoff.js";
 import { auditCheck } from "./auditcheck.js";
 import { copyFileSync, mkdirSync } from "node:fs";
+import { NT_BOOKS } from "./books.js";
+import { candidates, vocabulary, importArgs, loadEnglish, pickWords, surveyArgs, surveyWord, type SurveyInput } from "./survey.js";
+import { importSenses, readSenseFiles, writeSurvey } from "./prepass.js";
 
 const HARNESS = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SYSTEM = resolve(HARNESS, "..");
@@ -44,7 +47,7 @@ function context(opts: Record<string, string | boolean>) {
   const srcPath = join(HARNESS, "data", "source", "eng-kjv.osis.xml");
   if (!existsSync(srcPath)) throw new Error("Source text missing. Run: bun src/cli.ts setup");
   const source = loadOsis(srcPath);
-  const glossary = Glossary.open(store.path("glossary.json"), join(SYSTEM, config.glossary?.seed ?? "data/glossary.seed.json"), config.glossary?.ratify_after_uses ?? 3);
+  const glossary = Glossary.open(glossaryFile(config.glossary?.path, HARNESS, store.path("glossary.json")), join(SYSTEM, config.glossary?.seed ?? "data/glossary.seed.json"), config.glossary?.ratify_after_uses ?? 3);
   const refDir = resolve(SYSTEM, config.reference?.path ?? "reference/data");
   const reference = new Reference(refDir, source, () => acceptedMap(store));
   const mock = !!opts.mock;
@@ -66,6 +69,27 @@ function context(opts: Record<string, string | boolean>) {
     log: (s) => console.log(s),
   };
   return { ctx, config, store, source, reference, configPath, mock };
+}
+
+/** glossary-survey: per-word survey and sense templates in runs/glossary-survey/. No model calls. */
+function glossarySurvey(opts: Record<string, string | boolean>): void {
+  const { ctx, source } = context(opts);
+  const a = surveyArgs(opts, ctx.config);
+  const inp: SurveyInput = { source, vocab: vocabulary(source), ...loadEnglish(resolve(SYSTEM, a.english)), glossary: ctx.glossary.entries, nt: NT_BOOKS };
+  const all = candidates(inp, a.min);
+  const chosen = pickWords(a.words, all, a.top);
+  writeSurvey(resolve(HARNESS, a.out), chosen.map((w) => surveyWord(w, [], inp)), all.length);
+  console.log(`Surveyed ${chosen.length} words -> ${resolve(HARNESS, a.out)}/index.md`);
+}
+
+/** glossary-import: load reviewed sense files into the glossary this config uses. */
+function glossaryImport(opts: Record<string, string | boolean>): void {
+  const { ctx, source } = context(opts);
+  const a = importArgs(opts);
+  const r = importSenses(ctx.glossary, readSenseFiles(resolve(HARNESS, a.dir)), source, a.reviewer);
+  console.log(`Imported ${r.imported.length} senses; superseded ${r.rejected.length}; ${r.skipped.length} files not yet reviewed.`);
+  r.errors.forEach((e) => console.log(`  ! ${e}`));
+  process.exitCode = Math.min(1, r.errors.length);
 }
 
 async function main() {
@@ -92,12 +116,18 @@ async function main() {
     }
     case "run": {
       const { ctx, config, store, source, reference, mock } = context(opts);
+      if (!opts.book && Array.isArray(config.scope?.books) && config.scope.books.length === 0) throw new Error("Give --book (and --chapters): this config sets no default scope.");
       const book = String(opts.book ?? config.scope?.books?.[0] ?? "PHP");
       const chapters = opts.chapters ? String(opts.chapters).split(",").map(Number) : (config.scope?.chapters ?? bookChapters(source, book));
       console.log(`KJME run ${store.state.run_id}: ${book} chapters ${chapters.join(",")}${mock ? " (MOCK MODEL)" : ""}`);
-      console.log(`Reference: greek=${reference.available.greek} lexicon=${reference.available.lexicon} english=${reference.available.english}. Budget $${config.budget?.max_usd ?? "none"}.`);
+      console.log(`Reference: greek=${reference.available.greek} hebrew=${reference.available.hebrew} lexicon=${reference.available.lexicon} english=${reference.available.english}. Budget $${config.budget?.max_usd ?? "none"}.`);
       try { await runBook(ctx, book, chapters); }
-      catch (e) { if (e instanceof BudgetExceeded) console.log(`Stopped: ${e.message}. Resume with the same command after raising the budget.`); else throw e; }
+      catch (e) {
+        if (!(e instanceof StopRun)) throw e;
+        const fix = e instanceof BudgetExceeded ? "after raising the budget" : "once the provider serves calls again";
+        console.log(`Stopped: ${e.message}. Resume with the same command ${fix}; finished batches are kept.`);
+        writeReport(store, source);
+      }
       if (!opts["skip-consistency"]) {
         const n = await consistencyPass(ctx, book);
         console.log(`Consistency pass: ${n} drift groups judged.`);
@@ -122,7 +152,7 @@ async function main() {
       const batch = String(opts.batch), pick = String(opts.select ?? "recommended");
       const esc = [...new Map(store.all("escalations").map((e) => [e.id, e])).values()].filter((e) => e.batch_id === batch && e.status === "open" && e.trigger !== "glossary_conflict").pop();
       if (!esc) throw new Error(`no open escalation for ${batch}`);
-      const id = pick === "recommended" ? esc.recommended_candidate : pick;
+      const id = pick === "recommended" ? esc.recommended_candidate : pick === "provisional" ? esc.provisional_candidate : pick;
       const cand = store.all("candidates").filter((c) => c.id === id).pop();
       if (!cand) throw new Error(`candidate ${id} not found`);
       const by = String(opts.by ?? ctx.config.release?.editors?.[0] ?? "human-editor");
@@ -132,6 +162,13 @@ async function main() {
       applyAccepted(ctx, batch, decisionId, cand.verses, []);
       writeReport(store, source);
       console.log(`Resolved ${batch} with ${id} (by ${by}).`);
+      return;
+    }
+    case "hold": {
+      // Rebuild the provisional text of open escalations from the record: undisputed edits kept, disputed words held.
+      const { ctx, store, source } = context(opts);
+      for (const h of holdOpenEscalations(ctx)) console.log(`${h.batch}: built on ${h.base ?? "the mechanical draft"}, ${h.held} change(s) held`);
+      writeReport(store, source);
       return;
     }
     case "report": {
@@ -177,6 +214,8 @@ async function main() {
       console.log(`Spend recorded: $${store.state.spend_usd.toFixed(3)}`);
       return;
     }
+    case "glossary-survey": return glossarySurvey(opts);
+    case "glossary-import": return glossaryImport(opts);
     case "bakeoff": {
       // Compare translator models on chosen passages: --batches a,b --from <pilot run id>
       const bcfg = readJson(resolve(String(opts.config ?? join(HARNESS, "bakeoff.config.json"))));
@@ -200,9 +239,14 @@ async function main() {
   run [--chapters 1] [--mock] [--run <id>] [--skip-consistency]
                               run the pipeline (resumable: re-run the same command)
   status                      batch states, spend, open escalations
-  resolve --batch <id> --select <candidate id|recommended> [--by <name>] [--note <text>]
+  resolve --batch <id> --select <candidate id|recommended|provisional> [--by <name>] [--note <text>]
+  hold                        rebuild open escalations' provisional text: undisputed edits kept, disputed words held
   consistency                 re-run the consistency pass
   report                      rebuild report.md and viewer-data.json
+  glossary-survey [--top 50 | --words let,prevent] [--min 1] [--out runs/glossary-survey]
+                              no model calls: per word, uses grouped by context, dictionary entries, sense templates
+  glossary-import [--dir runs/glossary-survey/senses] [--by <name>]
+                              check reviewed sense files and load them into the glossary as ratified
   export-viewer [--run <id> | --dir <path>] [--out <dir>]
                               copy a run's viewer data into the web app (../viewer/public/data)
 

@@ -95,6 +95,8 @@ Debate runs if any of these hold:
 
 Each reviewer then receives the other's round-1 review and returns a `review` with `round: 2`. There is at most one round (`config.debate_rounds`). No further rounds.
 
+The meaning auditor is the costly reviewer. If it passed every gate on both its own top candidate and the scorer's leader, it has no objection to settle: only the scorer reconsiders, and the auditor's round-1 review stands as final. Set `config.debate_skip_clear_auditor: false` to always run both. (In the Philippians pilot this would have skipped 9 of 17 auditor round-2 calls; in none of them did the auditor's round 2 change its top choice or any gate.)
+
 ### 7. Coordinate (agent)
 
 - **Agent:** `coordinator`.
@@ -106,6 +108,31 @@ There are three possible outcomes:
 - **`select`:** one eligible candidate wins as-is.
 - **`merge`:** the final text is assembled change by change from eligible candidates. The merged text goes back through stage 4. If it fails, the decision becomes `escalate`.
 - **`escalate`:** see Escalation below.
+
+### 0. **Glossary pre-pass** (code, then a human; before the main work)
+
+The same KJV word can need different handling in different verses: `let` is mostly "allow", but "hinder" in Exodus 5:4 and Romans 1:13. A single entry per spelling gets this wrong, so the glossary holds **one entry per sense**, each saying when it applies.
+
+1. `glossary-survey` (no model calls) lists candidate words: every Bible Word-Book headword the KJV uses, plus the forms already in the glossary. They are ranked by how many verses the Word-Book cites for an old sense, then by frequency. Everyday function words ("and" = if) are left out unless named with `--words`. For each word it writes:
+   - its regular inflections found in the KJV (occupy: occupied, occupieth, occupiers; irregular forms are added by hand);
+   - the count, by book and by Testament;
+   - the uses grouped by the word just before and just after, with examples (`let us`, `let him`, `was let`);
+   - a sample spread across the Bible;
+   - the Word-Book and Webster 1828 entries, and the verses the Word-Book cites for the archaic sense, read from its reference list;
+   - the glossary entries the form has now;
+   - a template, `senses/<word>.json`, prefilled with those entries plus one blank sense, to fill in or delete, so every word is checked for a second sense.
+2. A person reads the survey and fills in one sense per distinct use: `sense`, `update` (or `KEEP`), `category`, `applies_when`, `not_when`, pinned `examples` and `exceptions`. They set `"reviewed": true`.
+3. `glossary-import` checks each reviewed file and loads it into the shared glossary as `ratified` (`created_in: "pre-pass"`). It refuses a file when:
+   - a form has more than one sense and a sense has no `applies_when`;
+   - an example or exception is not a verse, or the verse does not contain the form;
+   - one verse is pinned to two senses;
+   - an id repeats, or belongs to another form.
+
+   A reviewed file replaces the form's entries. Ids it keeps are updated in place (their use counts kept). Active entries it drops become `rejected`, kept for the record.
+
+The work can go word by word over many sittings. Files not yet reviewed are skipped, and the survey never overwrites a template someone has started.
+
+Agents see `applies_when` and `not_when` with each entry. Entries sharing a `kjv_form` are senses: the translator picks the one that fits and cites its id, and check C6 accepts a rendering that follows any of them unless the verse is pinned to one.
 
 ### 8. **Glossary update** (code)
 
@@ -200,11 +227,31 @@ The coordinator escalates when:
 6. A `glossary_conflict` is raised.
 7. Public feedback argues against a G1 decision or a ratified glossary entry (`public_feedback`).
 
+Each escalation carries one fixed `trigger`: `no_eligible`, `g1_dispute`, `low_confidence`, `escalate_only_term`, `uncertain_sense`, `merge_failed_checks`, `merge_new_wording`, `invalid_selection`, `glossary_conflict` or `public_feedback`. The code maps any other name the coordinator gives onto these by meaning, else `coordinator`.
+
+When the code raises the escalation itself, it still writes a question a human can answer and a `disputed` list:
+- `uncertain_sense`: one question per uncertain change, naming the verse, the KJV words and the proposed update.
+- `low_confidence`: built from the coordinator's `doubts`, the words it said it was unsure of. A coordinator that is unsure must name them; with none, the question asks about the text as a whole.
+
 An escalation record contains:
 
 - one specific question for the human
 - the options to choose from, each tied to a candidate or a change
 - the coordinator's recommendation
+- `disputed`: the words the question is about, each as a verse id and its KJV wording
+
+Until the human answers, the batch carries **provisional text**, so one open word does not undo the rest of the batch:
+
+1. Start from the coordinator's recommended candidate if it passed checks; otherwise use the reviewers' top-ranked candidate, the auditor's ranking first.
+2. Keep every change in it except the held ones. A change is held when:
+   - it touches a `disputed` word (for older records with no `disputed` list, a word quoted in the question within `focus_verses`)
+   - the translator marked it `uncertain`
+   - a final-round reviewer's change comment `disagree`s with it (an `alternative` does not hold it)
+   - a failing gate note in the form `<verse id>: <span>: rule` names it and says it fails
+3. Held changes go back to the mechanical draft's wording. If a reviewer failed a gate and no note pins it to any span, every change in the focus verses is held.
+4. The provisional text goes through stage 4. Any verse that still fails falls back to the mechanical draft.
+
+The escalation record lists the `held` changes and the reason for each, with `provisional_candidate` and `provisional_base`. `bun src/cli.ts hold` rebuilds the provisional text of a run's open escalations from the record, with no model calls.
 
 The human answers in a `decision` with `outcome: select | merge`. Their glossary rulings are entered as `ratified` directly.
 

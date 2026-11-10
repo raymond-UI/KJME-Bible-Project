@@ -2,7 +2,8 @@
   "$schema": "https://fallow.dev/schema.json",
   "entry": [
     "viewer/src/main.tsx",
-    "viewer/serve.ts"
+    "viewer/serve.ts",
+    "harness/scripts/*.ts"
   ],
   "dynamicallyLoaded": [
     "harness/src/claude-code-tools.ts"

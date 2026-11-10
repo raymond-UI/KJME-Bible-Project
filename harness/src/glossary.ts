@@ -1,5 +1,6 @@
 // Glossary store: seeded from data/glossary.seed.json, versioned, with provisional/ratified lifecycle.
 import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import { readJson, writeJson, now } from "./util.js";
 import { tokenize } from "./text.js";
 
@@ -10,6 +11,9 @@ export interface GlossaryEntry {
   sense: string;
   update: string;
   category: string;
+  /** When this form has more than one sense: the context this one applies in, and where it does not. */
+  applies_when?: string;
+  not_when?: string;
   examples?: string[];
   exceptions?: string[];
   status: "proposed" | "provisional" | "ratified" | "rejected";
@@ -22,6 +26,12 @@ export interface GlossaryEntry {
 export interface GlossaryProposal { kjv_form: string; sense: string; update: string; category: string; example?: string; notes?: string }
 
 export interface Conflict { kjv_form: string; sense: string; existing: string; proposed: string; existing_id: string; decision_id: string }
+
+/** The glossary file a run uses: a shared one (config.glossary.path, relative to the harness) carries rulings from
+ * one run to the next; without it each run keeps its own. */
+export function glossaryFile(shared: string | undefined, harness: string, perRun: string): string {
+  return shared ? resolve(harness, shared) : perRun;
+}
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const normSense = (s: string) => s.toLowerCase().replace(/[^a-z ]/g, "").replace(/\s+/g, " ").trim();

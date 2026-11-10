@@ -11,6 +11,8 @@
     "sense": { "type": "string", "description": "the KJV meaning this entry covers, stated so an agent can recognize it" },
     "update": { "type": "string", "description": "replacement text, or KEEP, or ESCALATE" },
     "category": { "$ref": "common.schema.json#/$defs/category" },
+    "applies_when": { "type": "string", "description": "when the form has several senses: the context this entry covers, so an agent can pick it" },
+    "not_when": { "type": "string", "description": "contexts that look alike but belong to another sense" },
     "examples": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/verse_id" } },
     "exceptions": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/verse_id" }, "description": "verses where this sense does not apply" },
     "status": { "enum": ["proposed", "provisional", "ratified", "rejected"] },

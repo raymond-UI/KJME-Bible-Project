@@ -51,5 +51,7 @@ done
   echo '}'
 } > "$TARGET/MANIFEST.json"
 
+# English of 1611: the Bible Word-Book and Webster 1828, from archive.org scans, parsed into reference/data/english/.
+bun "$(cd "$(dirname "$0")" && pwd)/../harness/scripts/fetch-english.ts" "$TARGET"
+
 echo "Reference library ready in $TARGET"
-echo "Manual step: add the English historical sources listed in reference/REFERENCE.md (section 'English of 1611')."

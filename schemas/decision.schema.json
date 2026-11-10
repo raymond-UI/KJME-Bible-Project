@@ -32,7 +32,7 @@
     "escalation": {
       "type": ["object", "null"],
       "properties": {
-        "trigger": { "enum": ["no_eligible", "g1_dispute", "low_confidence", "escalate_only_term", "uncertain_sense", "merge_failed_checks", "glossary_conflict", "public_feedback"] },
+        "trigger": { "enum": ["no_eligible", "g1_dispute", "low_confidence", "escalate_only_term", "uncertain_sense", "merge_failed_checks", "merge_new_wording", "invalid_selection", "glossary_conflict", "public_feedback", "coordinator"] },
         "question": { "type": "string" },
         "options": {
           "type": "array",
@@ -40,7 +40,11 @@
           "maxItems": 4,
           "items": { "type": "object", "properties": { "label": { "type": "string" }, "ref": { "type": "string" } } }
         },
-        "recommendation": { "type": "string" }
+        "recommendation": { "type": "string" },
+        "disputed": {
+          "type": "array",
+          "items": { "type": "object", "required": ["verse_id", "kjv"], "properties": { "verse_id": { "type": "string" }, "kjv": { "type": "string" } } }
+        }
       }
     }
   }

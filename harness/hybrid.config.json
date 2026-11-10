@@ -1,0 +1,144 @@
+{
+  "run_id": "pilot-php-hybrid-001",
+  "scope": {
+    "books": [
+      "PHP"
+    ],
+    "chapters": null
+  },
+  "batch": {
+    "split_on": "paragraph",
+    "min_verses": 2,
+    "max_verses": 6
+  },
+  "plural_you_style": "marker",
+  "inference": {
+    "claude-code": {
+      "bin": "/Users/dc/.local/bin/claude",
+      "timeout_s": 900,
+      "note": "Pipes each call into headless `claude -p` on the local login. Temperature is not settable; translators differ only by role prompt."
+    }
+  },
+  "agents": {
+    "translator-minimalist": {
+      "gateway": "claude-code",
+      "model": "claude-haiku-5-5",
+      "temperature": 0.2,
+      "needs_tools": true,
+      "max_tokens": 24000,
+      "reasoning": {
+        "effort": "medium"
+      }
+    },
+    "translator-clarity": {
+      "gateway": "claude-code",
+      "model": "claude-haiku-5-5",
+      "temperature": 0.4,
+      "needs_tools": true,
+      "max_tokens": 24000,
+      "reasoning": {
+        "effort": "medium"
+      }
+    },
+    "translator-cadence": {
+      "gateway": "claude-code",
+      "model": "claude-haiku-5-5",
+      "temperature": 0.5,
+      "needs_tools": true,
+      "max_tokens": 24000,
+      "reasoning": {
+        "effort": "medium"
+      }
+    },
+    "reviewer-scorer": {
+      "gateway": "claude-code",
+      "model": "claude-haiku-5-5",
+      "temperature": 0,
+      "needs_tools": false,
+      "max_tokens": 16000,
+      "reasoning": {
+        "effort": "low"
+      },
+      "json_mode": true
+    },
+    "reviewer-meaning-auditor": {
+      "gateway": "claude-code",
+      "model": "claude-opus-5-5",
+      "temperature": 0,
+      "needs_tools": true,
+      "max_tokens": 12000
+    },
+    "coordinator": {
+      "gateway": "claude-code",
+      "model": "claude-opus-5-5",
+      "temperature": 0,
+      "needs_tools": true,
+      "max_tokens": 12000
+    },
+    "consistency-editor": {
+      "gateway": "claude-code",
+      "model": "claude-haiku-5-5",
+      "temperature": 0,
+      "needs_tools": true,
+      "max_prompt_tokens": 100000,
+      "max_tokens": 6000
+    }
+  },
+  "model_rules": {
+    "translators_distinct_families": false,
+    "auditor_family_differs_from_translators": false,
+    "note": "Deliberately off: Haiku team with an Opus coordinator and auditor, to compare against pilot-php-001 and pilot-php-cc-001."
+  },
+  "reference": {
+    "path": "reference/data",
+    "agent_network": false,
+    "max_lookups_per_agent_per_batch": 8,
+    "access": [
+      "translator-minimalist",
+      "translator-clarity",
+      "translator-cadence",
+      "reviewer-meaning-auditor",
+      "coordinator",
+      "consistency-editor"
+    ]
+  },
+  "agent_retries": 2,
+  "repair_attempts": 1,
+  "debate_rounds": 1,
+  "parallel_batches": 2,
+  "escalation": {
+    "score_gap": 0.05,
+    "min_confidence": 0.7
+  },
+  "glossary": {
+    "seed": "data/glossary.seed.json",
+    "ratify_after_uses": 3
+  },
+  "skip_agents_when_mechanical_complete": false,
+  "budget": {
+    "max_usd": 25,
+    "currency": "USD"
+  },
+  "release": {
+    "edition": "King James Margin Edition",
+    "abbreviation": "KJME",
+    "version": "0.1",
+    "publisher": "Raymond Asogwa",
+    "editors": [
+      "Raymond Asogwa"
+    ],
+    "plain_style": "marker",
+    "formats": [
+      "usfm",
+      "json",
+      "plain"
+    ],
+    "license": {
+      "text": "CC-BY-4.0",
+      "record": "CC-BY-4.0",
+      "system": "MIT"
+    },
+    "statement": "PUBLISHING.md#how-this-edition-was-made"
+  },
+  "replay_cache": true
+}

@@ -50,6 +50,34 @@ bun src/cli.ts status                     # batch states, spend, open escalation
 
 - **Runs resume.** Re-run the same command and it skips accepted and escalated batches, and retries failed ones.
 - **The budget is a hard stop.** `budget.max_usd` in the config ends the run cleanly when spend reaches it.
+- **Usage limits stop the run cleanly too.** A run stops, keeping every finished batch, when:
+  - the provider is out of credit;
+  - rate limits outlast six retries (each retry waits as long as `retry-after` asks, up to two minutes);
+  - `claude -p` reports a subscription usage limit;
+  - `max_consecutive_failures` batches (default 3) fail one after another, which usually means the provider is down.
+
+  Re-run the same command once the provider serves calls again.
+
+## Glossary pre-pass, then the main work
+
+Before the main work, settle the senses of the words that need care. No model calls are made (PIPELINE.md, stage 0):
+
+```bash
+bun src/cli.ts glossary-survey --config main.config.json --top 50       # or --words let,prevent,conversation
+# read runs/glossary-survey/<word>.md, fill in senses/<word>.json, set "reviewed": true
+bun src/cli.ts glossary-import --config main.config.json --by <your name>
+```
+
+Rulings go into the shared glossary, `runs/main-glossary.json`, which every main run reads and adds to. Take a few words at a time; unreviewed files are skipped and existing templates are never overwritten.
+
+The main work runs in small pieces, each checked before the next:
+
+```bash
+bun src/cli.ts run --config main.config.json --book JUD --run main-jud
+bun src/cli.ts run --config main.config.json --book ROM --chapters 1 --run main-rom-1
+```
+
+`main.config.json` uses the Anthropic API (key in `.env`): Haiku 5.5 for the translators, scorer, coordinator and consistency editor, Opus 5.5 for the auditor, a $25 budget per run. When the auditor finds every candidate clear and agrees with the scorer, its second debate round is skipped (`debate_skip_clear_auditor`).
 
 ## Model tests
 
@@ -78,12 +106,15 @@ Choose per agent with `"gateway"` in the config. OpenCode Go is designed for cod
 
 ## Escalations
 
-Escalated batches keep the coordinator's recommendation as `pending_human` text, so the rest of the chapter has context. Resolve each one yourself:
+Escalated batches keep provisional text as `pending_human`, so the rest of the chapter has context. The provisional text keeps every agreed change and holds only the disputed words at the mechanical draft (`PIPELINE.md`, Escalation). Resolve each one yourself:
 
 ```bash
 bun src/cli.ts resolve --batch PHP.2.b03 --select PHP.2.b03.cadence --note "Keeps the 1611 sense."
 bun src/cli.ts resolve --batch PHP.2.b03 --select recommended
+bun src/cli.ts resolve --batch PHP.2.b03 --select provisional
 ```
+
+`bun src/cli.ts hold` rebuilds the provisional text of a run's open escalations from the record, for runs made before it existed.
 
 The resolution is recorded as a human decision that supersedes the coordinator's.
 
@@ -118,8 +149,7 @@ This writes `../viewer/public/data/<BOOK>.json` and adds the book to `index.json
 
 ## Not in the pilot harness yet
 
-- OT (Hebrew) lookups. NT Greek is wired; Philippians needs nothing else.
-- English 1611 dictionaries, until they are added by hand (`../reference/REFERENCE.md`).
+- Psalm titles (superscriptions). The source reader skips OSIS `<title>` elements, so they are not yet translated or looked up.
 - Anthropic batch-mode waves. The pilot uses standard calls.
 - Consistency patches are found, judged and checked, but **not applied**. They are listed for you to review in `record/consistency.jsonl`. The `stale_glossary` and `boundary_seam` drift groups are not built yet.
 - Release packaging and public feedback triage.

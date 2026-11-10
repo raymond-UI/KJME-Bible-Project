@@ -37,6 +37,7 @@ One `candidate` (`schemas/candidate.schema.json`). JSON only. No prose outside i
 3. Resolve every pretag with `mandatory_update: null`, using R2.
 4. For every remaining word, apply R3 to R6 in this order:
    - Is there a glossary entry in this sense? Follow it. `KEEP` means keep.
+     - Entries that share a `kjv_form` are **different senses of one word** (`let` = allow, `let` = hinder). Pick the one whose `applies_when` fits this verse, and not its `not_when`. If a verse is in an entry's `examples`, that entry is the sense. If none fits, treat the word as having no entry and say so in `reason`.
    - Is it a shifted-meaning word (R4)? It must change.
    - Is it archaic (R3), with archaic syntax (R5) that blocks understanding? Change it per your persona's threshold.
    - Otherwise, keep it.

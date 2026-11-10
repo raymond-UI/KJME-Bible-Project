@@ -1,7 +1,7 @@
 // Model bake-off: run several translator models on the same passages, judge every candidate in one
 // anonymized review per reviewer, and rank the models. Separate run directory; nothing is accepted.
 import { existsSync, writeFileSync } from "node:fs";
-import { BudgetExceeded } from "./agents.js";
+import { StopRun } from "./agents.js";
 import { batchInput, candidateView, type PipelineCtx } from "./pipeline.js";
 import { materialize, mechanicalRaw } from "./checks.js";
 import { planBatches } from "./batching.js";
@@ -50,13 +50,13 @@ export async function bakeoff(ctx: PipelineCtx, pilotAccepted: Record<string, an
           try {
             const raw2 = await agents.run(va.agent, { ...input, repair: { previous_output: raw, failed_checks: failures, instruction: "Your candidate failed these code checks. Fix them and return the full output again." } }, { batch_id: bid, purpose: `bakeoff-repair:${va.key}`, override, meta });
             m = materialize(raw2, { id, batch_id: bid, author: va.key, attempt: 2 }, plan.verses, ctx.tables, ctx.glossary);
-          } catch (e: any) { if (e instanceof BudgetExceeded) throw e; }
+          } catch (e: any) { if (e instanceof StopRun) throw e; }
         }
         store.add("candidates", m.candidate); store.add("check_reports", m.report);
         ctx.log(`  ${va.key}: checks ${first ? "pass" : m.report.passed ? "pass after repair" : "FAIL"} $${meta.cost.toFixed(4)} ${meta.seconds.toFixed(0)}s`);
         return { va, m, first, meta };
       } catch (e: any) {
-        if (e instanceof BudgetExceeded) throw e;
+        if (e instanceof StopRun) throw e;
         ctx.log(`  ${va.key}: ERROR ${String(e.message).slice(0, 160)}`);
         return { va, m: null, first: false, meta, error: String(e.message).slice(0, 300) };
       }
@@ -76,7 +76,7 @@ export async function bakeoff(ctx: PipelineCtx, pilotAccepted: Record<string, an
         verdicts[reviewer] = {};
         for (const c of raw.candidates ?? []) { const id = byLabel.get(c.label); if (id) verdicts[reviewer][id] = c; }
         store.add("reviews", { id: newId("rev"), batch_id: bid, reviewer, round: 1, label_map: Object.fromEntries([...labelOf].map(([id, l]) => [l, id])), ...raw });
-      } catch (e: any) { if (e instanceof BudgetExceeded) throw e; ctx.log(`  ${reviewer} failed: ${e.message}`); }
+      } catch (e: any) { if (e instanceof StopRun) throw e; ctx.log(`  ${reviewer} failed: ${e.message}`); }
     }
 
     for (const x of made) {

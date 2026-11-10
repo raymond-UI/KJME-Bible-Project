@@ -1,5 +1,5 @@
 // Stages 3 to 9 for each batch (PIPELINE.md), run chapter by chapter.
-import { Agents, BudgetExceeded } from "./agents.js";
+import { Agents, StopRun } from "./agents.js";
 import { materialize, mechanicalRaw, changeKey, type Candidate, type CheckReport } from "./checks.js";
 import { planBatches, type BatchPlan } from "./batching.js";
 import { pretagVerse, c11, type PretaggedVerse, type Tables, type Locked } from "./pretag.js";
@@ -10,6 +10,8 @@ import type { Reference } from "./reference.js";
 import type { SourceVerse } from "./source.js";
 import type { Store } from "./store.js";
 import { existsSync } from "node:fs";
+import { provisional, type Disputed, type FinalReview } from "./hold.js";
+import { lowConfidence, normalizeTrigger, uncertainChanges, type Asked } from "./escalation.js";
 
 export const TRANSLATORS = ["translator-minimalist", "translator-clarity", "translator-cadence"];
 const SCORER = "reviewer-scorer", AUDITOR = "reviewer-meaning-auditor";
@@ -47,7 +49,7 @@ function verseInput(v: PretaggedVerse) {
 
 export function batchInput(ctx: PipelineCtx, plan: BatchPlan, prev: { batch_id: string; text: string }[], withRef: boolean) {
   const chapter = chapterVerses(ctx.source, plan.book, plan.chapter).map((v) => `${v.verse} ${v.text}`).join("\n");
-  const glossary = ctx.glossary.relevant(plan.verses.map((v) => v.text)).map((g) => ({ id: g.id, kjv_form: g.kjv_form, forms: g.forms, sense: g.sense, update: g.update, category: g.category, status: g.status, examples: g.examples, exceptions: g.exceptions, notes: g.notes }));
+  const glossary = ctx.glossary.relevant(plan.verses.map((v) => v.text)).map((g) => ({ id: g.id, kjv_form: g.kjv_form, forms: g.forms, sense: g.sense, update: g.update, category: g.category, ...(g.applies_when ? { applies_when: g.applies_when } : {}), ...(g.not_when ? { not_when: g.not_when } : {}), status: g.status, examples: g.examples, exceptions: g.exceptions, notes: g.notes }));
   return {
     batch_id: plan.id, verses: plan.verses.map(verseInput),
     context: { chapter_text: chapter, previous_accepted: prev.slice(-2) },
@@ -73,7 +75,7 @@ export function candidateView(c: Candidate, report: CheckReport, label: string) 
 
 // ---------- reviews ----------
 
-interface Review { id: string; reviewer: string; round: number; labelToId: Record<string, string>; raw: any }
+export interface Review { id: string; reviewer: string; round: number; labelToId: Record<string, string>; raw: any }
 
 function weighted(scores: any): number | null {
   if (!scores) return null;
@@ -90,6 +92,19 @@ function reviewById(r: Review) {
   }
   const ranking = (r.raw.ranking ?? []).map((l: string) => r.labelToId[l]).filter(Boolean);
   return { byId, ranking };
+}
+
+/** The scorer's leading candidate: the highest weighted total among those it passed on every gate. */
+function scorerLeader(s: Review): string | undefined {
+  const S = reviewById(s);
+  return Object.entries(S.byId).filter(([, c]: any) => Object.values(c.gates).every((g) => g === "pass") && c.weighted != null)
+    .sort(([, x]: any, [, y]: any) => y.weighted - x.weighted)[0]?.[0];
+}
+
+/** The auditor has no objection to settle in a second round: it passed every gate on both its own top candidate and the scorer's. */
+export function auditorClear(s: Review, a: Review): boolean {
+  const A = reviewById(a), leaders = [scorerLeader(s), A.ranking[0]];
+  return leaders.every((id) => !!id && !!A.byId[id] && Object.values(A.byId[id].gates).every((g) => g === "pass"));
 }
 
 function deanonymize(r: Review) {
@@ -121,7 +136,7 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
     const input = batchInput(ctx, plan, prev, agents.hasReference(t));
     let raw: any;
     try { raw = await agents.run(t, input, { batch_id: b, purpose: "translate" }); }
-    catch (e: any) { if (e instanceof BudgetExceeded) throw e; ctx.log(`  ${b} ${t} failed: ${e.message}`); return; }
+    catch (e: any) { if (e instanceof StopRun) throw e; ctx.log(`  ${b} ${t} failed: ${e.message}`); return; }
     let m = materialize(raw, { id: `${b}.${t.replace("translator-", "")}`, batch_id: b, author: t, attempt: 1 }, plan.verses, ctx.tables, ctx.glossary);
     // Stage 4: check, one repair
     if (!m.report.passed && (config.repair_attempts ?? 1) > 0) {
@@ -130,7 +145,7 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
       try {
         const raw2 = await agents.run(t, { ...input, repair: { previous_output: raw, failed_checks: failures, instruction: "Your candidate failed these code checks. Fix them and return the full output again." } }, { batch_id: b, purpose: "repair" });
         m = materialize(raw2, { id: `${b}.${t.replace("translator-", "")}`, batch_id: b, author: t, attempt: 2 }, plan.verses, ctx.tables, ctx.glossary);
-      } catch (e: any) { if (e instanceof BudgetExceeded) throw e; ctx.log(`  ${b} ${t} repair failed: ${e.message}`); }
+      } catch (e: any) { if (e instanceof StopRun) throw e; ctx.log(`  ${b} ${t} repair failed: ${e.message}`); }
     }
     m.candidate.eligible = m.report.passed;
     store.add("candidates", m.candidate); store.add("check_reports", m.report);
@@ -172,7 +187,7 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
   const debateReasons = (s: Review, a: Review): string[] => {
     const S = reviewById(s), A = reviewById(a), out: string[] = [];
     const sPass = Object.entries(S.byId).filter(([, c]: any) => Object.values(c.gates).every((g) => g === "pass") && c.weighted != null).sort(([, x]: any, [, y]: any) => y.weighted - x.weighted);
-    const sTop = sPass[0]?.[0], aTop = A.ranking[0];
+    const sTop = scorerLeader(s), aTop = A.ranking[0];
     if (sTop && aTop && sTop !== aTop) out.push("top_differs");
     for (const id of new Set([...Object.keys(S.byId), ...Object.keys(A.byId)]))
       for (const g of ["G1", "G2"]) if (S.byId[id] && A.byId[id] && S.byId[id].gates[g] !== A.byId[id].gates[g]) { out.push(`gate_${g}_${id}`); }
@@ -183,7 +198,11 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
   let debated = false;
   if (reasons.length && (config.debate_rounds ?? 1) > 0) {
     store.setBatch(b, "debating");
-    const [rs2, ra2] = await Promise.all([runReview(SCORER, 2, rs), runReview(AUDITOR, 2, ra)]);
+    // The auditor is the costly reviewer. When it already passed every gate on the leading candidates, only the
+    // scorer reconsiders, against the auditor's first-round review; the auditor's first round stands as final.
+    const rest = config.debate_skip_clear_auditor !== false && auditorClear(rs, ra);
+    if (rest) ctx.log(`  ${b} auditor clear on the leaders; scorer alone reconsiders`);
+    const [rs2, ra2] = await Promise.all([runReview(SCORER, 2, rs), rest ? Promise.resolve(ra) : runReview(AUDITOR, 2, ra)]);
     rs = rs2; ra = ra2; debated = true;
   }
   const finalReviews = [rs, ra].map(deanonymize);
@@ -193,10 +212,11 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
 
   // Stage 7: coordinate
   store.setBatch(b, "coordinating");
+  const minConfidence = config.escalation?.min_confidence ?? 0.7;
   const coordIn = {
     ...batchInput(ctx, plan, prev, agents.hasReference("coordinator")),
     candidates: pool_.map((x) => ({ id: x.c.id, author: x.c.author, ...candidateView(x.c, x.r, x.c.id) })),
-    reviews: finalReviews, eligible, debate: { ran: debated, triggers: reasons },
+    reviews: finalReviews, eligible, debate: { ran: debated, triggers: reasons }, confidence_threshold: minConfidence,
     ...(eligible.length === 0 ? { note: "No candidate is eligible. Escalate, with a precise question and your recommendation." } : {}),
   };
   const raw = await agents.run("coordinator", coordIn, { batch_id: b, purpose: "coordinate" });
@@ -204,9 +224,9 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
   let outcome = raw.outcome as string;
   let escalation = raw.escalation ?? null;
   let finalVerses: Candidate["verses"] | null = null;
-  const escalate = (trigger: string, question: string) => {
+  const escalate = (trigger: string, question: string, asked?: Partial<Asked>) => {
     outcome = "escalate";
-    escalation = { trigger, question, options: escalation?.options ?? pool_.map((x) => ({ label: x.c.author, ref: x.c.id })), recommendation: escalation?.recommendation ?? raw.winner ?? null, coordinator_outcome: raw.outcome };
+    escalation = { ...asked, trigger, question, options: escalation?.options ?? pool_.map((x) => ({ label: x.c.author, ref: x.c.id })), recommendation: escalation?.recommendation ?? raw.winner ?? null, coordinator_outcome: raw.outcome };
   };
   const byId = new Map(pool_.map((x) => [x.c.id, x]));
 
@@ -229,13 +249,13 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
     else finalVerses = m.candidate.verses;
   }
   if (outcome !== "escalate" && finalVerses) {
-    if ((raw.confidence ?? 0) < (config.escalation?.min_confidence ?? 0.7)) escalate("low_confidence", `Coordinator confidence ${raw.confidence} is below ${config.escalation?.min_confidence ?? 0.7}.`);
+    if ((raw.confidence ?? 0) < minConfidence) { const a = lowConfidence(raw.confidence, minConfidence, raw.doubts); escalate("low_confidence", a.question, a); }
     else {
       const unsure = finalVerses.flatMap((v) => v.changes).filter((c) => c.uncertain);
-      if (unsure.length) escalate("uncertain_sense", `Changes marked uncertain or touching escalate-only terms: ${unsure.map((c) => `${c.verse_id} "${c.kjv.text}" -> "${c.update.text}"`).join("; ")}`);
+      if (unsure.length) { const a = uncertainChanges(unsure); escalate("uncertain_sense", a.question, a); }
     }
   }
-  if (outcome === "escalate" && !escalation?.trigger) escalation = { ...(escalation ?? {}), trigger: eligible.length ? "coordinator" : "no_eligible" };
+  if (outcome === "escalate") escalation = { ...(escalation ?? {}), trigger: normalizeTrigger(escalation?.trigger, eligible.length) };
 
   const decision = {
     id: decisionId, batch_id: b, decided_by: "coordinator", outcome, winner: outcome === "select" ? raw.winner : null,
@@ -248,11 +268,12 @@ export async function processBatch(ctx: PipelineCtx, plan: BatchPlan, prev: { ba
   // Stage 8-9: glossary and accept
   if (outcome === "escalate") {
     const rec = byId.get(escalation?.recommendation) ?? byId.get(raw.winner) ?? byId.get(eligible[0]) ?? mech;
-    store.add("escalations", { id: newId("E"), batch_id: b, decision_id: decisionId, passages, ...escalation, recommended_candidate: rec.c.id, status: "open", at: now() });
-    saveAccepted(store, rec.c.verses, b, decisionId, "pending_human");
+    // Until a human decides, the batch keeps its undisputed edits and holds only the disputed words.
+    const { prov, fields } = holdBatch(ctx, { batchId: b, decisionId, verses: plan.verses, pool: pool_, reviews: finalReviews, esc: escalation ?? {}, recommendation: escalation?.recommendation ?? raw.winner });
+    store.add("escalations", { id: newId("E"), batch_id: b, decision_id: decisionId, passages, ...escalation, recommended_candidate: rec.c.id, ...fields, status: "open", at: now() });
     store.setBatch(b, "escalated");
-    ctx.log(`  ${b} ESCALATED (${escalation?.trigger})`);
-    return { status: "escalated", text: rec.c.verses.map((v) => v.text).join(" ") };
+    ctx.log(`  ${b} ESCALATED (${escalation?.trigger}); ${prov.held.length} change(s) held`);
+    return { status: "escalated", text: prov.candidate.verses.map((v) => v.text).join(" ") };
   }
   applyAccepted(ctx, b, decisionId, finalVerses!, raw.glossary_proposals ?? []);
   ctx.log(`  ${b} accepted (${outcome}${outcome === "select" ? " " + raw.winner : ""}${debated ? ", debated" : ""})`);
@@ -273,6 +294,10 @@ export function applyAccepted(ctx: PipelineCtx, batchId: string, decisionId: str
 
 export async function runBook(ctx: PipelineCtx, book: string, chapters: number[]): Promise<void> {
   const { config, store } = ctx;
+  // Batches that fail one after another mean the provider is down or refusing calls, not that the batches are bad:
+  // stop the run and leave them to be retried on resume, rather than fail everything that follows.
+  const maxFailures = config.max_consecutive_failures ?? 3;
+  let failures = 0;
   const runChapter = async (ch: number) => {
     const verses = chapterVerses(ctx.source, book, ch).map((v) => pretagVerse(v, ctx.tables, ctx.locked, ctx.glossary));
     const plans = planBatches(verses, config.batch?.min_verses ?? 2, config.batch?.max_verses ?? 6);
@@ -290,13 +315,66 @@ export async function runBook(ctx: PipelineCtx, book: string, chapters: number[]
       try {
         const r = await processBatch(ctx, fresh, prev);
         prev.push({ batch_id: plan.id, text: r.text });
+        failures = 0;
       } catch (e: any) {
-        if (e instanceof BudgetExceeded) { store.setBatch(plan.id, "failed", e.message); throw e; }
         store.setBatch(plan.id, "failed", String(e.message ?? e));
+        if (e instanceof StopRun) throw e;
         ctx.log(`  ${plan.id} FAILED: ${e.message}`);
+        if (++failures >= maxFailures) throw new StopRun(`${failures} batches failed in a row, last: ${e.message}`);
         prev.push({ batch_id: plan.id, text: plan.verses.map((v) => v.mechanical.text).join(" ") });
       }
     }
   };
   await pool(chapters, config.parallel_batches ?? 1, runChapter);
+}
+
+// ---------- provisional text for an existing run ----------
+
+interface HoldArgs {
+  batchId: string; decisionId: string; verses: PretaggedVerse[]; pool: { c: Candidate; r: CheckReport }[];
+  reviews: FinalReview[]; esc: { disputed?: Disputed[]; focus_verses?: string[]; question?: string }; recommendation?: string | null;
+}
+/** Build, check and record an escalated batch's provisional text, and save it pending a human. Returns the escalation's new fields. */
+function holdBatch(ctx: PipelineCtx, a: HoldArgs) {
+  const prov = provisional({
+    batchId: a.batchId, verses: a.verses, pool: a.pool, reviews: a.reviews, recommendation: a.recommendation,
+    disputed: a.esc.disputed, focus: a.esc.focus_verses, question: a.esc.question, tables: ctx.tables, glossary: ctx.glossary,
+  });
+  prov.candidate.eligible = prov.report.passed;
+  ctx.store.add("candidates", prov.candidate); ctx.store.add("check_reports", prov.report);
+  saveAccepted(ctx.store, prov.candidate.verses, a.batchId, a.decisionId, "pending_human");
+  return { prov, fields: { provisional_candidate: prov.candidate.id, provisional_base: prov.base, held: prov.held } };
+}
+
+const latest = <T extends { id: string }>(xs: T[]) => [...new Map(xs.map((x) => [x.id, x])).values()];
+/** A batch's translator candidates from the record, with their check reports. */
+function storedPool(store: Store, b: string): { c: Candidate; r: CheckReport }[] {
+  const reports = new Map(store.all("check_reports").map((r) => [r.candidate_id, r]));
+  const own = latest(store.all("candidates")).filter((c) => c.batch_id === b && !["coordinator", "provisional"].includes(c.author));
+  return own.filter((c) => reports.has(c.id)).map((c) => ({ c, r: reports.get(c.id)! }));
+}
+/** Each reviewer's last review of a batch, deanonymized. */
+function storedReviews(store: Store, b: string): FinalReview[] {
+  const last = new Map<string, any>();
+  for (const r of store.all("reviews").filter((r) => r.batch_id === b)) last.set(r.reviewer, r);
+  return [...last.values()].map((r) => deanonymize({ id: r.id, reviewer: r.reviewer, round: r.round, labelToId: r.label_map, raw: r }));
+}
+/** A batch's verses, pretagged again from the source. */
+function storedVerses(ctx: PipelineCtx, b: string): PretaggedVerse[] {
+  const ids: string[] = ctx.store.all("batches").filter((x) => x.id === b).pop()?.verse_ids ?? [];
+  return ids.map((id) => pretagVerse(ctx.source.get(id)!, ctx.tables, ctx.locked, ctx.glossary));
+}
+
+/** Rebuild the provisional text of every open escalation from the record, with no model calls. */
+export function holdOpenEscalations(ctx: PipelineCtx): { batch: string; held: number; base: string | null }[] {
+  const open = latest(ctx.store.all("escalations")).filter((e) => e.status === "open" && e.trigger !== "glossary_conflict");
+  return open.map((esc) => {
+    const b = esc.batch_id;
+    const { prov, fields } = holdBatch(ctx, {
+      batchId: b, decisionId: esc.decision_id, verses: storedVerses(ctx, b), pool: storedPool(ctx.store, b),
+      reviews: storedReviews(ctx.store, b), esc, recommendation: esc.recommendation ?? esc.recommended_candidate,
+    });
+    ctx.store.add("escalations", { ...esc, ...fields, at: now() });
+    return { batch: b, held: prov.held.length, base: prov.base };
+  });
 }

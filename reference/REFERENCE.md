@@ -33,20 +33,41 @@ An offline library that agents can consult **only to settle what the KJV English
 
 **The OT is close, not exact.** TAHOT is based on the Leningrad Codex. The KJV translators used the Bomberg/Ben Chayyim edition (1524–25). The two differ in a small number of places. Where the data marks a variant, `lookup` includes it. An agent must never treat a TAHOT reading as a reason to change the KJV.
 
+How the harness reads TAHOT:
+
+- It keeps Leningrad words (`L`), Qere corrections (`Q`, which the KJV translators normally followed) and restored text (`R`).
+- It drops words reconstructed from the Septuagint (`X`), which the KJV's Hebrew does not have.
+- A Ketiv or other meaning variant is shown with the word. Where the data says the Ben Chayyim edition differs (`H`), the word is flagged, because that edition is the KJV's Hebrew.
+- Verses are keyed by TAHOT's English reference (NRSV versification). That matches the KJV almost everywhere in the OT. Psalm titles are verse 0 and are not looked up, because the source text does not yet carry them.
+
 ### English of 1611 (manual step, public domain)
 
 The original languages tell us what the Greek or Hebrew word meant. They do not tell us what the **KJV's English word** meant in 1611, which is the real question under P5.
 
-Two public-domain works answer that directly. They are not fetched by script; add them by hand from a public-domain scan:
+Two public-domain works answer that directly. `reference/fetch.sh` fetches both, through `harness/scripts/fetch-english.ts`:
 
 | Work | Why |
 |---|---|
 | **The Bible Word-Book** (Eastwood & Wright, 1866; revised edition by W. Aldis Wright, 1884) | A glossary of archaic words and phrases in the Authorized Version, with KJV citations. The closest thing to a purpose-built source for this project. |
 | **Webster's American Dictionary of the English Language** (1828) | Early modern senses of common words, before many of the shifts the glossary deals with. |
 
-Store them as `reference/data/english/bible-word-book.json` and `reference/data/english/webster-1828.json`, each as `{ headword: [entries] }`. Record both in `MANIFEST.json`.
+Sources, all archive.org OCR text of scans of the printed books (marked `NOT_IN_COPYRIGHT`), pinned by sha256:
 
-Until they are added, `lookup.english_1611` returns `unavailable`, and agents lean on the glossary and on context.
+- Bible Word-Book, 2nd edition (1884): `thebiblewordbook00eastuoft` (Knox College, Toronto). Of the seven scans, this one has the best OCR.
+- Webster 1828: `americandictiona01websrich` (A to I) and `americandictiona02websrich` (J to Z), from the University of California Libraries.
+
+Clean e-texts of Webster 1828 exist (on GitHub and elsewhere), but every one found is the modernised text of a website whose terms forbid storing it. They are not used, so do not swap one in.
+
+The script keeps the raw text in `reference/data/english/raw/`, and parses each work into `reference/data/english/bible-word-book.json` and `webster-1828.json`, each as `{ headword: [entries] }`. Each entry is `{ headword, pos, refs?, text, within? }`. It records sources and hashes in `MANIFEST.json`. The parser uses alphabetical order to reject OCR-garbled headwords and quotations that look like headwords. A word that the Word-Book treats inside another entry ("Conversation" under "Conversant") is keyed to that entry, with `within` set.
+
+What to expect:
+
+- **OCR noise.** Expect misread letters in the body text, mostly in Webster.
+- **Gaps in Webster.** The scan lost some entries where a column was misread. "Careful" and "Approve" are missing, for example.
+- **Inflected forms.** For a word with no entry of its own, the lookup tries the base form (prevented → prevent, careth → care), separately in each work.
+- **Long entries** are trimmed to 1,500 characters.
+
+Without the files, `lookup.english_1611` returns `unavailable`, and agents lean on the glossary and on context.
 
 ## Setup
 

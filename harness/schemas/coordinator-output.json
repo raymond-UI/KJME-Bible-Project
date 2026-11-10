@@ -2,22 +2,109 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Coordinator output (agent-facing)",
   "type": "object",
-  "required": ["outcome", "rationale", "confidence"],
+  "required": [
+    "outcome",
+    "rationale",
+    "confidence"
+  ],
   "properties": {
-    "outcome": { "enum": ["select", "merge", "escalate"] },
-    "winner": { "type": ["string", "null"] },
-    "final_verses": { "type": "array" },
-    "glossary_proposals": { "type": "array" },
-    "rationale": { "type": "string" },
-    "cites": { "type": "array", "items": { "type": "string" } },
-    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "outcome": {
+      "enum": [
+        "select",
+        "merge",
+        "escalate"
+      ]
+    },
+    "winner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "final_verses": {
+      "type": "array"
+    },
+    "glossary_proposals": {
+      "type": "array"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "cites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "escalation": {
-      "type": ["object", "null"],
+      "type": [
+        "object",
+        "null"
+      ],
       "properties": {
-        "trigger": { "type": "string" },
-        "question": { "type": "string" },
-        "options": { "type": "array" },
-        "recommendation": { "type": "string" }
+        "trigger": {
+          "enum": [
+            "no_eligible",
+            "g1_dispute",
+            "escalate_only_term",
+            "uncertain_sense",
+            "low_confidence"
+          ]
+        },
+        "question": {
+          "type": "string"
+        },
+        "disputed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "verse_id",
+              "kjv"
+            ],
+            "properties": {
+              "verse_id": {
+                "type": "string"
+              },
+              "kjv": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "options": {
+          "type": "array"
+        },
+        "recommendation": {
+          "type": "string"
+        }
+      }
+    },
+    "doubts": {
+      "type": "array",
+      "description": "Words the coordinator is unsure of when it selects or merges; a low-confidence escalation asks about these.",
+      "items": {
+        "type": "object",
+        "required": [
+          "verse_id",
+          "kjv"
+        ],
+        "properties": {
+          "verse_id": {
+            "type": "string"
+          },
+          "kjv": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          }
+        }
       }
     }
   }

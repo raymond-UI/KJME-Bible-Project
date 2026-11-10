@@ -9,7 +9,7 @@ export type ToolHandler = (name: string, args: any) => Promise<unknown>;
 export interface CallRequest {
   agent: string; model: string; system: string; user: string; temperature?: number | null;
   maxTokens: number; tools?: ToolDef[]; onTool?: ToolHandler; maxToolCalls?: number;
-  /** OpenRouter only: reasoning control, e.g. {effort: "low"}. */
+  /** Reasoning control, e.g. {effort: "low"}: OpenRouter `reasoning`, Anthropic `output_config.effort`, `claude -p --effort`. */
   reasoning?: unknown;
   /** OpenRouter only: request JSON output (response_format json_object) on turns without tools. */
   jsonMode?: boolean;
@@ -33,25 +33,49 @@ const ANTHROPIC_PRICES: Record<string, { in: number; cw: number; cr: number; out
   "claude-haiku-5-5": { in: 0.1, cw: 0.125, cr: 0.01, out: 0.5 },
 };
 
-async function postJson(url: string, headers: Record<string, string>, body: unknown, tries = 4): Promise<any> {
-  let lastErr: unknown;
+/** Ends a run cleanly: the batch in progress is left for the next run, which resumes where this one stopped. */
+export class StopRun extends Error {}
+/** A `claude -p` error reply that means the subscription's usage limit, not a fault in this call. */
+export function isUsageLimit(r: { api_error_status?: number | null; result?: unknown }): boolean {
+  return r.api_error_status === 429 || /usage limit|limit reached|hit your limit|rate.limit/i.test(String(r.result ?? ""));
+}
+/** A provider will not serve more calls for now: a subscription usage limit, a rate limit that outlasted the retries, or no credit. */
+export class UsageLimit extends StopRun {}
+
+const NO_CREDIT = /credit balance|billing|quota|insufficient[_ ]funds/i;
+/** Seconds to wait before retrying, from a retry-after header, capped so one call cannot stall a run for long. */
+const retryAfter = (h: string | null) => Math.min(Number(h) || 0, 120);
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+type Attempt = { ok: true; json: any } | { ok: false; err: any; retryAfterMs: number };
+
+/** One POST. Throws what must not be retried; returns a retryable failure (rate limit, server or network error). */
+async function attemptPost(url: string, headers: Record<string, string>, body: unknown): Promise<Attempt> {
+  let res: Response, text: string;
+  try {
+    res = await fetch(url, { method: "POST", headers: { "content-type": "application/json", ...headers }, body: JSON.stringify(body) });
+    text = await res.text();
+  } catch (err) { return { ok: false, err, retryAfterMs: 0 }; }
+  if (res.ok) return { ok: true, json: JSON.parse(text) };
+  const err: any = Object.assign(new Error(`HTTP ${res.status}: ${text.slice(0, 500)}`), { status: res.status });
+  if (NO_CREDIT.test(text) && [400, 402, 403, 429].includes(res.status)) throw new UsageLimit(err.message);
+  if (res.status !== 429 && res.status < 500) throw err;
+  return { ok: false, err, retryAfterMs: retryAfter(res.headers.get("retry-after")) * 1000 };
+}
+
+/** POST JSON, retrying rate limits and server errors. Throws UsageLimit when the provider stops serving calls. */
+export async function postJson(url: string, headers: Record<string, string>, body: unknown, tries = 6, wait = sleep): Promise<any> {
+  let last: any;
   for (let attempt = 0; attempt < tries; attempt++) {
-    try {
-      const res = await fetch(url, { method: "POST", headers: { "content-type": "application/json", ...headers }, body: JSON.stringify(body) });
-      const text = await res.text();
-      if (res.ok) return JSON.parse(text);
-      const retryable = res.status === 429 || res.status >= 500;
-      const err = new Error(`HTTP ${res.status}: ${text.slice(0, 500)}`);
-      (err as any).status = res.status;
-      if (!retryable) throw err;
-      lastErr = err;
-    } catch (e: any) {
-      if (e?.status && e.status < 500 && e.status !== 429) throw e;
-      lastErr = e;
-    }
-    await new Promise((r) => setTimeout(r, 2000 * 2 ** attempt + Math.random() * 1000));
+    const r = await attemptPost(url, headers, body);
+    if (r.ok) return r.json;
+    last = r.err;
+    await wait(Math.max(2000 * 2 ** Math.min(attempt, 4) + Math.random() * 1000, r.retryAfterMs));
   }
-  throw lastErr;
+  // Still rate limited after every retry: stop the run rather than fail batch after batch.
+  if (last?.status === 429) throw new UsageLimit(`rate limited after ${tries} tries: ${last.message}`);
+  throw last;
 }
 
 export class OpenRouterGateway implements Gateway {
@@ -112,7 +136,24 @@ export class OpenRouterGateway implements Gateway {
 export class AnthropicGateway implements Gateway {
   name = "anthropic";
   private dropTemperature = false;
+  private dropEffort = false;
   constructor(private cfg: any, name?: string) { if (name) this.name = name; }
+  /** Optional request fields, less any the API has refused once in this run. */
+  private extras(req: CallRequest): Record<string, unknown> {
+    const effort = (req.reasoning as any)?.effort;
+    return {
+      ...(req.temperature != null && !this.dropTemperature ? { temperature: req.temperature } : {}),
+      ...(effort && !this.dropEffort ? { output_config: { effort: String(effort) } } : {}),
+    };
+  }
+  /** On a 400 naming an optional field, stop sending it. True when the call should be retried without it. */
+  private refused(e: any): boolean {
+    if (e?.status !== 400) return false;
+    const m = String(e.message);
+    if (/temperature/i.test(m) && !this.dropTemperature) return (this.dropTemperature = true);
+    if (/effort|output_config/i.test(m) && !this.dropEffort) return (this.dropEffort = true);
+    return false;
+  }
   async call(req: CallRequest): Promise<CallResult> {
     const keyEnv = this.cfg.api_key_env ?? "ANTHROPIC_API_KEY";
     const key = process.env[keyEnv];
@@ -124,15 +165,14 @@ export class AnthropicGateway implements Gateway {
     const out: CallResult = { text: "", model: req.model, provider: this.name, usage: { input: 0, output: 0, cache_read: 0, cache_write: 0 }, cost_usd: 0, tool_calls: 0, turns: 0 };
     const price = ANTHROPIC_PRICES[req.model];
     for (let turn = 0; turn < 12; turn++) {
-      const body: any = { model: req.model, max_tokens: req.maxTokens, system, messages };
-      if (req.temperature != null && !this.dropTemperature) body.temperature = req.temperature;
+      const body: any = { model: req.model, max_tokens: req.maxTokens, system, messages, ...this.extras(req) };
       if (tools?.length && out.tool_calls < (req.maxToolCalls ?? 8)) body.tools = tools;
       let r: any;
       try {
         r = await postJson(`${this.cfg.base_url ?? "https://api.anthropic.com/v1"}/messages`,
           { "x-api-key": key, "anthropic-version": "2023-06-01", ...(this.cfg.bearer ? { authorization: `Bearer ${key}` } : {}), ...(this.cfg.headers ?? {}), ...(req.session && this.cfg.session_header ? { [this.cfg.session_header]: req.session } : {}) }, body);
       } catch (e: any) {
-        if (e?.status === 400 && /temperature/i.test(String(e.message)) && !this.dropTemperature) { this.dropTemperature = true; turn--; continue; }
+        if (this.refused(e)) { turn--; continue; }
         throw e;
       }
       out.turns++;
@@ -259,6 +299,7 @@ export class ClaudeCodeGateway implements Gateway {
         text: String(r.result ?? ""), model: Object.keys(r.modelUsage ?? {})[0] ?? req.model, provider: "claude-code",
         usage, cost_usd: Number(r.total_cost_usd ?? 0), tool_calls: handler?.used ?? 0, turns: Number(r.num_turns ?? 1),
       };
+      if (r.is_error && isUsageLimit(r)) throw new UsageLimit(`claude: usage limit reached. ${String(r.result ?? "").slice(0, 200)}`);
       if (r.is_error) {
         const e: any = new Error(`claude: ${r.subtype ?? "error"} ${r.api_error_status ?? ""} ${String(r.result ?? "").slice(0, 400)}`);
         if (r.api_error_status) e.message = `HTTP ${r.api_error_status}: ${e.message}`;

@@ -20,7 +20,7 @@ You have the `lookup` tool (`reference/REFERENCE.md`), and the batch's preloaded
 
 The same KJV word or phrase was rendered differently in different verses.
 
-1. For each verse, decide the word's **sense** from its KJV context.
+1. For each verse, decide the word's **sense** from its KJV context. Where the glossary has several entries for the form, use their `applies_when` and `not_when` to place each verse.
 2. If the senses differ, the divergence is correct.
    - Verdict: `no_change`.
    - Propose glossary entries that split the senses, if they are not already split.

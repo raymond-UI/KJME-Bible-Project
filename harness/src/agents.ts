@@ -4,7 +4,7 @@ import { join } from "node:path";
 import AjvModule from "ajv";
 const Ajv: any = (AjvModule as any).default ?? AjvModule;
 import { extractJson, newId, now, sha256, stripFrontmatter } from "./util.js";
-import { TruncatedError, type Gateway, type ToolDef } from "./llm.js";
+import { StopRun, TruncatedError, type Gateway, type ToolDef } from "./llm.js";
 import type { Store } from "./store.js";
 import type { Reference } from "./reference.js";
 
@@ -21,7 +21,7 @@ Harness rules:
 - Start from each verse's \`mechanical\` text. The pronoun and table verb-form updates already in it are logged by the harness. Do not log them.
 - Log every other difference between the KJV text and your text. \`kjv\` is copied exactly from the KJV verse (not the mechanical draft). \`update\` appears exactly in your text. Keep each change as small as it can be; group words only when they change together.
 - Offsets, italics and pronoun number marks are computed by the harness. Never write a marker such as "you(pl)" into the text.
-- Preloaded Greek is in \`reference.original\` when you have reference access. Cite it in evidence as \`pre:<verse id>\`. Tool lookups return their own lookup_id.`,
+- Preloaded Greek (NT) or Hebrew (OT) is in \`reference.original\` when you have reference access. Cite it in evidence as \`pre:<verse id>\`. Tool lookups return their own lookup_id.`,
 
   reviewer: `
 ## Output contract (harness)
@@ -42,16 +42,19 @@ Harness rules:
 
 Return one JSON object and nothing else, in this shape:
 
-{"outcome":"select|merge|escalate","winner":"<candidate id or null>","final_verses":[],"glossary_proposals":[{"kjv_form":"","sense":"","update":"<text or KEEP>","category":"","example":"<verse id>"}],"rationale":"<at most 5 sentences>","cites":["<review ids and rules>"],"confidence":0.0,"escalation":null}
+{"outcome":"select|merge|escalate","winner":"<candidate id or null>","final_verses":[],"glossary_proposals":[{"kjv_form":"","sense":"","update":"<text or KEEP>","category":"","example":"<verse id>"}],"rationale":"<at most 5 sentences>","cites":["<review ids and rules>"],"confidence":0.0,"doubts":[],"escalation":null}
 
 Harness rules:
 - Use candidate ids from the input, not reviewer labels. \`eligible\` lists the candidates you may select.
 - For merge, give final_verses exactly like a translator's verses, and add \`source\` to each change: the candidate id, or \`review:<review id>\`, it came from. The harness rejects any change not found in an eligible candidate or a reviewer alternative.
-- For escalate, set escalation to {"trigger":"","question":"","plain_question":"","context":"","focus_verses":["<verse id>"],"options":[{"label":"","ref":"<candidate id>"}],"recommendation":"<candidate id and why>"}.
+- For escalate, set escalation to {"trigger":"<one of the triggers below>","question":"","plain_question":"","context":"","focus_verses":["<verse id>"],"disputed":[{"verse_id":"<verse id>","kjv":"<KJV wording in question>"}],"options":[{"label":"","ref":"<candidate id>"}],"recommendation":"<candidate id and why>"}.
+  - trigger: no_eligible (no candidate is eligible), g1_dispute (reviewers still disagree on a G1 gate), escalate_only_term (a change touches an escalate-only term), uncertain_sense (the sense of a word is in doubt), or low_confidence (you cannot choose with confidence). Use exactly one of these words.
   - question: the technical question, for the record.
   - plain_question: one sentence a reader with no knowledge of the rules can answer. Name the word and the verse. No rule codes, gate names or Greek.
   - context: two or three plain sentences: what the word meant in 1611, how it reads today, and what each real option does. No rule codes.
   - focus_verses: only the verses the decision is about.
+  - disputed: every KJV word or phrase the question is about, by verse. Until a human decides, the harness keeps the batch's undisputed edits and holds only these at the mechanical draft, so name each one, and nothing else.
+- doubts: when you select or merge but are not sure, list each word you are unsure of as {"verse_id":"","kjv":"<KJV wording>","question":"<one plain sentence a human can answer>"}. If your confidence is below the harness threshold the batch escalates on these doubts, so a low confidence with no doubts gives the human nothing to decide. Leave it empty when you are sure.
 - Propose glossary entries for new decisions, including KEEP decisions.`,
 
   "consistency-editor": `
@@ -75,7 +78,7 @@ export function roleOf(agent: string): string {
 
 const LOOKUP_TOOL: ToolDef = {
   name: "lookup",
-  description: "Offline reference library (reference/REFERENCE.md). Use only to settle what the KJV English meant in 1611. functions: original(verse_id) -> the KJV's own Greek words; lexicon(strongs) -> brief lexicon entry; english_1611(headword) -> early modern English dictionaries; occurrences(kjv_form, limit) -> other KJV verses with that form and their accepted KJME text.",
+  description: "Offline reference library (reference/REFERENCE.md). Use only to settle what the KJV English meant in 1611. functions: original(verse_id) -> the KJV's own Greek (NT) or Hebrew (OT) words, with any variant where the KJV's Hebrew edition may differ; lexicon(strongs) -> brief lexicon entry; english_1611(headword) -> early modern English dictionaries; occurrences(kjv_form, limit) -> other KJV verses with that form and their accepted KJME text.",
   parameters: {
     type: "object",
     properties: {
@@ -87,7 +90,8 @@ const LOOKUP_TOOL: ToolDef = {
   },
 };
 
-export class BudgetExceeded extends Error {}
+export class BudgetExceeded extends StopRun {}
+export { StopRun };
 
 export interface AgentContext {
   systemRoot: string; harnessRoot: string; config: any; gateways: Record<string, Gateway>;
@@ -190,7 +194,7 @@ export class Agents {
           lastErr = error;
           user = baseUser + `\n\nYour previous reply failed validation: ${error.slice(0, 1500)}\nReply again with one JSON object only, following the output contract.`;
         } catch (e: any) {
-          if (e instanceof BudgetExceeded) throw e;
+          if (e instanceof StopRun) throw e;
           lastErr = String(e.message ?? e);
           const partial = (e as any).result;
           if (partial) this.ctx.store.addSpend(partial.cost_usd ?? 0);
